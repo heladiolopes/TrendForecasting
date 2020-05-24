@@ -1,0 +1,239 @@
+%%% Exemplo de utilização da classe ITA
+%%%
+%%%   por        Fábio Fagundes Silveira   -  ffs [at] ita [dot] br
+%%%              Benedito C. O. Maciel     -  bcmaciel [at] ita [dot] br
+%%%              Giovani Volnei Meinertz   -  giovani [at] ita [dot] br
+%%%    	         Hudson Alberto Bode       -  bode [at] ita [dot]br
+%%%    	         P. I. Braga de Queiroz    -  pi [at] ita [dot] br
+%%%    	         Jorge A. B. Gripp         -  gripp [at] ita [dot] br
+%%%    	         Juliano Monte-Mor         -  jamontemor [at] yahoo [dot] com [dot] br
+%%%    	         Tarcisio A. B. Gripp      -  tarcisio.gripp [at] gmail [dot] com
+%%%    	         
+%%%
+%%%  IMPORTANTE: O texto contido neste exemplo nao significa absolutamente nada.  :-)
+%%%              O intuito aqui eh demonstrar os comandos criados na classe e suas
+%%%              respectivas utilizacoes.
+%%%
+%%%  Tese.tex  2016-08-25
+%%%  $HeadURL: http://www.apgita.org.br/apgita/teses-e-latex.php $
+%%%
+%%% ITALUS
+%%% Instituto Tecnológico de Aeronáutica --- ITA, Sao Jose dos Campos, Brasil
+%%%                   http://groups.yahoo.com/group/italus/
+%%% Discussion list: italus {at} yahoogroups.com
+%%%
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Para alterar o TIPO DE DOCUMENTO, preencher a linha abaixo \documentclass[?]{?}
+%   \documentclass[tg]{ita}			= Trabalho de Graduacao
+%   \documentclass[tgfem]{ita}		= Para Engenheiras
+%   								msc     		= Dissertacao de Mestrado
+%   								mscfem   		= Para Mestras
+%   								dsc      		= Tese de Doutorado
+%   								dscfem   		= Para Doutoras
+%   								quali    		= Exame de Qualificacao
+%   								qualifem 		= Exame de Qualificacao para Doutoras
+% Para 'Draft Version'/'Versao Preliminar' com data no rodape, adicionar 'dv':
+%   \documentclass[dsc, dv]{ita} 
+% Para trabalhos em Inglês, adicionar 'eng':
+%   \documentclass[dsc, eng]{ita}
+%		\documentclass[dsc, eng, dv]{ita}
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\documentclass[tg, eng, dv]{ita}    % ITA.cls based on standard book.cls 
+% Quando alterar a classe, por exemplo de [msc] para [msc, eng]) rode mais uma vez o botão BUILD OUTPUT caso haja erro
+\usepackage{booktabs}
+\usepackage{ae}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{amsmath}
+\usepackage{amssymb} 
+\usepackage{subfig}
+\usepackage{multirow}
+\usepackage{float}
+\usepackage{lipsum}
+
+
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Espaçaamento padrão de todo o documento
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\onehalfspacing
+
+%singlespacing Para um espaçamento simples
+%onehalfspacing Para um espaçamento de 1,5
+%doublespacing Para um espaaçamento duplo
+
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% Identificacoes (se o trabalho for em inglês, insira os dados em inglês)
+% Para entradas abreviadas de Professora (Profa.) em português escreva: Prof$^\textnormal{a}$.
+%++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\course{Computer Engineering} % Programa de PG ou Curso de Graduação
+% \area{Sistemas Aeroespaciais e Mecatrônica} % área de concentração na PG (Não utilizado no caso de TG)
+
+% Autor do trabalho: Nome Sobrenome
+\authorgender{masc} %sexo: masc ou fem
+\author{Heládio Sampaio}{Lopes}
+\itaauthoraddress{H8A St., 113}{12228-460}{São José dos Campos--SP}
+
+% Titulo da Tese/Dissertação
+\title{Natural Language Processing for Trend Forecasting}
+
+% Orientador
+\advisorgender{masc} % masc ou fem
+\advisor{Prof. Dr.}{Filipe Alves Neto Verri}{ITA}
+
+% Coorientador (Caso no haja coorientador, colocar ambas as variveis \coadvisorgender e \coadvisor comentadas, com um % na frente)
+% \coadvisorgender{fem}									% masc ou fem
+% \coadvisor{~Dr$^\textnormal{a}$.}{Rosa de Fátima Cruz Marques}{IAE}
+
+% Pró-reitor da Pós-graduação
+% \bossgender{masc}												% masc ou fem
+% \boss{Prof.~Dr.}{John von Neumann}
+
+%Coordenador do curso no caso de TG
+\bosscoursegender{masc}									% masc ou fem
+\bosscourse{}{Inaldo Capistrano Costa}
+
+% Palavras-Chaves informadas pela Biblioteca -> utilizada na CIP
+\kwcip{Natural Language Processing}
+\kwcip{Deep Learning}
+\kwcip{Machine Learning}
+
+% membros da banca examinadora
+
+% \examiner{Prof. Dr.}{Alan Turing}{Presidente}{ITA}
+% \examiner{Prof. Dr.}{Linus Torwald}{}{UXXX}
+% \examiner{Prof. Dr.}{Richard Stallman}{}{UYYY}
+% \examiner{Prof. Dr.}{Donald Duck}{}{DYSNEY}
+% \examiner{Prof. Dr.}{Mickey Mouse}{}{DISNEY}
+
+% Data da defesa (més em maiúsculo, se trabalho em inglês, e minusculo se trabalho em português) 
+\date{19}{JUNE}{2020}
+
+% Número CDU - (somente para TG)
+\cdu{621.38}
+
+% Glossario
+\makeglossary
+\frontmatter
+
+\begin{document}	
+% Folha de Rosto e Capa para o caso do TG
+\maketitle
+
+% Dedicatoria: Nao esqueca essa secao  ... :-)
+\begin{itadedication}
+
+\end{itadedication}
+
+% Agradecimentos
+\begin{itathanks}
+\input{01.Chapters/00.Settings/agradecimentos}
+\end{itathanks}
+
+% Epígrafe
+\thispagestyle{empty}
+\ifhyperref\pdfbookmark[0]{\nameepigraphe}{epigrafe}\fi
+\begin{flushright}
+\begin{spacing}{1}
+\mbox{}\vfill
+{\sffamily\itshape
+``That's All Folks''\\}
+--- Looney Tunes, \textsc{}
+\end{spacing}
+\end{flushright}
+
+% Resumo
+\begin{abstract}
+\noindent
+\input{01.Chapters/00.Settings/resumo}
+\end{abstract}
+
+% Abstract
+\begin{englishabstract}
+\noindent
+\input{01.Chapters/00.Settings/abstract}
+\end{englishabstract}
+
+% Lista de figuras
+\listoffigures %opcional
+
+% Lista de tabelas
+\listoftables %opcional
+
+% Lista de abreviaturas
+\listofabbreviations
+\input{01.Chapters/00.Settings/listaabreviaturas} %opcional
+
+% Lista de simbolos
+\listofsymbols
+\input{01.Chapters/00.Settings/listasimbolos} %opcional
+
+% Sumario
+\tableofcontents
+
+\mainmatter
+% Os capitulos comecam aqui
+
+\chapter{Introduction}\label{chap:intro}
+\input{01.Chapters/01.Introduction/introduction}
+
+\chapter{Background and Literature Review}\label{chap:background}
+\input{01.Chapters/02.Background/background}
+
+\chapter{Natural Language Processing}\label{chap:nlp}
+\input{01.Chapters/03.NLP/nlp}
+
+\chapter{Deep Learning}\label{chap:deep}
+\input{01.Chapters/04.DeepLearning/deep}	
+
+%\chapter{Methodology}\label{chap:methodoogy}
+%\input{01.Chapters/05.Methodology/methodology}
+%
+%\chapter{Results and Discussions}\label{chap:results}
+%\input{01.Chapters/06.Results/results}
+%
+%\chapter{Conclusions, Recommendations, and Future Works}\label{chap:conclusion}
+%\input{01.Chapters/07.Conclusion/conclusion}
+
+\chapter{The Proposal}\label{chap:proposal}
+\input{01.Chapters/99.NextSteps/next}
+
+% REFERENCIAS BIBLIOGRAFICAS
+\renewcommand\bibname{\itareferencesnamebabel} %renomear título do capítulo referências
+\bibliography{02.Referencias/referencias}
+
+% Apendices
+%\appendix
+%\chapter{}
+%\input{}
+
+% Anexos
+%\annex
+%\chapter{}
+%\input{}
+
+% Glossario
+%\itaglossary
+%\printglossary
+
+% Folha de Registro do Documento
+% Valores dos campos do formulario
+\FRDitadata{June 19th, 2020}
+\FRDitadocnro{DCTA/ITA/DM-018/2015} %(o n mero de registro voc  solicita a biblioteca)
+\FRDitaorgaointerno{Aeronautics Institute of Technology -- ITA}
+%Exemplo no caso de pós-graduação: Instituto Tecnol{\'o}gico de Aeron{\'a}utica -- ITA
+\FRDitapalavrasautor{Natural Language Processing; Deep Learning; Machine Learning}
+\FRDitapalavrasresult{Natural Language Processing; Deep Learning; Machine Learning}
+%Exemplo no caso de gradua  o (TG):
+%\FRDitapalavraapresentacao{Trabalho de Gradua  o, ITA, S o Jos  dos Campos, 2015. \NumPenultimaPagina\ p ginas.}
+
+\FRDitapalavraapresentacao{ITA, São José dos Campos, 2020. Trabalho de Graduação. \NumPenultimaPagina\ páginas.}
+\FRDitaresumo{\input{01.Chapters/00.Settings/resumo}}
+%  Primeiro Parametro: Nacional ou Internacional -- N/I
+%  Segundo parametro: Ostensivo, Reservado, Confidencial ou Secreto -- O/R/C/S
+\FRDitaOpcoes{N}{O}
+% Cria o formulario
+\itaFRD
+
+\end{document}
+% Fim do Documento. O massacre acabou!!! :-)

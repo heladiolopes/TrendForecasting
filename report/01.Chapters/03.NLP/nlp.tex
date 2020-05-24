@@ -1,0 +1,78 @@
+\section{Text Processing Techniques}
+
+The key task to several machine learning problems consist in make a good data processing before applying any model. A clean data set can allow a model to increase its performance in the learning process, making a better identification in the patterns present in the variables. Hence, in the next sections, it will be discussed a few techniques to clear the text and prepare it for ML algorithms.
+
+\subsection{Normalization}
+%https://www.kdnuggets.com/2017/12/general-approach-preprocessing-text-data.html
+
+There is no right way to normalize text, this process has it is really important to put all text in the same level. A normalization process has a series of steps to be followed sequentially, all of then can be seen as 4 big tasks: stemming, lemmatization, stop words removal and everything else.
+
+\begin{enumerate}
+	\item Stemming: Is the process of reduce inflected words to a primitive form, the stem. This method is able to remove the word's affixes to capture its base meaning, and still reducing the number of variations to save memory space. Figure \ref{fig:stemming} shows how some inflections for "connect" can be converted to its root form.
+		
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.45\linewidth]{01.Chapters/03.NLP/stemming}
+		\caption{Stemming process for connect variations \cite{vijayarani2015preprocessing}.}
+		\label{fig:stemming}
+	\end{figure}
+	
+	% stemming algorithms
+	
+	\item Lemmatization: similar to stemming, this step also reduce words to some primitive form, but with a little improvement. Lemmatization can returns the words to his dictionary form, based on its part of speech context. So it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
+	
+	\item Remove stop words:
+	Many words can occurs a several times in a document without add any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be seen as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
+
+	There are some types to remove stop words, most of then based on evaluating the frequency of words in text, for more information see \cite{x}. But the classic and easier method is based on using a pre-compiled list of know words and removing then from text.
+	
+	\item Everything else:
+	Differently from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert then to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
+\end{enumerate}
+
+\subsection{Tokenization}
+	Once the data is normalized, we need to know how to represent it. The tokenization process consists in splitting longer strings into meaningful small pieces called tokens. The most common way to tokenize a text is chunking it the into words, ie, given a piece of text the tokenize process will return a list of words. 
+	
+	
+\subsection{Bag of Words}
+	The machine learning algorithms take numerical features as input, hence, it will bee necessary to represent the text in numerical form. With the Bag of Words model we can represent in matrix form a set of documents.
+	 	
+	With the tokenization output we will have the lists representations for all documents in the data set. These lists can be interpreted as vectors over the vector space of all unique tokens, also called by vocabulary. So, for a given sentence, we mark how many times its words appears in the list indexes where each entry corresponds to a word in the vocabulary. The Figure \ref{fig:bag-of-words} show a simple example of how three sentences can be represented with BoW model.
+	
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{01.Chapters/03.NLP/bag-of-words}
+		\caption{Bag of Words example.}
+		\label{fig:bag-of-words}
+	\end{figure}
+	
+
+\subsection{TF-IDF}
+
+	Term Frequency Inverse Document Frequency, TF-IDF for short, it is applied to a BoW to determine the relative frequency for words in a specific document when compared to the inverse proportion of that word over all documents in the collection. So, it can be determined how important are the words in a specific document. 
+		
+	From BoW, for the $i^{th}$ vocabulary's word in the $j^{th}$ document, its TF-IDF weight, $w_{i,j}$, can be calculated with Equation \ref{eq:tf-idf}.
+	
+	\begin{equation}
+		\label{eq:tf-idf}
+		w_{i, j} = tf_{i, j} \times \log\left(\dfrac{N}{df_{i}}\right)
+	\end{equation}
+	
+	Where, the term frequency, $tf_{i, j}$, is how many time $i^{th}$ word appears in the $j^{th}$ document. The document frequency, $df_{i}$, is the number of documents in which th $i_{th}$ vocabulary words is present. And, finally, $N$ is the size of the document collection, with a large number of documents this term can explodes, so the logarithmic function is applied to dampen this effect.
+	
+		
+\section{Word Embedding}
+
+	The vectorization methods such as BoW and TF-IDF can be very useful, but they can not represent the words context. This means that the same words used in different contexts have the same representation, just as different words used with the same meaning are represented differently. Besides that, an one-hot encoding method, like BoW, presents a very sparse representation with high dimensionality. 
+	
+	The Word Embedding is a technique to represent words in vectors capable of capture the words context in a document. It is also able to smooth the high 
+	dimensionality effect by using much more compact vector to represent the words.	
+
+
+\section{Topic Modeling}
+
+	
+
+\section{Topic Classification}
+
