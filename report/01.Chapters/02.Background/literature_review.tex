@@ -20,7 +20,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\begin{figure}[h!]
 			\centering
 			\includegraphics[width=0.45\linewidth]{01.Chapters/02.Background/stemming}
-			\caption{Stemming process for connect variations \cite{vijayarani2015preprocessing}.}
+			\caption{Stemming process for ``connect'' variations \cite{vijayarani2015preprocessing}.}
 			\label{fig:stemming}
 		\end{figure}
 		
@@ -73,7 +73,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	There are three most know way to perform a good word embedding. We will describe briefly each one of them below. 
 	
-	\subsubsection{Word2Vec}
+	\subsubsection{Word Representations in Vector Space} %word representations in vector space
 	
 	The first great word embedding technique emerged when Google researchers proposed two architectures to build continuous vector representations of words. Word's context can be observed as the words that surround it in a sentence. Then using shallow neural networks, it is possible to calculate the word vector space based on word's context, \cite{mikolov2013efficient}.
 	
@@ -94,21 +94,38 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	% INCREMENTO: Detalhes do artigo - base utilizada e testes
 	
-	\subsubsection{GloVe}
+	\subsubsection{Global Vectors for Word Representation} % 
 	
-	%  @TODO
-	
-	
-	
-	\subsubsection{Fast Text}
+	Just a year later \citeonline{pennington-etal-2014-glove} arrives with a new approach to represent words in a vector space. The Global Vectors for Word Representation, or GloVe, method emerged by the need to consider some factors ignored by Skip-Gram.
 		
-	%  @TODO
+	Methods such as Skip-Gram learn their embedding by targeting words to their respective context,
+	ignoring the fact that some words appear more in a context than others. Thus, this co-occurrence of words only adds more useless training examples, increasing the training complexity without adding relevant information.
+	
+	GloVe, however, proposes to use the corpus statistics in a more efficient way. Using a weighted least squares model trained on a global word-word co-occurrence counts matrix. Thereby, it is possible to build a lookup table for the words in vocabulary and use it to represent them in a vector space.
+	
+	% INCREMENTO: Explicar processo de montagem das co-ocorrencias e probabilidades
+	
+	\subsubsection{Word Vectors with Subword Information}
+		
+	Both Skip-Gram and GloVe provide a good vector representation for words, but there still are an unsolved problem, What to do with unknown words? To solve this question was proposed a new embedding technique which uses subword units to build a vector space, \cite{bojanowski2017enriching}.
+	
+	Similar to Skip-Gram, this new method, the FastText, train its embedding by using a target to predict the context. However, instead of using the full words FastText goes a level deeper, breaking the words in $n$-grams, ie, the word becomes its own context. The Figure \ref{fig:apple-tri-gram} shows how the word ``apple'' can be broken into $n$-grams. 
+		
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.3\linewidth]{01.Chapters/02.Background/apple-tri-gram}
+		\caption{Tri-gram representation for ``apple'' word.}
+		\label{fig:apple-tri-gram}
+	\end{figure}
+	
+	There are a couple great advantages by using this method. It is now possible to generalize new words, or unseen in training data, since they have the same characters as known ones. Although it is possible to use available pre-trained models, the FastText requires less text to be trained, it can extract much more information from small pieces of text.	
 	
 	\subsection{Topic Clustering}
 	
 		
 %	\subsection{Topic Classification}
 
+\section{Machine Learning}
 
 %\section{Deep Learning}
 %	\subsection{Neuron}
