@@ -32,7 +32,7 @@ We must be careful to choose a database which covers several years in order to g
 
 \subsection{Pre-processing the data}
 
-With the chosen database, we mus define a data pre process pipeline to normalize the documents, putting then all at the same pattern. For this, we can use the normalization techniques shown in Chapter \ref{chap:literature} like stemming, lemmatization, stop words removal and all necessary textual manipulations to obtain the best text representation for the documents.
+With the chosen database, we mus define a data pre process pipeline to normalize the documents, putting all of then at the same pattern. For this, we can use the normalization techniques shown in Chapter \ref{chap:literature} like stemming, lemmatization, stop words removal and all necessary textual manipulations to obtain the best text representation for the documents.
 
 After processing the data we need to index then over the time and, then, split the full treated data set in three subsets. They must be time ordered, as shown in Figure \ref{fig:database}, this means that for each document in $T_{i}$ its time index $t_{x}^{(i)}$ must be lower then any index $t_{x}^{(m)}$ in a document contained in $T_{m}$, and so on.
 
