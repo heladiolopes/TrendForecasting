@@ -9,15 +9,15 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 
 	\subsection{Text Processing Techniques}
 	
-	The key task to several machine learning problems consist in make a good data processing before applying any model. A clean data set can allow a model to increase its performance in the learning process, making a better identification in the patterns present in the variables. Hence, in the next sections, it will be discussed a few techniques to clear the text and prepare it for ML algorithms.
+	The key task to several machine learning problems consists in make good data processing before applying any model. A clean data set can allow a model to increase its performance in the learning process, making a better identification in the patterns present in the variables. Therefore, in the following sections, it will be discussed a few techniques to clear the text and prepare it for machine learning algorithms.
 	
 	\subsubsection{Normalization}
 	%https://www.kdnuggets.com/2017/12/general-approach-preprocessing-text-data.html
 	
-	There is no right way to normalize text, this process has it is really important to put all text in the same level. A normalization process has a series of steps to be followed sequentially, all of then can be seen as 4 big tasks: stemming, lemmatization, stop words removal and everything else.
+	There is no right way to normalize text. This process is crucially important to put all text at the same level. A normalization process consists of a series of steps to be followed consecutively, all of then can be seen as 4 big tasks: stemming, lemmatization, stop words removal and everything else.
 	
 	\begin{enumerate}
-		\item Stemming: Is the process of reduce inflected words to a primitive form, the stem. This method is able to remove the word's affixes to capture its base meaning, and still reducing the number of variations to save memory space. Figure \ref{fig:stemming} shows how some inflections for ``connect'' can be converted to its root form.
+		\item Stemming: is the process of reducing inflected words to a primitive form, the stem. This method can remove the word's affixes to capture its base meaning, and still reducing the number of variations to save memory space. Figure \ref{fig:stemming} shows how some inflections for ``connect'' can be converted to its root form.
 		
 		\begin{figure}[h!]
 			\centering
@@ -28,24 +28,24 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 		% stemming algorithms
 		
-		\item Lemmatization: similar to stemming, this step also reduce words to some primitive form, but with a little improvement. Lemmatization can returns the words to his dictionary form, based on its part of speech context. So it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
-		
+		\item Lemmatization: similar to stemming, this step also reduces words to some primitive form, but with a little improvement. Lemmatization can return the words to his dictionary form, based on its part of speech context. Hence, it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
+				
 		\item Remove stop words:
-		Many words can occurs a several times in a document without add any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be seen as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
+		Many words can occur a several time in a document without adding any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be identified as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
 		
-		There are some types to remove stop words, most of then based on evaluating the frequency of words in text, for more information see \cite{vijayarani2015preprocessing}. But the classic and easier method is based on using a pre-compiled list of know words and removing then from text.
+		There are some types to remove stop words, most of then based on evaluating the frequency of words in a text, for more information see \cite{vijayarani2015preprocessing}. But the classic and easier method is based on using a pre-compiled list of know words and removing then from the text.
 		
 		\item Everything else:
-		Differently from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert then to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
+		Different from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert then to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
 	\end{enumerate}
 	
 	\subsubsection{Tokenization}
-	Once the data is normalized, we need to know how to represent it. The tokenization process consists in splitting longer strings into meaningful small pieces called tokens. The most common way to tokenize a text is chunking it the into words, ie, given a piece of text the tokenize process will return a list of words. 
+	Once the data is normalized, we need to know how to represent it. The tokenization process consists in splitting longer strings into meaningful small pieces called tokens. The most common way to tokenize a text is chunking it the into words, i.e., given a piece of text the tokenization process will return a list of words. 
 	
 	\subsubsection{Bag of Words}
-	The machine learning algorithms take numerical features as input, hence, it will bee necessary to represent the text in numerical form. With the Bag of Words model we can represent in matrix form a set of documents.
+	The machine learning algorithms take numerical features as input, hence, it will be necessary to represent the text in numerical form. With the Bag of Words model, we can represent in matrix form a set of documents.
 	
-	With the tokenization output we will have the lists representations for all documents in the data set. Those lists can be interpreted as vectors over the vector space of all unique tokens, also called by vocabulary. So, for a given sentence, we mark how many times its words appears in the list indexes where each entry corresponds to a word in the vocabulary. The Figure \ref{fig:bag-of-words} show a simple example of how three sentences can be represented with BoW model.
+	With the tokenization output, we will have the lists representations for all documents in the data set. Those lists can be interpreted as vectors over the vector space of all unique tokens, also called by vocabulary. So, for a given sentence, we mark how many times its words appear in the list indexes where each entry corresponds to a word in the vocabulary. Figure \ref{fig:bag-of-words} shows a simple example of how three sentences can be represented with the BoW model.
 	
 	\begin{figure}[h!]
 		\centering
@@ -65,21 +65,21 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	w_{i, j} = \text{tf}_{i, j} \times \log\left(\dfrac{N}{\text{df}_{i}}\right) \text{.}
 	\end{equation}
 	
-	Where, the term frequency, $\text{tf}_{i, j}$, is how many time $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document. The document frequency, $\text{df}_{i}$, is the number of documents in which th $i_{\text{th}}$ vocabulary words is present. And, finally, $N$ is the size of the document collection, with a large number of documents this term can explodes, so the logarithmic function is applied to dampen this effect.
+	Where, the term frequency, $\text{tf}_{i, j}$, is how many time $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document. The document frequency, $\text{df}_{i}$, is the number of documents in which th $i_{\text{th}}$ vocabulary words is present. And, finally, $N$ is the size of the document collection, with a large number of documents this term can explode, so the logarithmic function is applied to dampen this effect.
 	
 	\subsection{Word Embedding}
 	
-	The vectorization methods such as BoW and TF-IDF can be very useful, but they can not represent the words context. This means that the same words used in different contexts have the same representation, just as different words used with the same meaning are represented differently. Besides that, an one-hot encoding method, like BoW, presents a very sparse representation with high dimensionality. 
+	The vectorization methods like BoW and TF-IDF can be very useful, but they can not represent the context of the words. This means the same words used in different contexts have the same representation, just as different words used with the same meaning are represented differently. Besides that, an one-hot encoding method, like BoW, presents a very sparse representation with high dimensionality. 
 	
-	The Word Embedding is a technique to represent words in vectors capable of capture the words context in a document. It is also able to smooth the high dimensionality effect by using much more compact vector to represent the words.	
+	Word Embedding is a technique to represent words in vectors capable of capture the words context in a document. It is also capable to smooth the high dimensionality effect by using a much more compact vector to represent the words.	
 	
-	There are three most know way to perform a good word embedding. We will describe briefly each one of them below. 
+	There are three most known ways to perform a good word embedding. We will describe briefly each one of them below. 
 	
-	\subsubsection{Word Representations in Vector Space} %word representations in vector space
+	\subsubsection{Word Representations in Vector Space}
 	
-	The first great word embedding technique emerged when Google researchers proposed two architectures to build continuous vector representations of words. Word's context can be observed as the words that surround it in a sentence. Then using shallow neural networks, it is possible to calculate the word vector space based on word's context, \cite{mikolov2013efficient}.
+	The first great word embedding technique emerged when Google researchers proposed two architectures to build continuous vector representations of words. Word's context can be observed as the words that surround it in a sentence. Then, using shallow neural networks, it is possible to calculate the word vector space based on the word's context, \cite{mikolov2013efficient}.
 	
-	The first suggested approach is the continuous bag of words or CBOW, the left side of Figure \ref{fig:word2vecarchitectures} show its architecture. Here the neural networks is designed to predict, given the context, which word is most likely to appear. So, words with the same probability to appear can have a shared dimension in the words vector space. 
+	The first suggested approach is the continuous bag of words or CBOW, the left side of Figure \ref{fig:word2vecarchitectures} shows its architecture. Here the neural networks are designed to predict, given the context, which word is most likely to appear. So, words with the same probability to appear can assume a shared dimension in the words vector space. 
 
 	The second approach is known by Skip-Gram, architecture at right in Figure \ref{fig:word2vecarchitectures}. Very similar to CBOW, but instead of predicting the current word the Skip-Gram uses the current word as an input to a neural network to predict its context.
 	
@@ -92,7 +92,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	% INCREMENTO: Explicar processo de treinamento, input/output e hidden layers
 	
-	After the network training process we can use the hidden layer weight matrix as an look up table to build the word embedding representation. The dimension for the vector space is managed by the number of neurons in the hidden layer. 		
+	After the network training process, we can use the hidden layer weight matrix as a lookup table to build the word embedding representation. The dimension for the vector space is managed by the number of neurons in the hidden layer. 		
 	
 	% INCREMENTO: Detalhes do artigo - base utilizada e testes
 	
@@ -100,18 +100,17 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	Just a year later \citeonline{pennington-etal-2014-glove} arrives with a new approach to represent words in a vector space. The Global Vectors for Word Representation, or GloVe, method emerged by the need to consider some factors ignored by Skip-Gram.
 		
-	Methods such as Skip-Gram learn their embedding by targeting words to their respective context,
-	ignoring the fact that some words appear more in a context than others. Thus, this co-occurrence of words only adds more useless training examples, increasing the training complexity without adding relevant information.
+	Methods such as Skip-Gram learn their embedding by targeting words to their respective context, ignoring the fact that some words appear more in a context than others. Thus, this co-occurrence of words only adds more useless training examples, increasing the training complexity without adding relevant information.
 	
-	GloVe, however, proposes to use the corpus statistics in a more efficient way. Using a weighted least squares model trained on a global word-word co-occurrence counts matrix. Thereby, it is possible to build a lookup table for the words in vocabulary and use it to represent them in a vector space.
+	GloVe, however, proposes to use the corpus statistics more efficiently. Using a weighted least squares model trained on a global word-word co-occurrence counts matrix. Thereby, it is possible to build a lookup table for the words in vocabulary and use it to represent them in a vector space.
 	
 	% INCREMENTO: Explicar processo de montagem das co-ocorrencias e probabilidades
 	
 	\subsubsection{Word Vectors with Subword Information}
 		
-	Both Skip-Gram and GloVe provide a good vector representation for words, but there still are an unsolved problem, What to do with unknown words? To solve this question was proposed a new embedding technique which uses subword units to build a vector space, \cite{bojanowski2017enriching}.
+	Both Skip-Gram and GloVe provide a good vector representation for words, but there still is an unsolved problem, What to do with unknown words? To solve this question was proposed a new embedding technique which uses subword units to build a vector space, \cite{bojanowski2017enriching}.
 	
-	Similar to Skip-Gram, this new method, the FastText, train its embedding by using a target to predict the context. However, instead of using the full words FastText goes a level deeper, breaking the words in $n$-grams, ie, the word becomes its own context. The Figure \ref{fig:apple-tri-gram} shows how the word ``apple'' can be broken into $n$-grams. 
+	Similar to Skip-Gram, this new method, the FastText, train its embedding by using a target to predict the context. However, instead of using the full words FastText goes a level deeper, breaking the words in $n$-grams, i.e., the word becomes its own context. The Figure \ref{fig:apple-tri-gram} shows how the word ``apple'' can be broken into $n$-grams. 
 		
 	\begin{figure}[h!]
 		\centering
