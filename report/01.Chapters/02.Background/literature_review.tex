@@ -1,11 +1,9 @@
-In this chapter, we will introduce the general concepts and techniques behind Natural Language Processing. We will cover all the necessary steps for extracting meaningful topics from texts. % Finally, a brief discussion about machine learning for forecasting time series.
+In this chapter, we will introduce the general concepts and techniques behind Natural Language Processing. We will cover all the necessary steps for extracting meaningful topics from texts. Finally, a brief discussion about machine learning for tasks like classification and regression.
 
 
 \section{Natural Language Processing}
 
-	% Introdução geral sobre NLP
-	
-	% Seção com terminologia básica
+	In artificial intelligence, NLP appears as the field responsible for study the interactions between computers and natural human language. Thus, it is capable of the program a computer to extract significant information from the text corpus, called documents, and use this information to apply a machine learning model and use it in several applications. 
 
 	\subsection{Text Processing Techniques}
 	
@@ -79,16 +77,16 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	The first great word embedding technique emerged when Google researchers proposed two architectures to build continuous vector representations of words. Word's context can be observed as the words that surround it in a sentence. Then, using shallow neural networks, it is possible to calculate the word vector space based on the word's context, \cite{mikolov2013efficient}.
 	
-	The first suggested approach is the continuous bag of words or CBOW, the left side of Figure \ref{fig:word2vecarchitectures} shows its architecture. Here the neural networks are designed to predict, given the context, which word is most likely to appear. So, words with the same probability to appear can assume a shared dimension in the words vector space. 
-
-	The second approach is known by Skip-Gram, architecture at right in Figure \ref{fig:word2vecarchitectures}. Very similar to CBOW, but instead of predicting the current word the Skip-Gram uses the current word as an input to a neural network to predict its context.
-	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.85\linewidth]{01.Chapters/02.Background/word2vec_architectures}
+		\includegraphics[width=0.7\linewidth]{01.Chapters/02.Background/word2vec_architectures}
 		\caption{Word2Vec architectures, Figure from  \cite{mikolov2013efficient}.}
 		\label{fig:word2vecarchitectures}
 	\end{figure}
+	
+	The first suggested approach is the continuous bag of words or CBOW, the left side of Figure \ref{fig:word2vecarchitectures} shows its architecture. Here the neural networks are designed to predict, given the context, which word is most likely to appear. So, words with the same probability to appear can assume a shared dimension in the words vector space. 
+
+	The second approach is known by Skip-Gram, architecture at right in Figure \ref{fig:word2vecarchitectures}. Very similar to CBOW, but instead of predicting the current word the Skip-Gram uses the current word as an input to a neural network to predict its context.
 	
 	% INCREMENTO: Explicar processo de treinamento, input/output e hidden layers
 	
@@ -121,12 +119,33 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	There are a couple great advantages by using this method. It is now possible to generalize new words, or unseen in training data, since they have the same characters as known ones. Although it is possible to use available pre-trained models, the FastText requires less text to be trained, it can extract much more information from small pieces of text.	
 	
-	\subsection{Topic Clustering}
+	\subsection{Topic Modeling}
 	
-		
-%	\subsection{Topic Classification}
+	In text-mining, we often have document collections that we want to split into similar groups or even classify then related to each other. In this way, topic modeling is an unsupervised classification tool frequently used in text-mining to identifying the hidden patterns, called ``topics'', in this document collection which carries consistent semantic meaning.
+	
+	Clustering methods, like hierarchical clustering, can be used to group the document collection into similar clusters. However, with a large amount of data a simple document clustering is not enough, because the semantic level of topics is not taken into account. To accomplish the topic modeling task a more sophisticated method is required, so methods like Latent Dirichlet allocation.
+	
+	Latent Dirichlet allocation, or LDA for short, is a probabilistic model that uses a Dirichlet distribution to model both the topics and the words. In LDA, each item in the collection is modeled as a mixture over an underlying set of topics. And the topics, in this way, is modeled as a mixture of words over the vocabulary, \cite{blei2003latent}.
+	
+	Without going too deep in the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
+	
+	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports Topic, ``pizza'' and ``pasta'' for te Food topic end, finally ``computer'' and ``phone'' for technology topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words and the documents a combination of topics.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{01.Chapters/02.Background/topic_modeling}
+		\caption{Document collection modeled by topics.}
+		\label{fig:topicmodeling}
+	\end{figure}
+	
+	A final remark for the topic modeling algorithms is that the topic is not discovered by names, the machine only discovers the distribution of the words by topics but not which one is. Its human work to label the topic once they are found.
+		 
 
 \section{Machine Learning}
+
+\subsection{Classification}
+
+\subsection{Regression}
 
 %\section{Deep Learning}
 %	\subsection{Neuron}
