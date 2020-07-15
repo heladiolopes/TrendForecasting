@@ -1,4 +1,4 @@
-Because of the problem's complexity, we can elaborate on a schedule with the proposed tasks in the previous chapter. Starting from August 3rd until November 9th we have 14 weeks, so we can divide the work into 5 sprints, 4 of them with 3 weeks, and the remainder on with 2 weeks. The Table \ref{tab:roadmap-table} show the tasks over the remaining months until the end of this work.
+Because of the problem's complexity, we can elaborate on a schedule with the proposed tasks in the previous chapter. Starting from August 3rd until November 9th we have 14 weeks, so we can divide the work into 6 sprints, 4 of them with 2 weeks, and the remainder two with 3 weeks. The Table \ref{tab:roadmap-table} show the tasks over the remaining months until the end of this work.
 
 \begin{table}[h!]
 	\centering
@@ -6,13 +6,17 @@ Because of the problem's complexity, we can elaborate on a schedule with the pro
 	\label{tab:roadmap-table}
 	\begin{tabular}{c|cccl}
 		\hline
-		       \textbf{Sprint}        &    \textbf{Start Date}    &     \textbf{End Date}      &    \textbf{Duration}     & \textbf{Task}              \\ \hline
-		\multirow{2}{*}{\textbf{\#1}} & \multirow{2}{*}{August 3} & \multirow{2}{*}{August 16} & \multirow{2}{*}{14 days} & - Choose a database         \\
-		                              &                           &                            &                          & - Pre-process the database \\
-		        \textbf{\#2}          &         August 17         &        September 6         &         21 days          & - Topic Identification     \\
-		        \textbf{\#3}          &        September 7        &        September 27        &         21 days          & - Document Classification  \\
-		        \textbf{\#4}          &       September 28        &         October 18         &         21 days          & - Time Series Forecast     \\
-		        \textbf{\#5}          &        October 19         &         November 8         &         21 days          & - Test and fix bugs        \\ \hline
+		       \textbf{Sprint}        &    \textbf{Start Date}     &       \textbf{End Date}       &  \textbf{Duration}  & \textbf{Task}                     \\ \hline
+		\multirow{2}{*}{\textbf{\#1}} & \multirow{2}{*}{August 3}  &  \multirow{2}{*}{August 16}   & \multirow{2}{*}{14} & - Chose a database                \\
+		                              &                            &                               &                     & - Pre process the database        \\ \hline
+		        \textbf{\#2}          &         August 17          &           August 30           &         14          & - Topic Identification            \\ \hline
+		\multirow{2}{*}{\textbf{\#3}} & \multirow{2}{*}{August 31} & \multirow{2}{*}{September 20} & \multirow{2}{*}{21} & - Evaluate Identification         \\
+		                              &                            &                               &                     & - Generate Identification Results \\ \hline
+		        \textbf{\#4}          &        September 21        &           October 4           &         14          & - Document Classification         \\ \hline
+		\multirow{2}{*}{\textbf{\#5}} & \multirow{2}{*}{October 5} &  \multirow{2}{*}{October 25}  & \multirow{2}{*}{21} & - Evaluate Classification         \\ 
+		                              &                            &                               &                     & - Generate Classification Results \\ \hline
+		        \textbf{\#6}          &         October 26         &          November 8           &         14          & - Test and fix bugs               \\ \hline
 	\end{tabular}
 \end{table}
 
+In the table, we see that the forecasting step was not included in the schedule. Due to the high complexity of each stage, for this work, it will be implemented only up to the stage of the classification model. The last stage, with the forecast, will be for future work
