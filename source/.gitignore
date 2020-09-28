@@ -2,3 +2,8 @@ venv/
 *.ipynb*
 *.csv
 *.txt
+data/
+*/__pycache__/
+assets/
+.idea/
+
