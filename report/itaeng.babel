@@ -150,7 +150,7 @@
 	\@publyear. Advisor: \itaadvisortitle\ \itaadvisorname. \@ifundefined{@coadvisor}{}{Co-advisor:
 	\@itacoadvisortitle\ \@itacoadvisorname.}\par
 	\vspace{\baselineskip}
-	\@cipkw\ I. Instituto Tecnol\'{o}gico de Aeron\'{a}utica. II.~Title.\par}
+	\@cipkw\ I. Instituto Tecnol\'{o}gico de Aeron\'{a}utica. II.~\@title.\par}
 
 \gdef\itarefbibnamecipbabel{BIBLIOGRAPHIC REFERENCE}
 

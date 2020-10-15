@@ -38,19 +38,25 @@
 %   \documentclass[dsc, eng]{ita}
 %		\documentclass[dsc, eng, dv]{ita}
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-\documentclass[tg, eng, dv]{ita}    % ITA.cls based on standard book.cls 
+\documentclass[tg, eng]{ita}    % ITA.cls based on standard book.cls 
 % Quando alterar a classe, por exemplo de [msc] para [msc, eng]) rode mais uma vez o botão BUILD OUTPUT caso haja erro
 \usepackage{booktabs}
 \usepackage{ae}
+\usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{epsfig}
 \usepackage{amsmath}
 \usepackage{amssymb} 
-\usepackage{subfig}
+%\usepackage{subfig}
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{lipsum}
 
+
+\usepackage{algorithm} 
+\usepackage{algpseudocode}
+
+\algdef{SE}{Begin}{End}{\textbf{begin}}{\textbf{end}}
 
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -91,10 +97,11 @@
 
 %Coordenador do curso no caso de TG
 \bosscoursegender{masc}									% masc ou fem
-\bosscourse{}{Inaldo Capistrano Costa}
+\bosscourse{Prof.~Dr.}{Inaldo Capistrano Costa}
 
 % Palavras-Chaves informadas pela Biblioteca -> utilizada na CIP
 \kwcip{Natural Language Processing}
+\kwcip{Topic Modelin}
 \kwcip{Machine Learning}
 
 % membros da banca examinadora
@@ -106,7 +113,7 @@
 % \examiner{Prof. Dr.}{Mickey Mouse}{}{DISNEY}
 
 % Data da defesa (més em maiúsculo, se trabalho em inglês, e minusculo se trabalho em português) 
-\date{7}{July}{2020}
+\date{20}{November}{2020}
 
 % Número CDU - (somente para TG)
 \cdu{621.38}
@@ -121,7 +128,7 @@
 
 % Dedicatoria: Nao esqueca essa secao  ... :-)
 \begin{itadedication}
-...
+To my lovely mother, who has always supported me through this tough journey.
 \end{itadedication}
 
 % Agradecimentos
@@ -182,20 +189,20 @@
 \chapter{Related Works}\label{chap:related}
 \input{01.Chapters/03.RelatedWorks/related-works}
 
+%\chapter{Materials and Methods from tg-1}\label{chap:materials-1}
+%\input{01.Chapters/04.Materials/materials-1}
+
 \chapter{Materials and Methods}\label{chap:materials}
-\input{01.Chapters/04.Materials/materials}
+\input{01.Chapters/04.Materials/materials-2}
 
-%\chapter{Partial Results}\label{chap:results}
-%\input{01.Chapters/05.Results/partial}
+\chapter{Results and Discussions}\label{chap:results}
+\input{01.Chapters/05.Results/results}
 
-%\chapter{Results}\label{chap:results}
-%\input{01.Chapters/05.Results/results}
+\chapter{Conclusions, Recommendations, and Future Works}\label{chap:conclusion}
+\input{01.Chapters/06.Conclusion/conclusion}
 
-%\chapter{Conclusion}\label{chap:conclusion}
-%\input{01.Chapters/06.Conclusion/conclusion}
-
-\chapter{Roadmap}\label{chap:roadmap}
-\input{01.Chapters/99.Roadmap/roadmap}
+%\chapter{Roadmap}\label{chap:roadmap}
+%\input{01.Chapters/99.Roadmap/roadmap}
 
 % REFERENCIAS BIBLIOGRAFICAS
 \renewcommand\bibname{\itareferencesnamebabel} %renomear título do capítulo referências

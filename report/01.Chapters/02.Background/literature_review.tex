@@ -127,31 +127,177 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	Clustering methods, like hierarchical clustering, can be used to group the document collection into similar clusters. However, with a large amount of data a simple document clustering is not enough, because the semantic level of topics is not taken into account. To accomplish the topic modeling task a more sophisticated method is required, so methods like Latent Dirichlet allocation.
 	
 	Latent Dirichlet allocation, or LDA for short, is a probabilistic model that uses a Dirichlet distribution to model both the topics and the words. In LDA, each item in the collection is modeled as a mixture over an underlying set of topics. And the topics, in this way, is modeled as a mixture of words over the vocabulary, \cite{blei2003latent}.
-	
+		
 	Without going too deep in the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
-	
-	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports Topic, ``pizza'' and ``pasta'' for te Food topic end, finally ``computer'' and ``phone'' for technology topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words and the documents a combination of topics.
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=\linewidth]{01.Chapters/02.Background/topic_modeling}
+		\includegraphics[width=0.85\linewidth]{01.Chapters/02.Background/topic_modeling}
 		\caption{Document collection modeled by topics.}
 		\label{fig:topicmodeling}
 	\end{figure}
 	
+	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports Topic, ``pizza'' and ``pasta'' for te Food topic end, finally ``computer'' and ``phone'' for technology topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words and the documents a combination of topics.
+		
 	A final remark for the topic modeling algorithms is that the topic is not discovered by names, the machine only discovers the distribution of the words by topics but not which one is. Its human work to label the topic once they are found.
-		 
+	
+	\subsubsection{Generative Process}
+	
+	To better understand this model, we will analyze the generative process for creating the document collection illustrated by Figure \ref{fig:lda-generative-process}. Let's assume we have specified who the available topics are and their respective word distributions (far left), besides to the topic proportions for each of the documents in the collection (the histogram at rigth). 
+		
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=\linewidth]{01.Chapters/02.Background/The-intuition-behind-LDA-Generative-process-by-D-Blei-17}
+		\caption{The intuition behind LDA Generative process, Figure from  \cite{blei2012probabilistic}.}
+		\label{fig:lda-generative-process}
+	\end{figure}
+	
+	To generate a single document we choose its words as follow. Randomly choose a topic assignment from the topics distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for a given $\alpha$ and $\beta$ parameters.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.7\linewidth]{01.Chapters/02.Background/generative-probs}
+		\caption{Mathematical representation for LDA Generative process.}
+		\label{fig:generative-probs}
+	\end{figure}
+	
+	With that we can model the generative process by: 
+	
+	\begin{equation}
+		\label{eq:generative-lda}
+		p(w|\alpha, \beta) = \prod_{k=1}^{K} p(\phi_{k}|\beta) \prod_{j=1}^{M} p(\theta_{j}|\alpha) \left( \prod_{i=1}^{V}p(z_{j,i}|\theta_{j}) p(w_{i,j}|z_{i,j},\phi_{z_{j,i}})  \right) \text{.}
+	\end{equation}
 
-%\section{Machine Learning}
-%
-%\subsection{Classification}
-%
-%\subsection{Regression}
+	Where $\phi$ is the distribution of $V$ words over the $K$ topics and $\theta$ is the topic distribution over the $M$ documents. The term inside the parentheses represent the choice of a word $w$ for a document given the assignment of topics $z$ for the specific document.
+	
+	\subsubsection{Model Inference}
+	
+	The inference process for LDA consists on findind the best fit of the distribution $\phi$, for words over topics, the distribution $theta$, for topics over documents, and the assignment $z$ for each document in the collection given the words vectors representation, usually bag of words, and the hyperparametes $\alpha$ and $\beta$, who are the Dirichelet paramentes for respective $\theta$ and $\phi$ distributions.
+	
+	Given the expensive computational cost, we can use some techniques to infer the LDA, the most common one is the Gibbs Sampling. This method is an algorithm for obtaining a sequence of observation which are approximated from a specified multivariate probability distribution. In easy words, showed by \citeonline{faleiros2016modelos}, the Gibbs sampler will iterate over the documents and its words to compute the relations:
 
-%\section{Deep Learning}
-%	\subsection{Neuron}
-%	\subsection{Perceptron and Activation Functions}
-%	\subsection{Loss Functions}
-%	\subsection{Optimization}
+	\begin{equation}
+		\label{eq:theta-dist}
+		\theta_{k} = \frac{C_{w,k}^{NWZ} + \beta_{w}} {\sum_{w_{-i}} \left(C_{w_{-i},k}^{NWZ} + \beta_{w^{'}} \right)} \text{,}
+	\end{equation}
+	
+	\begin{equation}
+		\label{eq:phi-dist}
+		\phi_{d} = \frac{C_{d,k}^{NZM} + \alpha_{k}} {\sum_{k'}^{K} \left(C_{d,k^{'}}^{NZM} + \alpha_{k^{'}} \right)} \text{.}
+	\end{equation}
+	
+	Where $C_{w,k}^{NWZ}$ is the counter of times a word $w$ is assigned to topic $k$; and $C_{d,k}^{NZM}$ is the counter of times a topic $k$ is assigned to a word in a document $d$. The Algorithm \ref{algo:gibbs-sampling} shows in a simple way how the Gibbs sampling works to infer the LDA distributions.
+	
+	\begin{algorithm}[h!]
+		\caption{Gibbs sampler} 
+		\label{algo:gibbs-sampling}
+		\begin{algorithmic}[1]
+			\State \textbf{input:} number of topics $K$, document collection, $\alpha$ and $\beta$
+			\Begin
+			\State Initialize the counters randomly;
+			\While{Did not converge}
+			\For{document $m \in [1, D]$}
+			\For{word $n \in [1, N_{m}]$ in document $m$}
+			\State $nwz[w_{m,n}, z_{m,n}]--$; $nz[z_{m,n}]--$; $nzm[z_{m,n},m]--$;
+			\State Sample a topic $z_{m,n}$ according to the previous equation
+			\State $nwz[w_{m,n}, z_{m,n}]++$; $nz[z_{m,n}]++$; $nzm[z_{m,n},m]++$;
+			\EndFor
+			\EndFor
+			\If{converged $L$ since the last sampling}
+			\State calculate the distributions $\theta_{k}$ and $\phi_{d}$;
+			\EndIf
+			\EndWhile
+			\End
+		\end{algorithmic} 
+	\end{algorithm}
+	
+%	\subsubsection{Topic Coherence}
+
+\section{Machine Learning}
+	
+	The basics behaviour for a Machine Learning (ML) algorithm consists in building mathematical models based on data, usually known by training data, to provide predictions without being explicitly programmed to this, i.e., just knowing the training data, the model learns to make new predictions. 
+	
+	When the entries for our training data have a label, used to guide the learning algorithm, we are facing a supervised learning method. Digging a little deeper, our problem could consist in classification, when the labels are restricted to a limited set of values; or regression, when the labels could have any numerical value in range. 
+		
+	\subsection{Classification}
+	
+	As a usual ML problem, a classification task consists in building a model to fit some training data set. In a classification model we make predictions for the class of given data points, when we have only two classes, let's call then by the positive and negative, we are facing a binary classification problem.
+	
+	There are a several algorithm that we can use to build a classifier, since the simple k-nearest neighbor until the more sophisticated ones like decision trees, naive bayes, support vectors machines and artificial neural networks. Although each of these methods has its particularities in their formulation, they are capable of fitting the training data to make new predictions based on them.
+	
+%	\subsubsection{Naive Bayes}
+	
+%	\subsubsection{Support Vector Machine}
+		
+	\subsection{Evaluating a classifier}
+	
+	After the training step we need to evaluate our classifier to verify how good our model is fitting the training data. The easiest way to evaluate our model is by reserving a split of the training set, the holdout set, exemplified in Figure \ref{fig:holdout-evaluate}. So, we use this unseen data to test the model and compute a metric.
+	
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.5\linewidth]{01.Chapters/02.Background/holdout-evaluate}
+		\caption{Train test split for holdout method.}
+		\label{fig:holdout-evaluate}
+	\end{figure}
+
+	Another way to evaluate the model is through the $k$-fold cross-validation method, shown in Figure \ref{fig:cross-validate}. Dividing the data set into $k$ folds with the same size, we can train the model with $k-1$ folds and use the remaining one to test. Then we repeat this process to each fold and average the metric to evaluate the model.
+
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.7\linewidth]{01.Chapters/02.Background/cross-validate}
+		\caption{Cross-validation process.}
+		\label{fig:cross-validate}
+	\end{figure}
+	
+	\subsubsection{Metrics}
+
+	Given the evaluation techniques we still need a metric to properly evaluate the model. To present the main metrics, let's first take a brief look in the confusion matrix. The Table \ref{tab:conf-matrix} exemplifies the confusion matrix for a binary classification, each row represent the entries in a predicted class and the columns represent the actual class for the entry points.
+	
+	\newpage
+	\begin{table}[h!]
+		\centering
+		\caption{Binary classification confusion matrix}
+		\label{tab:conf-matrix}		
+		\begin{tabular}{cc|c|c|}
+			\cline{3-4}
+			&          & \multicolumn{2}{c|}{Actual Class} \\ \cline{3-4} 
+			&          & Positive        & Negative        \\ \hline
+			\multicolumn{1}{|c|}{Predicted} & Positive & TP              & FP              \\ \cline{2-4} 
+			\multicolumn{1}{|c|}{Class}     & Negative & FN              & TN              \\ \hline
+		\end{tabular}
+	\end{table}
+
+	Thus, we can have the true positives (TP) and true negatives (TN) when our model makes a good prediction about the positive and negative classes, respectively, when the model misses the prediction we call false positive (FP) or false negative (FN). 
+	
+	\begin{enumerate}
+		\item \textbf{Accuracy:} The simplest metric, extracted from the confusion matrix, show us the percentage of correct predictions by the relation:
+		
+		\begin{equation}
+			Accuracy = \frac{TP + TN}{TP + FP + TN + FN} \text{.}
+		\end{equation}
+		
+		\item \textbf{Precision:} For some cases, like a very imbalanced scenario, the accuracy is not good because the even if the model predicts all the instances by the predominating class we will still have a high accuracy. We define the precision for the positive class by:
+		
+		\begin{equation}
+			Precision(P) = \frac{TP}{TP + FP} \text{.}
+		\end{equation}
+	
+		Thus, we will analyze the true predictions only by the positive predicted class.
+		
+		\item \textbf{Recall:} This metric represents the fraction from a class which are correctly predicted. We define the recall for the positive class by:
+		
+		\begin{equation}
+			Recall(P) = \frac{TP}{TP + FN} \text{.}
+		\end{equation}
+		
+		Similar to precision the recall for the positive class will compare the true predictions by the total count of true actual classes.
+		
+		\item \textbf{F1 Score:} In some cases we may want give the same importance to precision and recall. A popular metric to combine then is called F1-score, which is the harmonic mean of precision and recall. We define the F1-score for the positive class by:
+		
+		\begin{equation}
+			F1(P) = \frac{2 \times Precision(P) \times Recall(P)}{Precision(P) + Recall(P)} \text{.}
+		\end{equation}
+	
+	\end{enumerate}
 	
 	
