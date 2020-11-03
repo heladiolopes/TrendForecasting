@@ -1,0 +1,92 @@
+%{p{0.165\textwidth}p{0.165\textwidth}p{0.165\textwidth}p{0.165\textwidth}p{0.165\textwidth}}
+%		\midrule \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \midrule 
+%		\endfirsthead
+%		
+%		\multicolumn{3}{c}%
+%		{{\bfseries \tablename\ \thetable{} -- continued from previous page}} \\
+%		\midrule \multicolumn{1}{|c|}{\textbf{First column}} & \multicolumn{1}{c|}{\textbf{Second column}} & \multicolumn{1}{c|}{\textbf{Third column}} \\ \midrule 
+%		\endhead
+%		
+%		\midrule \multicolumn{3}{|r|}{{Continued on next page}} \\ \midrule
+%		\endfoot
+%		
+%		\midrule \midrule
+%		\endlastfoot
+
+Table \ref{tab:past-topics} contains the top 10 words for the 25 topics obtained from the LDA algorithm in the \textit{Past} dataset.
+
+
+\begin{center}
+\begin{longtable}{
+		>{\centering\arraybackslash}p{0.165\textwidth}
+		>{\centering\arraybackslash}p{0.165\textwidth}
+		>{\centering\arraybackslash}p{0.165\textwidth}
+		>{\centering\arraybackslash}p{0.165\textwidth}
+		>{\centering\arraybackslash}p{0.165\textwidth}}
+	\caption{Top 10 words for the \textit{Past} topics.} \label{tab:past-topics} \\		
+	\hline
+	\textbf{Topic 00} & \textbf{Topic 01} & \textbf{Topic 02} & \textbf{Topic 03} & \textbf{Topic 04} \\ \hline
+	     object       &      memory       &    hippocampus    &      circuit      & signal            \\
+	      image       &     capacity      &    hippocampal    &       chip        & filter            \\
+	     feature      &    associative    &   conditioning    &      analog       & motion            \\
+	   recognition    &       store       &      episode      &      current      & noise             \\
+	      view        &  representation   &      animal       &      voltage      & frequency         \\
+	 transformation   &      recall       &      lesion       &      neuron       & channel           \\
+	 representation   &       item        &      replay       &       vlsi        & temporal          \\
+	      pixel       &      storage      &    neocortical    &       gate        & velocity          \\
+	      part        &     retrieval     &   consolidation   &     implement     & visual            \\
+	      digit       &       bind        &       dayan       &  implementation   & video             \\ \hline
+	                  &                   &                   &                   &                   \\ \hline
+	\textbf{Topic 05} & \textbf{Topic 06} & \textbf{Topic 07} & \textbf{Topic 08} & \textbf{Topic 09} \\ \hline
+	   probability    &      cluster      &      subject      &       image       & classifier        \\
+	  distribution    &     language      &     stimulus      &     component     & classification    \\
+	      state       &      grammar      &     auditory      &      matrix       & class             \\
+	    variable      &    clustering     &       human       &       pixel       & training          \\
+	    estimate      &       rule        &     response      &       local       & feature           \\
+	     markov       &       parse       &       trial       &    dimensional    & rate              \\
+	     belief       &     structure     &       sound       &      feature      & detection         \\
+	    inference     &     sentence      &       user        &       basis       & decision          \\
+	  approximation   &      symbol       &      target       &  representation   & train             \\
+	     sample       &      string       &       task        &      natural      & classify          \\ \hline
+	                  &                   &                   &                   &                   \\
+					  &                   &                   &                   &                   \\
+					  &                   &                   &                   &                   \\
+					  &                   &                   &                   &                   \\
+	                  &                   &                   &                   &                   \\ \hline
+	\textbf{Topic 10} & \textbf{Topic 11} & \textbf{Topic 12} & \textbf{Topic 13} & \textbf{Topic 14} \\ \hline
+	      state       &      neuron       &       field       &    instruction    & gaussian          \\
+	     policy       &       spike       &      visual       &      program      & mixture           \\
+	     action       &       cell        &       cell        &     processor     & estimate          \\
+	     control      &     response      &     direction     &       block       & distribution      \\
+	     reward       &     stimulus      &     receptive     &     schedule      & sample            \\
+	  reinforcement   &     synaptic      &    orientation    &     execution     & density           \\
+	     optimal      &       rate        &      spatial      &      schema       & likelihood        \\
+	      agent       &     activity      &     position      &      rollout      & data              \\
+	      robot       &      firing       &     location      &     parallel      & prior             \\
+	     dynamic      &     cortical      &      center       &       simd        & bayesian          \\ \hline
+	                  &                   &                   &                   &                   \\ \hline
+	\textbf{Topic 15} & \textbf{Topic 16} & \textbf{Topic 17} & \textbf{Topic 18} & \textbf{Topic 19} \\ \hline
+	     packet       &      kernel       &       motor       &       bound       & face              \\
+	      route       &       tree        &     movement      &      theorem      & facial            \\
+	      load        &      feature      &      control      &      margin       & image             \\
+	     traffic      &       label       &    oscillator     &       loss        & expression        \\
+	      send        &       class       &     feedback      &       bind        & recognition       \\
+	      slot        &       node        &       phase       &       class       & action            \\
+	     routing      &     distance      &    trajectory     &       proof       & eigenface         \\
+	      queue       &  classification   &      muscle       &      machine      & road              \\
+	     router       &     document      &       axon        &  generalization   & subject           \\
+	     switch       &     training      &     velocity      &     training      & sleep             \\ \hline
+	                  &                   &                   &                   &                   \\ \hline
+	\textbf{Topic 20} & \textbf{Topic 21} & \textbf{Topic 22} & \textbf{Topic 23} & \textbf{Topic 24} \\ \hline
+	    gradient      &      dynamic      &       unit        &       game        & speech            \\
+	    solution      &     equation      &     training      &      player       & word              \\
+	   constraint     &       state       &       layer       &      protein      & recognition       \\
+	     matrix       &       field       &       train       &       play        & speaker           \\
+	  optimization    &     attractor     &       hide        &       gene        & training          \\
+	   convergence    &     solution      &       task        &    equilibrium    & feature           \\
+	     update       &      theory       &   architecture    &       nash        & state             \\
+	     energy       &       line        &       node        &     strategy      & character         \\
+	    equation      &      neuron       &      hidden       &     structure     & sequence          \\
+	    minimize      &       limit       &    activation     &     sequence      & train             \\ \hline
+\end{longtable}
+\end{center}

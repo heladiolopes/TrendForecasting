@@ -9,12 +9,13 @@ The first necessary task is to find a database spread over several years. For th
 	\caption{Main feature description for NIPS data set.}
 	\label{tab:dataset-description}
 	\begin{tabular}{r|lc}
-		    Feature & Description          & Data Type \\ \hline
+		\toprule
+		    Feature & Description          & Data Type \\ \midrule
 		         id & Paper identifier     &  Integer  \\
 		       year & Year of publication  &  Integer  \\
 		      title & Title of publication &   Text    \\
 		   abstract & Publication abstract &   Text    \\
-		paper\_text & Publication corpus   &   Text
+		paper\_text & Publication corpus   &   Text	   \\ \bottomrule
 	\end{tabular}
 \end{table}
 
@@ -52,20 +53,20 @@ After processing the data, we need to index then over the time and, then, split 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{01.Chapters/04.Materials/database}
+	\includegraphics[width=0.6\linewidth]{01.Chapters/04.Materials/database}
 	\caption{Database time split representation.}
 	\label{fig:database}
 \end{figure}
 
-Before proceeding, let us give a name to the subsets. The initial subset will be called \textit{Past} from now on, the middle and final ones will be respectively designated by \textit{Present} and \textit{Future}. To segment these three subsets, let us first analyze the yearly distribution of documents. Figure \ref{fig:yearly-histogram} shows how the documents are spread over the years, and Figure \ref{fig:yearly-cumulative} shows the cumulative distribution of documents with the percentiles marks of 40\% and 80\%.
+Before proceeding, let us give a name to the subsets. The initial subset will be called \textit{Past} from now on, the middle and final ones will be respectively designated by \textit{Present} and \textit{Future}. To segment these three subsets, let us first analyze the yearly distribution of documents. Figure \ref{fig:yearly-histogram} shows how the documents are spread over the years, and Figure \ref{fig:yearly-cumulative} shows the cumulative distribution of documents with the percentiles marks of 30\% and 80\%.
 
 \begin{figure}[h!]
-	\begin{subfigure}{0.45\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/04.Materials/yearly-histogram}
 		\caption{Histogram for year distribution.} \label{fig:yearly-histogram}
 	\end{subfigure}%
 	\hfill
-	\begin{subfigure}{0.45\textwidth}
+	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/04.Materials/yearly-cumulative}
 		\caption{Cumulative histogram.} \label{fig:yearly-cumulative}
 	\end{subfigure}%
@@ -73,17 +74,18 @@ Before proceeding, let us give a name to the subsets. The initial subset will be
 	\label{fig:yearly-distribution}
 \end{figure}
 
-After this division, shown in Figure \ref{fig:yearly-distribution}, we approach the limits to 2004 and 2014. Then, the temporal division for the subsets was done as indicated in the Table \ref{tab:database-description}.
+After this division, shown in Figure \ref{fig:yearly-distribution}, we approach the limits to 2002 and 2015. Then, the temporal division for the subsets was done as indicated in the Table \ref{tab:database-description}.
 
 \begin{table}[h!]
 	\centering
 	\caption{Subsets description after segmentation.}
 	\label{tab:database-description}
 	\begin{tabular}{r|cc}
-		 Subset & No. of documents &    Years    \\ \hline
-		   Past &       2713       & 1987 - 2004 \\
-		Present &       2877       & 2005 - 2014 \\
-		 Future &       1651       & 2015 - 2017
+		\toprule
+		 Subset & No. of documents &    Years    \\ \midrule
+		   Past &       2308       & 1987 - 2002 \\
+		Present &       3685       & 2003 - 2015 \\
+		 Future &       1248       & 2016 - 2017 \\ \bottomrule
 	\end{tabular}
 \end{table}
 
@@ -93,25 +95,45 @@ With the \textit{Past} set, techniques of topic modeling will be applied to iden
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{01.Chapters/04.Materials/topic-identification}
+	\includegraphics[width=0.8\linewidth]{01.Chapters/04.Materials/topic-identification}
 	\caption{Topic identification process.}
 	\label{fig:topic-identification}
 \end{figure}
 
-% Descrever detalhes de implementação do topic modeling
-	% Feature selection - corte de luhn para formação do vocabulario
+To perform this, in the first place, we need to make a few adjustments to our data by choosing the proper vocabulary. We already cut off some well-knwon stop words, like articles, adverbs and conjunctions. However, there are still some words outside the conventional stop word lists that can disturb the performance of the NLP algorithms. Thus, from the Zipf's law, we will apply a Luhn's cut, like proposed in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}, to eliminate both the most frequent and the least frequent words.
 
-% Otimização de hiperparâmetros
-	% Escolha baseado na coerência
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.55\linewidth]{01.Chapters/04.Materials/Zipfs-law-and-Luhns-proposed-cut-off-points}
+	\caption{Zipf’s law and Luhn’s proposed cut-off points, Figure from \cite{cummins2006evolving}.}
+	\label{fig:zipfs-law-and-luhns-proposed-cut-off-points}
+\end{figure}
 
-% Rotulagem de dados
+After cutting off these words, we can finally advance to the topic modeling step. The LDA algorithm needs three parameters to execute, the Dirichlet distribution parameters $\alpha$ and $\beta$, and the numbers of topics $K$. To choose the best set we must run a hyperparameter optimization, on the \textit{Past} set, guided by the $C_{v}$ topic coherence metric.
 
-% Associação de tópicos passado / presente
-	% Modelagem de cada no vocabulário próprio
-	% Intercessão de vocabulário
-	% Top N matching
-	% Global matching
-	
+Found the best parameters, we re-run the LDA on \textit{Past} set to fit the word distribution over topics and the topics distribution over documents. To label the data, we will proceed as follows, if for a topic the document has a probability greater than a certain threshold, we say the document has positive class for that topic. So, at the end of this process, we will have for each $K$ topics a class to label the documents.
+
+\subsection{Evaluating the \textit{Present}}\label{sec:material-combination}
+
+In order to evaluate the hability for a model with the \textit{Past} make good predictions about the \textit{Present}, we must find some correspondence between the topics from both sets. We repeat the topic modeling on \textit{Present} set with their own vocabulary, after the Lunh's cut, by performing LDA with the same hyperparametes found by the optimization. Finally, we assign the found topics to the documents.
+
+To associate the discovered topics from both data sets we will combine two techniques. The first one consists in comparing the intersection between the $N$ most likely words as described by:
+
+\begin{equation}
+	\label{eq:top-n-match}
+	\text{Sim}_{1}\left(\text{Past}_{i}, \text{Present}_{j}\right) = \dfrac{|\text{Top}_{N}(\text{Past}_{i}) \cap \text{Top}_{N}(\text{Present}_{j})|}{N} \text{.}
+\end{equation}
+
+Where $\text{Top}_{N}(\text{Topic}_{k})$ represents the set of $N$ words with the higher probability to belong to $\text{Topic}_{k}$. Thus, the greater this score the greater the similarity between topics.
+
+For the second technique, we need to represent the words distribution over topics only by the vocabularies intersection, so, we measure the similarity by applying:
+
+\begin{equation}
+	\label{eq:global-match}
+	\text{Sim}_{2}\left(\text{Past}_{i}, \text{Present}_{j}\right) = \sqrt{\sum_{v=1}^{V} \left(w_{v}^{\text{Past}_{i}} - w_{v}^{\text{Present}_{j}}\right)^2} \text{.}
+\end{equation}
+
+Where $V$ is the intersection vocabulary length and $w_{v}^{\text{Past}_{i}}$ represent the normalized probability for the $v^{\text{th}}$ word over the topic $\text{Past}_{i}$.
 
 \section{Document Classification}
 
@@ -120,43 +142,19 @@ For each topic in our set of discovered topics, we must be able to identify whic
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.9\linewidth]{01.Chapters/04.Materials/document-classification}
-	\caption{Multi-class classifier from \textit{Labeled} set.}
+	\caption{Multi-class classifier from \textit{Labeled Past} set.}
 	\label{fig:document-classification}
 \end{figure}
 
-% Vetorização com vocabulario do passado
-	% BoW
-	% TF-IDF
-	% Word2VEC
+Let us forget the multi-class problem for a while, let us focus in build a single classifier that predict if a document talks about a certain topic. On this way, at the end of this process, we just repeat the training methods for all topics. With the \textit{Labeled Past} data set we will try different classification models with some vectorization techniques, like BoW, TF-IDF and embedding methods. To evaluate the good fitness for our models, we will perform cross-validation to evaluate the main metrics presented in section \ref{sub-sub:metrics}.
 
-% Treinamento do modelo
-	% Naive Bayes
-	% SVM
-	
-% Avaliação dos modelos
-	% Métricas por validação cruzada
-	% Verificação de principais features (palavras) para decidir por determinado tópico
-	
-% Aplicação do modelo nos dados do presente
-
-% Comparação da classificação
-
-
+Chosen the best model for our data, we must study how these models, build from the past, behave in presence of present data. For this, we encode the \textit{Present} documents with the past vocabulary to guarantee that only the words already known by the model are used to decide the topics. Thus, we use these predictions in conjuction with the main topic corresponde to proceed with the analysis.
 
 \section{Tools}
 
-In order to execute this steps, some packages and tools were used. Let's briefly describe these tools used so far.
+The source code for this work was done mainly with Python 3.8, \cite{python}. This language has support for several machine learning libraries that will facilitate the code's implementation. Let us briefly describe some of the main packages used so far.
 
-% Gensim
-% Spacy
-% NLTK
-% Sklearn
-% Pandas
-% Plotly
-% Unidecode
-% Contractions
-% Inflect
-% Regex
+The pre-processing pipeline requested lots of packages, the \textit{re} to apply regex cleannig methods, \textit{unidecode} to convert some special characters, \textit{contractions} to expand the contractions, \textit{nltk} to extract the preliminary stop-words, and \textit{spacy} to perform the lemmatization. For the topic modeling we used mostly the \textit{gensim} models package. It provides user friendly methods to perform and evaluate the LDA algorithm. For the classification it was used the \textit{scikit-learn} both to vectorize the data and to build the models. Besides this some other mode commons packages were used, such as \textit{pandas} and \textit{numpy}, to array manipulation, and \textit{plotly} to display quality visualizations.
 
 %\subsection{Forecast evaluation}
 %
@@ -168,3 +166,5 @@ In order to execute this steps, some packages and tools were used. Let's briefly
 %	\caption{Flowchart to evaluate the time series model.}
 %	\label{fig:forecast}
 %\end{figure}
+
+%As proposed we not going to dive too deep on the forecast evaluation, but we will provide a brief sneak peek from this step. Figure \label{fig:forecast-trucated} show the truncated step just with the formation of the incidence matrix.

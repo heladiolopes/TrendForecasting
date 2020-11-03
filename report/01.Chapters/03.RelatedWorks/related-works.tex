@@ -11,19 +11,36 @@ For a better understanding, Figure \ref{fig:topic-discovery-framework} has a flo
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\linewidth]{01.Chapters/03.RelatedWorks/topic-discovery-framework}
+	\includegraphics[width=0.85\linewidth]{01.Chapters/03.RelatedWorks/topic-discovery-framework}
 	\caption{Flowchart of the proposed framework, Figure from  \cite{hurtado2016topic}.}
 	\label{fig:topic-discovery-framework}
 \end{figure}
 
-This framework involves some well-known major steps of NLP processing. First, they convert the documents into a transactional form, i.e., the phrases in each document will be considered individually during the process. Next, they perform the basic normalization steps which include case conversion, tokenization, removing step words, part of speech tagging, stemming and lemmatization. It is also performed an additional step, specific to their application, removing verbs such as ``exploiting'', ``adapting'' and ``propose'', because they are very common in scientific publications and do not add much meaningful information.
+This framework involves some well-known major steps of NLP processing. First, they convert the documents into a transactional form, i.e., the phrases in each document will be considered individually during the process. Next, they perform the basic normalization steps which include case conversion, tokenization, removing step words, part of speech tagging and stemming. It is also performed an additional step, specific to their application, removing verbs such as ``exploiting'', ``adapting'' and ``propose'', because they are very common in scientific publications and do not add much meaningful information.
 
-To vectorize the transactions, it is used a slight variation of BoW. Instead of word counting, it is only checked whether a word belongs to a transaction, this is called the binary incidence matrix. The topic discovery step comes afterward, applying an association rule mining to the transactions and discovery their patterns. In order to avoid different topics with redundant words is applied a rule refinement process that allows similar topics to be combined.
+To vectorize the transactions, it is used a slight variation of BoW. Instead of word counting, it is only checked whether a word belongs to a transaction, this is called the binary incidence matrix. The topic discovery step comes afterward, applying an association rule mining to the transactions and discovery their patterns. In order to avoid different topics with redundant words is applied a rule refinement process that allows similar topics to be combined. At the end of this process a topic incidence matrix per year is built like Table \ref{tab:incidence-matrix} below.
+
+\begin{table}[h!]
+	\centering
+	\caption{Topic incidence matrix per year.}
+	\label{tab:incidence-matrix}
+	\begin{tabular}{l|ccccccccc}
+		\toprule
+		\textbf{Topic} & \textbf{2002} & \textbf{2003} & \textbf{2004} & \textbf{2005} & \textbf{2006} & \textbf{2007} & \textbf{2008} & \textbf{2009} & \textbf{2010} \\
+		\midrule
+		Regress\_logist & 2  & 2  & 10 & 11 & 8  & 11 & 12 & 8  & 5  \\
+		Random\_walk    & 0  & 0  & 4  & 4  & 4  & 10 & 9  & 11 & 19 \\
+		Time\_seri      & 45 & 13 & 10 & 38 & 29 & 29 & 36 & 42 & 37 \\
+		Neural\_network & 14 & 4  & 2  & 2  & 2  & 5  & 7  & 12 & 7  \\
+		Social\_network & 1  & 6  & 6  & 15 & 19 & 32 & 41 & 62 & 72 \\
+		Compon\_princip & 2  & 3  & 9  & 5  & 12 & 8  & 11 & 7  & 9  \\
+		Mixtur\_model   & 5  & 8  & 17 & 19 & 14 & 22 & 22 & 6  & 12 \\ \bottomrule
+	\end{tabular}
+\end{table}
 
 Online forums and social media are excellent platforms for people to discuss and share information about a variety of subjects. Recently, the topic discovery technique was used to summarize different topics related to COVID-19 disease and perform a sentiment analysis on them~\cite{jelodar2020deep}.
 
 Reddit is a discussion website in which its users can submit posts and start discussions with other community members. The posts are organized in the called ``subreddits'', boards created by users to discuss a specific subject. Using over half a million comments from 10 health-related subreddits with information about COVID-19, \citeonline{jelodar2020deep} performed a topic discovery to group similar comments. So, applying a sentiment analysis on each comment it was possible to summarize the average opinion about the discovered topics.
-
 
 \section{Trend Forecast}
 
@@ -31,12 +48,12 @@ Predicting future trends can be very helpful in various applications, like to mo
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.5\linewidth]{01.Chapters/03.RelatedWorks/ensemble-forecasting-framework}
+	\includegraphics[width=0.53\linewidth]{01.Chapters/03.RelatedWorks/ensemble-forecasting-framework}
 	\caption{Ensemble forecaster framework, Figure from  \cite{hurtado2016topic}.}
 	\label{fig:ensemble-forecasting-framework}
 \end{figure}
 
-Given a specific topic, they generate $M$ forecasters which target $X_{i}$ along with N randomly chosen fields, excluding $X_{i}$. Then, the predicted value, $\hat{X}_{i}(t+1)$, is an average of each individual forecast, $\hat{X}_{i, F_{k}}(t+1)$, calculated by 
+Given a specific topic, they generate $M$ forecasters which target $X_{i}$ along with N randomly chosen fields, excluding $X_{i}$. Then, the predicted value, $\hat{X}_{i}(t+1)$, is an average of each individual forecast, $\hat{X}_{i, F_{k}}(t+1)$, calculated by:
 
 \begin{equation}
 	\hat{X}_{i}(t+1) = \dfrac{1}{M} \sum_{k=1}^{M}\hat{X}_{i, F_{k}}(t+1)\text{.}
@@ -47,12 +64,13 @@ By evaluating metrics like the coefficient of determination (R-squared) and mean
 \citeonline{shentopic} also predicted trends by analyzing the exponential growth in the volume of scholarly articles published over the years. However, he skips the NLP process step by using a pre-labeled data set from Springer containing the number of works above 14 subjects in 25 years. Using an ensemble forecast based on neural networks and support vector regression he was able to study the topics' growth and codependency between them.
 
 
-\newpage
 \section{Final Remarks}
 
 As we saw earlier topic discovery and trend forecast were subjects widely explored in the literature. With that in mind, we wish, in this work, to reproduce these techniques. However, in addition to what has been presented, we want to be able to explore some modifications.
 
-Assuming a system that receives documents in real-time, let's assume they are news, it would be very computationally expensive to redo all the topic discovery process with each new news. It would be much simpler if there was a process that, given an input document, would be able to identify 
+Assuming a system that receives documents in real-time
+%, let's assume they are news, 
+it would be very computationally expensive to redo all the topic discovery process with each new news. It would be much simpler if there was a process that, given an input document, would be able to identify 
 which topics were covered by it.
 
 So, aiming at this type of application, we will propose a system capable of such activity to model the topics evolution over time.

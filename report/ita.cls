@@ -1063,7 +1063,7 @@
 \renewcommand{\appendix}{%
   \cleardoublepage
   \providecommand\anexoautorefname{appendix}
-	\setcounter{chapter}{0}%
+%	\setcounter{chapter}{0}%
 	\setcounter{section}{0}%
 	\def\Hy@appendixstring{appendix}% %%novo string no *.toc, para fazer o hyperlink funcionar
 	\def\anexo{%
@@ -1090,7 +1090,7 @@
 \newcommand{\annex}{%
   \cleardoublepage
   \providecommand\anexoautorefname{annex}
-	\setcounter{chapter}{0}%
+%	\setcounter{chapter}{0}%
 	\setcounter{section}{0}%
 	\def\Hy@appendixstring{annex}% %%novo string no *.toc, para fazer o hyperlink funcionar
 	\def\anexo{%

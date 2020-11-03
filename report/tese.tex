@@ -51,13 +51,13 @@
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{lipsum}
-
+\usepackage{longtable}
+\usepackage{array}
 
 \usepackage{algorithm} 
 \usepackage{algpseudocode}
 
 \algdef{SE}{Begin}{End}{\textbf{begin}}{\textbf{end}}
-
 
 %++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 % Espaçaamento padrão de todo o documento
@@ -101,7 +101,7 @@
 
 % Palavras-Chaves informadas pela Biblioteca -> utilizada na CIP
 \kwcip{Natural Language Processing}
-\kwcip{Topic Modelin}
+\kwcip{Topic Modeling}
 \kwcip{Machine Learning}
 
 % membros da banca examinadora
@@ -208,10 +208,20 @@ To my lovely mother, who has always supported me through this tough journey.
 \renewcommand\bibname{\itareferencesnamebabel} %renomear título do capítulo referências
 \bibliography{02.Referencias/referencias}
 
+\setcounter{chapter}{0}
+
 % Apendices
-%\appendix
-%\chapter{}
-%\input{}
+\appendix
+\chapter{Past Topics}\label{apdx:past}
+\input{03.Appendix/topics-past}
+
+\appendix
+\chapter{Present Topics}\label{apdx:present}
+\input{03.Appendix/topics-present}
+
+\appendix
+\chapter{Raw Classification Results}\label{apdx:classification}
+\input{03.Appendix/classification}
 
 % Anexos
 %\annex

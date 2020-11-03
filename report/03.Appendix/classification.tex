@@ -1,0 +1,210 @@
+\section{Naive Bayes with Bag of Words}
+
+Cross-validation results for multinomial naive bayes from sklearn, hyperparamter: $\alpha=0.1$, with bag of words.
+
+\begin{table}[h!]
+	\centering
+	\caption{Naive Bayes + BoW.}
+	\label{tab:nb-bow}
+	\begin{tabular}{
+			c|
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}}
+		\toprule
+		\textbf{Topic} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Test\end{tabular}} \\ \midrule
+		00 & 0.769 & 0.676 & 0.965 & 0.779 & 0.856 & 0.721 \\
+		01 & 0.741 & 0.687 & 0.984 & 0.687 & 0.846 & 0.654 \\
+		02 & 0.737 & 0.658 & 1.000 & 0.783 & 0.848 & 0.710 \\
+		03 & 0.792 & 0.706 & 0.987 & 0.872 & 0.879 & 0.774 \\
+		04 & 0.644 & 0.542 & 0.929 & 0.804 & 0.761 & 0.646 \\
+		05 & 0.775 & 0.723 & 0.914 & 0.786 & 0.839 & 0.727 \\
+		06 & 0.725 & 0.658 & 0.913 & 0.760 & 0.808 & 0.690 \\
+		07 & 0.671 & 0.543 & 0.977 & 0.801 & 0.795 & 0.641 \\
+		08 & 0.792 & 0.717 & 0.941 & 0.790 & 0.860 & 0.746 \\
+		09 & 0.606 & 0.534 & 0.968 & 0.793 & 0.745 & 0.627 \\
+		10 & 0.947 & 0.895 & 0.927 & 0.763 & 0.937 & 0.822 \\
+		11 & 0.820 & 0.780 & 0.915 & 0.874 & 0.865 & 0.822 \\
+		12 & 0.662 & 0.592 & 0.915 & 0.794 & 0.768 & 0.674 \\
+		13 & 0.731 & 0.713 & 0.964 & 0.733 & 0.831 & 0.677 \\
+		14 & 0.717 & 0.679 & 0.916 & 0.828 & 0.804 & 0.732 \\
+		15 & 0.769 & 0.533 & 1.000 & 0.650 & 0.869 & 0.550 \\
+		16 & 0.736 & 0.644 & 0.905 & 0.810 & 0.811 & 0.706 \\
+		17 & 0.504 & 0.459 & 0.968 & 0.886 & 0.662 & 0.599 \\
+		18 & 0.719 & 0.667 & 0.916 & 0.835 & 0.806 & 0.728 \\
+		19 & 0.649 & 0.550 & 1.000 & 0.720 & 0.787 & 0.601 \\
+		20 & 0.651 & 0.572 & 0.946 & 0.789 & 0.772 & 0.651 \\
+		21 & 0.795 & 0.681 & 0.957 & 0.762 & 0.868 & 0.715 \\
+		22 & 0.938 & 0.859 & 0.918 & 0.805 & 0.928 & 0.819 \\
+		23 & 0.769 & 0.606 & 1.000 & 0.658 & 0.868 & 0.605 \\
+		24 & 0.830 & 0.735 & 0.971 & 0.777 & 0.895 & 0.749 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\newpage
+\section{Naive Bayes with TF-IDF}
+
+Cross-validation results for multinomial naive bayes from sklearn, hyperparamter: $\alpha=0.1$, with TF-IDF.
+
+\begin{table}[h!]
+	\centering
+	\caption{Naive Bayes + TF-IDF.}
+	\label{tab:nb-tfidf}
+	\begin{tabular}{
+			c|
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}}
+		\toprule
+		\textbf{Topic} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Test\end{tabular}} \\ \midrule
+		00 &            0.926 &           0.873 &         0.749 &        0.530 &     0.828 &    0.652 \\
+		01 &            1.000 &           0.927 &         0.454 &        0.180 &     0.624 &    0.293 \\
+		02 &            1.000 &           0.000 &         0.226 &        0.000 &     0.361 &    0.000 \\
+		03 &            0.954 &           0.889 &         0.840 &        0.704 &     0.893 &    0.781 \\
+		04 &            0.885 &           0.720 &         0.741 &        0.539 &     0.807 &    0.614 \\
+		05 &            0.878 &           0.798 &         0.835 &        0.699 &     0.856 &    0.715 \\
+		06 &            0.980 &           0.955 &         0.610 &        0.421 &     0.752 &    0.578 \\
+		07 &            0.975 &           0.803 &         0.703 &        0.407 &     0.817 &    0.532 \\
+		08 &            0.923 &           0.838 &         0.776 &        0.612 &     0.843 &    0.700 \\
+		09 &            0.954 &           0.864 &         0.726 &        0.457 &     0.825 &    0.586 \\
+		10 &            0.989 &           0.960 &         0.776 &        0.653 &     0.869 &    0.776 \\
+		11 &            0.869 &           0.830 &         0.871 &        0.825 &     0.869 &    0.826 \\
+		12 &            0.827 &           0.717 &         0.772 &        0.657 &     0.798 &    0.678 \\
+		13 &            1.000 &           0.100 &         0.238 &        0.033 &     0.381 &    0.050 \\
+		14 &            0.818 &           0.758 &         0.843 &        0.747 &     0.830 &    0.735 \\
+		15 &            0.000 &           0.000 &         0.000 &        0.000 &     0.000 &    0.000 \\
+		16 &            0.887 &           0.779 &         0.828 &        0.703 &     0.856 &    0.724 \\
+		17 &            0.915 &           0.827 &         0.802 &        0.620 &     0.855 &    0.687 \\
+		18 &            0.919 &           0.843 &         0.839 &        0.718 &     0.877 &    0.758 \\
+		19 &            1.000 &           0.500 &         0.255 &        0.110 &     0.406 &    0.180 \\
+		20 &            0.911 &           0.822 &         0.752 &        0.533 &     0.824 &    0.633 \\
+		21 &            0.970 &           0.903 &         0.752 &        0.517 &     0.847 &    0.654 \\
+		22 &            0.943 &           0.864 &         0.886 &        0.761 &     0.913 &    0.795 \\
+		23 &            1.000 &           0.500 &         0.351 &        0.125 &     0.517 &    0.200 \\
+		24 &            0.982 &           0.922 &         0.739 &        0.550 &     0.843 &    0.682 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\newpage
+\section{Support Vector Machine with Bag of Words}
+
+Cross-validation results for support vector classifier from sklearn, hyperparamter: $C = 1$, $\text{kernel}=\text{linear}$ and $\text{gamma}=\text{auto}$, with bag of words.
+
+\begin{table}[h!]
+	\centering
+	\caption{Support Vector Machine + BoW.}
+	\label{tab:svm-bow}
+	\begin{tabular}{
+			c|
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}}
+		\toprule
+		\textbf{Topic} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Test\end{tabular}} \\ \midrule
+		00 &            1.000 &           0.928 &         0.946 &        0.611 &     0.972 &    0.731 \\
+		01 &            1.000 &           1.000 &         0.925 &        0.390 &     0.961 &    0.544 \\
+		02 &            1.000 &           0.100 &         0.850 &        0.033 &     0.919 &    0.050 \\
+		03 &            1.000 &           0.982 &         0.930 &        0.633 &     0.964 &    0.768 \\
+		04 &            0.997 &           0.943 &         0.940 &        0.576 &     0.967 &    0.710 \\
+		05 &            0.996 &           0.901 &         0.967 &        0.742 &     0.981 &    0.805 \\
+		06 &            1.000 &           0.992 &         0.872 &        0.518 &     0.932 &    0.677 \\
+		07 &            1.000 &           0.982 &         0.941 &        0.468 &     0.969 &    0.622 \\
+		08 &            0.998 &           0.901 &         0.957 &        0.671 &     0.977 &    0.767 \\
+		09 &            1.000 &           0.921 &         0.930 &        0.576 &     0.964 &    0.701 \\
+		10 &            1.000 &           0.962 &         0.942 &        0.630 &     0.970 &    0.758 \\
+		11 &            0.994 &           0.935 &         0.969 &        0.789 &     0.981 &    0.853 \\
+		12 &            0.997 &           0.940 &         0.956 &        0.632 &     0.976 &    0.754 \\
+		13 &            1.000 &           0.700 &         0.889 &        0.267 &     0.941 &    0.380 \\
+		14 &            0.995 &           0.912 &         0.972 &        0.725 &     0.983 &    0.801 \\
+		15 &            1.000 &           0.200 &         0.828 &        0.200 &     0.905 &    0.200 \\
+		16 &            0.996 &           0.896 &         0.946 &        0.658 &     0.970 &    0.746 \\
+		17 &            1.000 &           0.990 &         0.924 &        0.457 &     0.960 &    0.617 \\
+		18 &            0.998 &           0.936 &         0.958 &        0.646 &     0.978 &    0.757 \\
+		19 &            1.000 &           0.900 &         0.915 &        0.425 &     0.956 &    0.564 \\
+		20 &            0.999 &           0.902 &         0.961 &        0.631 &     0.979 &    0.739 \\
+		21 &            0.999 &           0.955 &         0.907 &        0.559 &     0.951 &    0.704 \\
+		22 &            0.993 &           0.922 &         0.978 &        0.795 &     0.986 &    0.847 \\
+		23 &            1.000 &           0.800 &         0.974 &        0.258 &     0.987 &    0.383 \\
+		24 &            1.000 &           0.985 &         0.955 &        0.574 &     0.977 &    0.722 \\ \bottomrule
+	\end{tabular}
+\end{table}
+
+\newpage
+\section{Support Vector Machine with TF-IDF}
+
+Cross-validation results for support vector classifier from sklearn, hyperparamter: $C = 1$, $\text{kernel}=\text{linear}$ and $\text{gamma}=\text{auto}$ with TF-IDF.
+
+\begin{table}[h!]
+	\centering
+	\caption{Support Vector Machine + TF-IDF.}
+	\label{tab:svm-tfidf}
+	\begin{tabular}{
+			c|
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}
+			>{\centering\arraybackslash}p{0.11\textwidth}}
+		\toprule
+		\textbf{Topic} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Precision \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}Recall \\ Test\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Train\end{tabular}} &
+		\textbf{\begin{tabular}[c]{@{}c@{}}F1 \\ Test\end{tabular}} \\ \midrule
+		00 &            0.994 &           0.902 &         0.952 &        0.684 &     0.972 &    0.772 \\
+		01 &            1.000 &           0.960 &         0.984 &        0.594 &     0.992 &    0.714 \\
+		02 &            1.000 &           0.600 &         1.000 &        0.467 &     1.000 &    0.510 \\
+		03 &            1.000 &           0.950 &         0.982 &        0.736 &     0.991 &    0.827 \\
+		04 &            0.994 &           0.885 &         0.981 &        0.683 &     0.988 &    0.768 \\
+		05 &            0.987 &           0.898 &         0.967 &        0.771 &     0.977 &    0.822 \\
+		06 &            1.000 &           0.978 &         0.980 &        0.696 &     0.990 &    0.808 \\
+		07 &            1.000 &           0.947 &         0.949 &        0.615 &     0.974 &    0.740 \\
+		08 &            0.993 &           0.888 &         0.958 &        0.729 &     0.975 &    0.799 \\
+		09 &            1.000 &           0.922 &         0.967 &        0.664 &     0.983 &    0.767 \\
+		10 &            0.997 &           0.937 &         0.966 &        0.708 &     0.981 &    0.805 \\
+		11 &            0.994 &           0.926 &         0.980 &        0.827 &     0.987 &    0.870 \\
+		12 &            0.999 &           0.920 &         0.975 &        0.708 &     0.987 &    0.799 \\
+		13 &            1.000 &           1.000 &         0.964 &        0.567 &     0.982 &    0.703 \\
+		14 &            0.992 &           0.885 &         0.958 &        0.739 &     0.975 &    0.801 \\
+		15 &            1.000 &           0.700 &         0.839 &        0.650 &     0.912 &    0.667 \\
+		16 &            0.989 &           0.868 &         0.954 &        0.728 &     0.972 &    0.785 \\
+		17 &            1.000 &           0.948 &         0.979 &        0.664 &     0.989 &    0.773 \\
+		18 &            0.996 &           0.926 &         0.957 &        0.733 &     0.976 &    0.814 \\
+		19 &            1.000 &           0.950 &         0.960 &        0.570 &     0.979 &    0.706 \\
+		20 &            0.995 &           0.883 &         0.956 &        0.704 &     0.975 &    0.781 \\
+		21 &            1.000 &           0.926 &         0.953 &        0.650 &     0.976 &    0.762 \\
+		22 &            0.991 &           0.903 &         0.969 &        0.813 &     0.980 &    0.850 \\
+		23 &            1.000 &           0.967 &         0.997 &        0.692 &     0.999 &    0.782 \\
+		24 &            1.000 &           0.988 &         0.962 &        0.689 &     0.981 &    0.809 \\ \bottomrule
+	\end{tabular}
+\end{table}
