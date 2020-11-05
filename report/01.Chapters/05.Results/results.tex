@@ -21,11 +21,11 @@ After the normalization we had performed the Luhn's cut in order to remove words
 	\end{tabular}
 \end{table}
 
-With this cut, words like ``abstract'', ``show'' and ``reference'' were removed from the vocabulary, they are quite common in this type of scientific publication and are not relevant for analysis. The low frequency includes very specific words and mostly misspellings. 
+With this cut, words like ``abstract'', ``show'' and ``reference'' were removed from the vocabulary, they are quite common in this type of scientific publication and are not relevant for analysis. The low frequency includes very specific words and mostly misspellings.
 
 \subsection{Topic Coherence Optimization}
 
-To find the best topic model for our data, an hyperparameter optimization has been performed over the three LDA parameters: $\alpha \in \left\{0.1, 0.5, 1\right\}$, $\beta \in \left\{0.05, 0.1, 0.5, 1\right\}$ and $K \in \left\{10, 15, 20, 25, 30, 35, 40\right\}$. The dataset used was the \textit{Past} set with its vocaulary as described in the previous section. Figure \ref{fig:coherence-optimization} shows the coherence score $C_{\text{V}}$ by the number of topics for the main $\alpha$ and $\beta$ combinations.
+To find the best topic model for our data, an hyperparameter optimization has been performed over the three LDA parameters: $\alpha \in \left\{0.1, 0.5, 1\right\}$, $\beta \in \left\{0.05, 0.1, 0.5, 1\right\}$ and $K \in \left\{10, 15, 20, 25, 30, 35, 40\right\}$. The dataset used was the \textit{Past} set with its vocabulary as described in the previous section. Figure \ref{fig:coherence-optimization} shows the coherence score $C_{\text{V}}$ by the number of topics for the main $\alpha$ and $\beta$ combinations.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
@@ -35,17 +35,17 @@ To find the best topic model for our data, an hyperparameter optimization has be
 	\hfill
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/02_Topic_Cv_A:0.1| B:1.00}
-		\caption{$\alpha = 0.1$ and $\beta = 1.0$.} 
+		\caption{$\alpha = 0.1$ and $\beta = 1.0$.}
 	\end{subfigure}%
 	\vfill
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/03_Topic_Cv_A:1.0| B:1.00}
-		\caption{$\alpha = 1.0$ and $\beta = 1.0$.} 
+		\caption{$\alpha = 1.0$ and $\beta = 1.0$.}
 	\end{subfigure}%
 	\hfill
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/04_Topic_Cv_A:1.0| B:0.10}
-		\caption{$\alpha = 1.0$ and $\beta = 0.1$.} 
+		\caption{$\alpha = 1.0$ and $\beta = 0.1$.}
 	\end{subfigure}%
 	\caption{Topic Coherence Optimization.}
 	\label{fig:coherence-optimization}
@@ -59,7 +59,7 @@ At this stage we had performed the LDA algorithm over the \textit{Past} and \tex
 
 \subsubsection{Past}
 
-Figure \ref{fig:past-wordcloud} shows some wordclouds for \textit{Past} topics that are easier to identify what they talk about. For example, topic 0 talks about image recognition, topic 10 clearly talks about reiforcement learning, topic 16 can be about supervised learning and topic 19 about facil recognition. To acess all the topics in more details check the Appendix \ref{apdx:past}.
+Figure \ref{fig:past-wordcloud} shows some wordclouds for \textit{Past} topics that are easier to identify what they talk about. For example, topic 0 talks about image recognition, topic 10 clearly talks about reiforcement learning, topic 16 can be about supervised learning and topic 19 about facil recognition. To assess all the topics in more details check the Appendix \ref{apdx:past}.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
@@ -85,9 +85,11 @@ Figure \ref{fig:past-wordcloud} shows some wordclouds for \textit{Past} topics t
 	\label{fig:past-wordcloud}
 \end{figure}
 
-Besides getting the topics we also have the documents distribuition of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / (2 K)$, i.e., for a document covers a given topic his propability has to be at least $0.04$. 
+Besides getting the topics we also have the documents distribuition of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / (2 K)$, i.e., for a document covers a given topic his propability has to be at least $0.04$.
+% TODO: esse valor de probabilidade me parece muito baixo, por que esta escolha?
 
-Figure \ref{fig:past-topic-dist} shows the distribution of topics over the documents. In Figure \ref{fig:past-percentage-bar} we have the percentage of documents that talk about the 25 past topics, Figure \ref{fig:past-percentage-hist} shows the histogram for these percentages, each bin with $2.5\%$. According to the figures, none of the topics are in more than $50\%$ of the documents, some of then are present in less then $2.5\%$, but mostly they are distributed between $10\%$ and $35\%$. 
+Figure \ref{fig:past-topic-dist} shows the distribution of topics over the documents. In Figure \ref{fig:past-percentage-bar} we have the percentage of documents that talk about the 25 past topics, Figure \ref{fig:past-percentage-hist} shows the histogram for these percentages, each bin with $2.5\%$. According to the figures, none of the topics are in more than $50\%$ of the documents, some of then are present in less then $2.5\%$, but mostly they are distributed between $10\%$ and $35\%$.
+% TODO: ao invés de usar a expressão "talk about", utilize "be about".
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
@@ -171,7 +173,7 @@ Figures \ref{fig:pres-topic-dist} and \ref{fig:pres-topic-per-doc} have the same
 
 \subsection{Past-Present Combination}
 
-With the \textit{past} and \textit{present} topics defined, the similarity metrics described in section \ref{sec:material-combination} were applied to obtain the topic correspondence. For $\text{Sim}_{1}$, we use the top 50 words, i.e., $N=50$. As $\text{Sim}_{1}$ and $\text{Sim}_{2}$ are negatively correlated, to aggregate then, we divide $\text{Sim}_{1}$ for $\text{Sim}_{2}$ to capture the best form both metrics. Table \ref{tab:correspondence-score} illustrates the main correspondences between \textit{past} and \textit{present} topics.
+With the \textit{past} and \textit{present} topics defined, the similarity metrics described in section \ref{sec:material-combination} were applied to obtain the topic correspondence. For $\text{Sim}_{1}$, we use the top 50 words, i.e., $N=50$. As $\text{Sim}_{1}$ and $\text{Sim}_{2}$ are negatively correlated, to aggregate then, we divide $\text{Sim}_{1}$ for $\text{Sim}_{2}$ to capture the best from both metrics. Table \ref{tab:correspondence-score} illustrates the main correspondences between \textit{past} and \textit{present} topics.
 
 \begin{table}[h!]
 	\centering
@@ -193,7 +195,8 @@ With the \textit{past} and \textit{present} topics defined, the similarity metri
 	\end{tabular}
 \end{table}
 
-By aggregating th two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the combinations 18-11 and 07-12, the second one is the closest, in terms of words distribution, but the first has the top 50 more similar making this combination stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic combinations.
+% TODO: precisa de um proofreading geral para verificar misspellings (use Grammarly)
+By aggregating the two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the combinations 18-11 and 07-12, the second one is the closest, in terms of words distribution, but the first has the top 50 more similar making this combination stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic combinations.
 
 \begin{table}[h!]
 	\centering
@@ -244,12 +247,12 @@ As marked in the table, the best model is the TF-IDF with SVM.
 		\multicolumn{1}{l|}{TF-IDF + Naive Bayes}  & 0.719 & 0.483 & 0.553 \\
 		\multicolumn{1}{l|}{BOW + SVM}             & 0.863 & 0.539 & 0.648 \\
 		\multicolumn{1}{l|}{\textbf{TF-IDF + SVM}} & \textbf{0.906} & \textbf{0.683} & \textbf{0.769} \\
-%		\multicolumn{1}{l|}{GloVe + SVM}        & - & - & - \\ 
+%		\multicolumn{1}{l|}{GloVe + SVM}        & - & - & - \\
 		\bottomrule
 	\end{tabular}
 \end{table}
 
-Following these results, we identified that we have a bias for a higher precision than recall. These results show us the models tend not to predict more positive classes than the existent ones, on the other hand, the smaller recall indicates the models are mispredicting the documents that really belongs to that class. Tables \ref{tab:nb-bow} to \ref{tab:svm-tfidf}, from Appendix \ref{apdx:classification}, also show the more unbalanced the class, the predictions tend to be less accurate.
+Following these results, we identified that we have a bias for a higher precision than recall. These results show us the models tend not to predict more positive classes than the existent ones, on the other hand, the smaller recall indicates the models are mispredicting the documents that really belongs to that class. Tables \ref{tab:nb-bow} to \ref{tab:svm-tfidf}, from Appendix \ref{apdx:classification}, also show the more imbalanced the class, the predictions tend to be less accurate.
 
 
 \subsection{Evaluating Present Predictions}
