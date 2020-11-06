@@ -1,4 +1,4 @@
-Recently, the growth of artificial intelligence has been helping us to solve problems in the most various areas, including in linguistics. With natural language processing techniques, computers can process text in order to extract information faster than humans.
+Recently, the growth of artificial intelligence has been helping us to solve problems in most various areas, including linguistics. With natural language processing techniques, computers can process text in order to extract information faster than humans.
 
 \section{Motivation}
 
@@ -12,24 +12,27 @@ Every kind of expression, verbal or in writing, brings us much information to be
 
 Over the years, more and more knowledge is generated and we humans are unable to process such an amount of information. A study made by \citeonline{beath2012finding} reveals that the enterprises' volume of data is expanding by 35\%-50\% every year, including textual data. Despite this, they also find that the companies could not extract information from this huge amount of data.
 
-On that way, extracting valuable information from this data has  become more and more an important skill. Therefore, Natural Language Processing emerges as a technology capable of assisting us in the task of deal with textual data.
+In that way, extracting valuable information from this data has become more and more an important skill. Therefore, Natural Language Processing emerges as a technology capable of assisting us in the task of deal with textual data.
 
 \citeonline{khurana2017natural} defines Natural Language Processing, abbreviated by NLP, as a branch of artificial intelligence capable of making computers comprehend and extract information from human language.
-In fact, NLP can perform easy tasks but not quite scalable for a human, such as translate text from one language to another, identify different topics for a set of documents, classify text on predefined subjects and beyond that extract the sentiment to know what people are saying about something.
+In fact, NLP can perform easy tasks but not quite scalable for a human, such as translate text from one language to another, identify different topics for a set of documents, classify text on predefined subjects, and beyond that extract the sentiment to know what people are saying about something.
 
 % Falar sobre alexa, google assistente e siri.
 In recent years a particular kind of NLP application is drawing a lot of attention. The voice assistants like Siri, Cortana, Alexa and Google Assistant are the hot AI topics of the moment. Together, all digital assistants attempted to answer more and more questions each year, \cite{kailakrayewski2019}.
 
 \newpage
-In our particular scope, the topic discovery was widely explored in the literature. \citeonline{hurtado2016topic} and \citeonline{jelodar2020deep} use it to group, respectively, papers abstracts and comments in social media in similar clusters. The first one uses it to study the topics evolution and correlation between the founded topics. In contrast, the second groups the comments to analyse the general sentiment about then.
+In our particular scope, the topic discovery was widely explored in the literature. \citeonline{hurtado2016topic} and \citeonline{jelodar2020deep} use it to group, respectively, papers abstracts and comments in social media in similar clusters. The first one uses it to study the topics' evolution and correlation between the founded topics. In contrast, the second group comments to analyze the general sentiment about thenm.
 
 
 \section{Objective}
 
 %Curious about the fast world's evolution, this work aims to implement Natural Language Processing techniques to propose a framework capable of modeling in real-time the topics' evolution over the years. With this in mind, evaluate the ability of those models to make predictions about future trends.
 
-Curious about the fast world's evolution, this work aims to implement Natural Language Processing techniques to propose a framework capable of modeling in real-time the topics' evolution over time, using a annual granularity. With this in mind, we must evaluate ability of those models in modeling the themes occurrence over the years.
-% TODO: essa parte não está legal:
+Curious about the fast world's evolution, this work aims to implement Natural Language Processing techniques to propose a framework capable of modeling in real-time the topics' evolution over time, using an annual granularity. 
+With this in mind, we must evaluate the ability of those models in modeling the themes occurrence over the years.
+
+By the end of this work, a series of tasks must be done. First, we must normalize the documents to segment them into time-ordered subsets, \textit{Past}, \textit{Present} and \textit{Future}, respectively. With the eldest subset, we must find meaningful subjects to train classification models based on these topics. Then, evaluate the predictions for \textit{Present} set and how the models' performance degenerates over the years.
+
 % Esta seção deve conter:
 %   - Objetivo geral: propor um framework para aprender evolução de tópicos em texto em
 %     linguagem natural ao longo do tempo.

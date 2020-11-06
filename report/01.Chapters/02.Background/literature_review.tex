@@ -122,13 +122,13 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsection{Topic Modeling}
 	
-	In text-mining, we often have document collections that we want to split into similar groups or even classify then related to each other. In this way, topic modeling is an unsupervised classification tool frequently used in text-mining to identifying the hidden patterns, called ``topics'', in this document collection which carries consistent semantic meaning.
+	In text-mining, we often have document collections that we want to split into similar groups or even classify them related to each other. In this way, topic modeling is an unsupervised classification tool frequently used in text-mining to identifying the hidden patterns, called ``topics'', in this document collection which carries consistent semantic meaning.
 	
 	Clustering methods, like hierarchical clustering, can be used to group the document collection into similar clusters. However, with a large amount of data a simple document clustering is not enough, because the semantic level of topics is not taken into account. To accomplish the topic modeling task a more sophisticated method is required, so methods like Latent Dirichlet allocation.
 	
 	Latent Dirichlet allocation, or LDA for short, is a probabilistic model that uses a Dirichlet distribution to model both the topics and the words. In LDA, each item in the collection is modeled as a mixture over an underlying set of topics. And the topics, in this way, is modeled as a mixture of words over the vocabulary, \cite{blei2003latent}.
 		
-	Without going too deep in the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
+	Without going too deep into the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
 	
 	\begin{figure}[h!]
 		\centering
@@ -137,13 +137,13 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:topicmodeling}
 	\end{figure}
 	
-	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports Topic, ``pizza'' and ``pasta'' for te Food topic end, finally ``computer'' and ``phone'' for technology topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words and the documents a combination of topics.
+	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports topic, ``pizza'' and ``pasta'' for the Food topic end, finally ``computer'' and ``phone'' for the Technology  topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words, and the documents a combination of topics.
 		
-	A final remark for the topic modeling algorithms is that the topic is not discovered by names, the machine only discovers the distribution of the words by topics but not which one is. Its human work to label the topic once they are found.
+	A final remark for the topic modeling algorithms is that the topic is not discovered by names, the machine only discovers the distribution of the words by topics but not which one is. It's human work to label the topic once they are found.
 	
 	\subsubsection{Generative Process}
 	
-	To better understand this model, we will analyze the generative process for creating the document collection illustrated by Figure \ref{fig:lda-generative-process}. Let's assume we have specified who the available topics are and their respective word distributions (far left), besides to the topic proportions for each of the documents in the collection (the histogram at rigth). 
+	To better understand this model, we will analyze the generative process for creating the document collection illustrated by Figure \ref{fig:lda-generative-process}. Let's assume we have specified who the available topics are and their respective word distributions (far left), besides the topic proportions for each of the documents in the collection (the histogram at right). 
 		
 	\begin{figure}[h!]
 		\centering
@@ -152,7 +152,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:lda-generative-process}
 	\end{figure}
 	
-	To generate a single document we choose its words as follow. Randomly choose a topic assignment from the topics distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for a given $\alpha$ and $\beta$ parameters.
+	To generate a single document we choose its words as follows. Randomly choose a topic assignment from the topic distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for a given $\alpha$ and $\beta$ parameters.
 	
 	\begin{figure}[h!]
 		\centering
@@ -162,7 +162,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:generative-probs}
 	\end{figure}
 	
-	With that we can model the generative process by: 
+	With that, we can model the generative process by: 
 	
 	\begin{equation}
 		\label{eq:generative-lda}
@@ -173,7 +173,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsubsection{Model Inference}
 	
-	The inference process for LDA consists on findind the best fit of the distribution $\phi$, for words over topics, the distribution $theta$, for topics over documents, and the assignment $z$ for each document in the collection given the words vectors representation, usually bag of words, and the hyperparametes $\alpha$ and $\beta$, who are the Dirichelet paramentes for respective $\theta$ and $\phi$ distributions.
+	The inference process for LDA consists of finding the best fit of the distribution $\phi$, for words over topics, the distribution $theta$, for topics over documents, and the assignment $z$ for each document in the collection given the words vectors representation, usually a bag of words model, and the hyperparameters $\alpha$ and $\beta$, who are the Dirichlet parameters for respective $\theta$ and $\phi$ distributions.
 	
 	Given the expensive computational cost, we can use some techniques to infer the LDA, the most common one is the Gibbs Sampling. This method is an algorithm for obtaining a sequence of observation which are approximated from a specified multivariate probability distribution. In easy words, showed by \citeonline{faleiros2016modelos}, the Gibbs sampler will iterate over the documents and its words to compute the relations:
 
@@ -214,13 +214,13 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsubsection{Evaluating Topic Models}
 	
-	After approximating LDA's distribution, we will have $K$ topics represented like distributions over the vocabulary. To interpret the found topics, we use the most likely words  to co-occur, usualy the top 10 or 15 with high probability. However, the $K$ parameter is a model input, so the wrong choice for it could result in unmeaningful topics. 
+	After approximating LDA's distribution, we will have $K$ topics represented like distributions over the vocabulary. To interpret the found topics, we use the most likely words to co-occur, usually the top 10 or 15 with high probability. However, the $K$ parameter is a model input, so the wrong choice for it could result in unmeaningful topics. 
 	
-	To evaluate properly the good interpretability for a topic model, there are some topic coherence metrics. The concept behind topic coherence consists in measuring the degree of semantic similarity between high scoring words in the topic. Then, a topic is considered to be coherent if its main words are related.
+	To evaluate properly the good interpretability for a topic model, there are some topic coherence metrics. The concept behind topic coherence consists of measuring the degree of semantic similarity between high scoring words in the topic. Then, a topic is considered to be coherent if its main words are related.
 	
 	There are several topic coherence metrics to evaluate interpretability for topic models, \citeonline{newman2010automatic} presents and compares some of them.
 	% and \citeonline{rosner2013evaluating} studies	the $C_{\text{umass}}$ score based on document coocurrence counts. 
-	Despite this, according to \citeonline{syed2017full}, the coherence metric, labeled by $C_{\text{V}}$, archieve the highest correlation with all available humam topic raking data. The calculation for $C_{\text{V}}$ metric is based on four steps:
+	Despite this, according to \citeonline{syed2017full}, the coherence metric, labeled by $C_{\text{V}}$, achieves the highest correlation with all available human topic raking data. The calculation for $C_{\text{V}}$ metric is based on four steps:
 	
 	\begin{enumerate}
 		\item Segmentation of the data into word pairs, combining each topic's top-N words with every other top-N word;
@@ -241,22 +241,22 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 			\phi_{S_{i}}(\vec u , \vec w) = \dfrac{ \sum_{i=1}^{|\text{W}|} u_{i} \cdot w_{i} }{||\vec{u}||_{2} \cdot ||\vec{w}||_{2}} \text{.}
 		\end{equation}
 	
-		Where $\epsilon$ and $\gamma$ are parameters to, respectively, account the logarithm of zero and place more weight on higher $\text{NPMI}$ values. The vector $\vec{v}(\text{W}')$ is called by context vectors.
+		Where $\epsilon$ and $\gamma$ are parameters to, respectively, account the zero logarithm and place more weight on higher $\text{NPMI}$ values. The vector $\vec{v}(\text{W}')$ is called by context vectors.
 	
 		\item Finally, aggregation of individual confirmation measures into an overall coherence score, i.e., apply the arithmetic mean for all confirmation measures.
 	\end{enumerate}
 	
 \section{Machine Learning}
 	
-	The basics behaviour for a Machine Learning (ML) algorithm consists in building mathematical models based on data, usually known by training data, to provide predictions without being explicitly programmed to this, i.e., just knowing the training data, the model learns to make new predictions. 
+	The basics behavior for a Machine Learning (ML) algorithm consists of building mathematical models based on data, usually known by training data, to provide predictions without being explicitly programmed to this, i.e., just knowing the training data, the model learns to make new predictions. 
 	
-	When the entries for our training data have a label, used to guide the learning algorithm, we are facing a supervised learning method. Digging a little deeper, our problem could consist in classification, when the labels are restricted to a limited set of values; or regression, when the labels could have any numerical value in range. 
+	When the entries for our training data have a label, used to guide the learning algorithm, we are facing a supervised learning method. Digging a little deeper, our problem could consist in classification when the labels are restricted to a limited set of values; or regression when the labels could have any numerical value in range. 
 		
 	\subsection{Classification}
 	
-	As a usual ML problem, a classification task consists in building a model to fit some training data set. In a classification model we make predictions for the class of given data points, when we have only two classes, let's call then by the positive and negative, we are facing a binary classification problem.
+	As a usual ML problem, a classification task consists of building a model to fit some training data set. In a classification model, we make predictions for the class of given data points, when we have only two classes, let's call then by the positive and negative, we are facing a binary classification problem.
 	
-	There are a several algorithm that we can use to build a classifier, since the simple k-nearest neighbor until the more sophisticated ones like decision trees, naive bayes, support vectors machines and artificial neural networks. Although each of these methods has its particularities in their formulation, they are capable of fitting the training data to make new predictions based on them.
+	There are several algorithms that we can use to build a classifier from the simple k-nearest neighbor until the more sophisticated ones like decision trees, naive bayes, support vectors machines, and artificial neural networks. Although each of these methods has its particularities in their formulation, they are capable of fitting the training data to make new predictions based on them.
 	
 %	\subsubsection{Naive Bayes}
 	
@@ -264,7 +264,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 	\subsection{Evaluating a classifier}
 	
-	After the training step we need to evaluate our classifier to verify how good our model is fitting the training data. The easiest way to evaluate our model is by reserving a split of the training set, the holdout set, exemplified in Figure \ref{fig:holdout-evaluate}. So, we use this unseen data to test the model and compute a metric.
+	After the training step, we need to evaluate our classifier to verify how good our model is fitting the training data. The easiest way to evaluate our model is by reserving a split of the training set, the holdout set, exemplified in Figure \ref{fig:holdout-evaluate}. So, we use this unseen data to test the model and compute a metric.
 	
 	\begin{figure}[h!]
 		\centering
@@ -285,7 +285,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	\subsubsection{Metrics}
 	\label{sub-sub:metrics}
 
-	Given the evaluation techniques we still need a metric to properly evaluate the model. To present the main metrics, let's first take a brief look in the confusion matrix. The Table \ref{tab:conf-matrix} exemplifies the confusion matrix for a binary classification, each row represent the entries in a predicted class and the columns represent the actual class for the entry points.
+	Given the evaluation techniques, we still need a metric to properly evaluate the model. To present the main metrics, let's first take a brief look at the confusion matrix. Table \ref{tab:conf-matrix} exemplifies the confusion matrix for binary classification, each row represents the entries in a predicted class and the columns represent the actual class for the entry points.
 	
 	\begin{table}[h!]
 		\centering
@@ -303,13 +303,13 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	Thus, we can have the true positives (TP) and true negatives (TN) when our model makes a good prediction about the positive and negative classes, respectively, when the model misses the prediction we call false positive (FP) or false negative (FN). 
 	
 	\begin{enumerate}
-		\item \textbf{Accuracy:} The simplest metric, extracted from the confusion matrix, show us the percentage of correct predictions by the relation:
+		\item \textbf{Accuracy:} The simplest metric, extracted from the confusion matrix, shows us the percentage of correct predictions by the relation:
 		
 		\begin{equation}
 			Accuracy = \frac{TP + TN}{TP + FP + TN + FN} \text{.}
 		\end{equation}
 		
-		\item \textbf{Precision:} For some cases, like a very imbalanced scenario, the accuracy is not good because the even if the model predicts all the instances by the predominating class we will still have a high accuracy. We define the precision for the positive class by:
+		\item \textbf{Precision:} In some cases, like a very imbalanced scenario, the accuracy is not good because even if the model predicts all the instances by the predominating class we will still have high accuracy. We define the precision of the positive class by:
 		
 		\begin{equation}
 			Precision(P) = \frac{TP}{TP + FP} \text{.}
@@ -317,7 +317,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 		Thus, we will analyze the true predictions only by the positive predicted class.
 		
-		\item \textbf{Recall:} This metric represents the fraction from a class which are correctly predicted. We define the recall for the positive class by:
+		\item \textbf{Recall:} This metric represents the fraction from a class that is correctly predicted. We define the recall for the positive class by:
 		
 		\begin{equation}
 			Recall(P) = \frac{TP}{TP + FN} \text{.}
@@ -325,7 +325,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 		Similar to precision the recall for the positive class will compare the true predictions by the total count of true actual classes.
 		
-		\item \textbf{F1 Score:} In some cases we may want give the same importance to precision and recall. A popular metric to combine then is called F1-score, which is the harmonic mean of precision and recall. We define the F1-score for the positive class by:
+		\item \textbf{F1 Score:} In some cases, we may want to give the same importance to both precision and recall. A popular metric to combine then is called F1-score, which is the harmonic mean of precision and recall. We define the F1-score for the positive class by:
 		
 		\begin{equation}
 			F1(P) = \frac{2 \times Precision(P) \times Recall(P)}{Precision(P) + Recall(P)} \text{.}

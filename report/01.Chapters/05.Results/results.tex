@@ -1,4 +1,4 @@
-In the last chapter we detailed all the methodology steps behind the experimentation. In this one, we will show the proper results obtained by the topic modeling and classification steps.
+In the last chapter, we detailed all the methodology steps behind the experimentation. In this one, we will show the proper results obtained by the topic modeling and classification steps.
 
 \section{Topic Modeling}
 
@@ -6,7 +6,7 @@ In this first section, the results are related to the topic modeling step, divid
 
 \subsection{Vocabulary Selection}
 
-After the normalization we had performed the Luhn's cut in order to remove words with document frequency higher then 60\% and words that appear in less than 5 documents. The cut was performed in both \textit{Past} and \textit{Present} sets, the Table \ref{tab:vocabulary} shows a brief description for the vocabularies dimension before and after the selection, and for their intersection.
+After the normalization, we had performed the Luhn's cut in order to remove words with document frequency higher than 60\% and words that appear in less than 5 documents. The cut was performed in both \textit{Past} and \textit{Present} sets, the Table \ref{tab:vocabulary} shows a brief description for the vocabularies dimension before and after the selection, and for their intersection.
 
 \begin{table}[h!]
 	\centering
@@ -21,7 +21,7 @@ After the normalization we had performed the Luhn's cut in order to remove words
 	\end{tabular}
 \end{table}
 
-With this cut, words like ``abstract'', ``show'' and ``reference'' were removed from the vocabulary, they are quite common in this type of scientific publication and are not relevant for analysis. The low frequency includes very specific words and mostly misspellings.
+With this cut, words like ``abstract'', ``show'' and ``reference'' were removed from the vocabulary. They are quite common in this type of scientific publication and are not relevant for analysis. The low frequency includes very specific words and mostly misspellings.
 
 \subsection{Topic Coherence Optimization}
 
@@ -55,11 +55,11 @@ Although the combination for $\alpha = 0.5$ and $\beta = 1.0$ has it maximum for
 
 \subsection{Finding Topics}
 
-At this stage we had performed the LDA algorithm over the \textit{Past} and \textit{Present} sets, with the parameters established in the previous stage and their respective vocabularies, to find their topics. After the modeling the \textit{Present} model has presented a coherence of $0.614$, this indicates that Present model is slightly better then the Past one.
+At this stage we had performed the LDA algorithm over the \textit{Past} and \textit{Present} sets, with the parameters established in the previous stage and their respective vocabularies, to find their topics. After the modeling the \textit{Present} model has presented a coherence of $0.614$, this indicates that the \textit{Present} model is slightly better than the \textit{Past} one.
 
 \subsubsection{Past}
 
-Figure \ref{fig:past-wordcloud} shows some wordclouds for \textit{Past} topics that are easier to identify what they talk about. For example, topic 0 talks about image recognition, topic 10 clearly talks about reiforcement learning, topic 16 can be about supervised learning and topic 19 about facil recognition. To assess all the topics in more details check the Appendix \ref{apdx:past}.
+Figure \ref{fig:past-wordcloud} shows some word clouds for \textit{Past} topics that are easier to identify what they talk about. For example, topic 0 talks about image recognition, topic 10 clearly is about reinforcement learning, topic 16 can be about supervised learning, and topic 19 about facial recognition. To assess all the topics in more detail check Appendix \ref{apdx:past}.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
@@ -85,11 +85,10 @@ Figure \ref{fig:past-wordcloud} shows some wordclouds for \textit{Past} topics t
 	\label{fig:past-wordcloud}
 \end{figure}
 
-Besides getting the topics we also have the documents distribuition of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / (2 K)$, i.e., for a document covers a given topic his propability has to be at least $0.04$.
+Besides getting the topics we also have the distribution of the documents of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / (2 K)$, i.e., for a document covers a given topic his probability has to be at least $0.04$.
 % TODO: esse valor de probabilidade me parece muito baixo, por que esta escolha?
 
-Figure \ref{fig:past-topic-dist} shows the distribution of topics over the documents. In Figure \ref{fig:past-percentage-bar} we have the percentage of documents that talk about the 25 past topics, Figure \ref{fig:past-percentage-hist} shows the histogram for these percentages, each bin with $2.5\%$. According to the figures, none of the topics are in more than $50\%$ of the documents, some of then are present in less then $2.5\%$, but mostly they are distributed between $10\%$ and $35\%$.
-% TODO: ao invés de usar a expressão "talk about", utilize "be about".
+Figure \ref{fig:past-topic-dist} shows the distribution of topics over the documents. In Figure \ref{fig:past-percentage-bar} we have the percentage of documents that is about the 25 past topics, Figure \ref{fig:past-percentage-hist} shows the histogram for these percentages, each bin with $2.5\%$. According to the figures, none of the topics are in more than $50\%$ of the documents, some of them are present in less than $2.5\%$, but mostly they are distributed between $10\%$ and $35\%$.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
@@ -107,7 +106,7 @@ Figure \ref{fig:past-topic-dist} shows the distribution of topics over the docum
 	\label{fig:past-topic-dist}
 \end{figure}
 
-Figure \ref{fig:past-topic-per-doc} shows the distribution of topics in each document. This histogram shows that most documents have more than one topic, a few have only one topic and even fewer have more than 7, none document have more than 10 topics.
+Figure \ref{fig:past-topic-per-doc} shows the distribution of topics in each document. This histogram shows that most documents have more than one topic, a few have only one topic, even fewer have more than 7, and none document has more than 10 topics.
 
 \begin{figure}[h!]
 	\centering
@@ -119,7 +118,7 @@ Figure \ref{fig:past-topic-per-doc} shows the distribution of topics in each doc
 
 \subsubsection{Present}
 
-Figure \ref{fig:pres-wordcloud} shows some wordclouds for \textit{Present} topics that are easier to identify what they talk about. For example, topic 0 clearly talks about nlp and topic modeling, topic 13 talks about clustering, topic 16 can is statistical inference and topic 24 about classification. To acess all the topics in more details check the Appendix \ref{apdx:present}.
+Figure \ref{fig:pres-wordcloud} shows some word clouds for \textit{Present} topics that are easier to identify what they talk. For example, topic 0 clearly is about NLP and topic modeling, topic 13 is about clustering, topic 16 can be about statistical inference, and topic 24 about classification. To access all the topics in more detail check Appendix \ref{apdx:present}.
 
 \clearpage
 \begin{figure}[h!]
@@ -195,8 +194,7 @@ With the \textit{past} and \textit{present} topics defined, the similarity metri
 	\end{tabular}
 \end{table}
 
-% TODO: precisa de um proofreading geral para verificar misspellings (use Grammarly)
-By aggregating the two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the combinations 18-11 and 07-12, the second one is the closest, in terms of words distribution, but the first has the top 50 more similar making this combination stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic combinations.
+By aggregating the two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the combinations 18-11 and 07-12, the second one is the closest in terms of word distribution, but the first has the top 50 more similar making this combination stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic combinations.
 
 \begin{table}[h!]
 	\centering
@@ -218,7 +216,7 @@ By aggregating the two metrics, we are choosing topics whose common word distrib
 	\end{tabular}
 \end{table}
 
-Through the intersections we see that the topics of the \textit{past} continued in the \textit{present}. For example, the combination 10-05 talks about reinforcement learning and 22-07 is about deep learning. From that we evaluate how the models of the \textit{past} behave with the \textit{present}.
+Through the intersections we see that the topics of the \textit{past} continued in the \textit{present}. For example, the combination 10-05 talks about reinforcement learning, and 22-07 is about deep learning. From that, we evaluate how the models of the \textit{past} behave with the \textit{present}.
 
 \section{Document Classification}
 
@@ -228,11 +226,11 @@ This section will cover the results behind the classification model. First, the 
 
 %With the documents labeled, we now have our \textit{Labeled Past} dataset. From that, we can train a binary classification model for each topic. For the classification was performed cross-validation with 10 folds for each combination of vectorization + model, the raw results for those models are in Appendix \ref{apdx:classification}.
 
-We now have the \textit{Labeled Past} dataset, from that, we can train a classification model for each topic. For this was performed cross-validation with 10 folds for each combination of vectorization + model, the raw results for those models are in Appendix \ref{apdx:classification}.
+We now have the \textit{Labeled Past} dataset. From that, we can train a classification model for each topic. For this was performed cross-validation with 10 folds for each combination of vectorization + model, the raw results for those models are in Appendix \ref{apdx:classification}.
 
 %To evaluate which model is the best, we will compare the average of the model scores for all topics. Table \ref{tab:classification-report} shows the comparison between the precision, recall and f1 score for the models. As marked in the table, the best model is the XXXX with XXXX.
 
-To evaluate which model is the best, we will compare the average of the model scores for all topics. Table \ref{tab:classification-report} shows the comparison between the precision, recall and f1 for the models.
+To evaluate which model is the best, we will compare the average of the model scores for all topics. Table \ref{tab:classification-report} shows the comparison between the precision, recall, and f1 for the models.
 As marked in the table, the best model is the TF-IDF with SVM.
 
 \begin{table}[h!]
@@ -252,7 +250,7 @@ As marked in the table, the best model is the TF-IDF with SVM.
 	\end{tabular}
 \end{table}
 
-Following these results, we identified that we have a bias for a higher precision than recall. These results show us the models tend not to predict more positive classes than the existent ones, on the other hand, the smaller recall indicates the models are mispredicting the documents that really belongs to that class. Tables \ref{tab:nb-bow} to \ref{tab:svm-tfidf}, from Appendix \ref{apdx:classification}, also show the more imbalanced the class, the predictions tend to be less accurate.
+Following these results, we identified that we have a bias for higher precision than recall. These results show us the models tend not to predict more positive classes than the existent ones, on the other hand, the smaller recall indicates the models are mispredicting the documents that really belongs to that class. Tables \ref{tab:nb-bow} to \ref{tab:svm-tfidf}, from Appendix \ref{apdx:classification}, also show the more imbalanced the class, the predictions tend to be less accurate.
 
 
 \subsection{Evaluating Present Predictions}
@@ -300,18 +298,18 @@ In addition to this comparison, we want to evaluate the behavior of the models o
 
 
 % Comentar resultados das tabelas e dos gráficos
-From Table \ref{tab:avg-combination-score} we see a high negative correlation between the position of combinations and their f1 scores, $-0.775$ for the record. This result said to us that are a decreasing relationship between the predictions of these combinations. Figure \ref{fig:combination-corr} shows a scatter plot for this relation with a ordinary least squares (OLS) trend line.
+From Table \ref{tab:avg-combination-score}, we see a high negative correlation between the position of combinations and their f1 scores, $-0.775$ for the record. This result said to us that is a decreasing relationship between the predictions of these combinations. Figure \ref{fig:combination-corr} shows a scatter plot for this relationship with an ordinary least squares (OLS) trend line.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.55\linewidth]{01.Chapters/05.Results/combination-corr}
+	\includegraphics[width=0.6\linewidth]{01.Chapters/05.Results/combination-corr}
 	\caption{F1 Score correlation with the combination position.}
 	\label{fig:combination-corr}
 \end{figure}
 
-This decreasing trend reflects directly in score curves in Figure \ref{fig:f1-combination}. Despite slight fluctuations, the decreasing trend in combinations scores could indicate that even in the best combinations the predictions is not so accurate. The terms evolution over the years to develop the topics maybe have changed and the models can not learn these new terms.
+This decreasing trend reflects directly in score curves in Figure \ref{fig:f1-combination}. Despite slight fluctuations, the decreasing trend in combinations scores could indicate that even in the best combinations the predictions are not so accurate. The terms evolution over the years to develop the topics maybe have changed and the models can not learn these new terms.
 
-Let us observe a little deeper at the relationship between the score and the time evolution. In Figure \ref{fig:isolated-topics} we have a scatter plot with the local regression trendline of LOWESS type for the two best combinations. Notice that despite a small increasing, there is a natural tendency of constacy folloewd by a decrease in the models efficiency over the years. Again, this inclination suggests that the rising of new terms for new techniques affects the classification.
+Let us observe a little deeper at the relationship between the score and the time evolution. In Figure \ref{fig:isolated-topics} we have a scatter plot with the local regression trendline of LOWESS type for the two best combinations. Notice that despite a small increase, there is a natural tendency of constancy followed by a decrease in the models' efficiency over the years. Again, this inclination suggests that the rising of new terms for new techniques affects the classification.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.5\textwidth}
@@ -327,6 +325,7 @@ Let us observe a little deeper at the relationship between the score and the tim
 	\label{fig:isolated-topics}
 \end{figure}
 
-Realize that for combinations under the top 5 may have some growth trend. However, in the general these combinations already have low efficiency in relation to the best ones, decreasing the result's reliability.
+\newpage
+Realize that combinations under the top 5 may have some growth trend. However, in general, these combinations already have low efficiency in relation to the best ones, decreasing the result's reliability.
 
 
