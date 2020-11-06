@@ -7,19 +7,19 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 
 	\subsection{Text Processing Techniques}\label{sec:text-processing}
 	
-	The key task to several machine learning problems consists in make good data processing before applying any model. A clean data set can allow a model to increase its performance in the learning process, making a better identification in the patterns present in the variables. Therefore, in the following sections, it will be discussed a few techniques to clear the text and prepare it for machine learning algorithms.
+	The key task to several machine learning problems consists in make good data processing before applying any model. A clean data set can allow a model to increase its performance in the learning process, making a better identification of the patterns present in the variables. Therefore, in the following sections, it will be discussed a few techniques to clear the text and prepare it for machine learning algorithms.
 	
 	\subsubsection{Normalization}
 	%https://www.kdnuggets.com/2017/12/general-approach-preprocessing-text-data.html
 	
-	There is no right way to normalize text. This process is crucially important to put all text at the same level. A normalization process consists of a series of steps to be followed consecutively, all of then can be seen as 4 big tasks: stemming, lemmatization, stop words removal and everything else.
+	There is no right way to normalize text. This process is crucially important to put all text at the same level. A normalization process consists of a series of steps to be followed consecutively, all of then can be seen as 4 big tasks: stemming, lemmatization, stop word removal, and everything else.
 	
 	\begin{enumerate}
-		\item Stemming: is the process of reducing inflected words to a primitive form, the stem. This method can remove the word's affixes to capture its base meaning, and still reducing the number of variations to save memory space. Figure \ref{fig:stemming} shows how some inflections for ``connect'' can be converted to its root form.
+		\item Stemming: is the process of reducing inflected words to a primitive form, the stem. This method can remove the word's affixes to capture its base meaning and still reducing the number of variations to save memory space. Figure \ref{fig:stemming} shows how some inflections for ``connect'' can be converted to its root form.
 		
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.45\linewidth]{01.Chapters/02.Background/stemming}
+			\includegraphics[width=0.5\linewidth]{01.Chapters/02.Background/stemming}
 			\caption{Stemming process for ``connect'' variations, Figure from  \cite{vijayarani2015preprocessing}.}
 			\label{fig:stemming}
 		\end{figure}
@@ -29,16 +29,29 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\item Lemmatization: similar to stemming, this step also reduces words to some primitive form, but with a little improvement. Lemmatization can return the words to his dictionary form, based on its part of speech context. Hence, it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
 				
 		\item Remove stop words:
-		Many words can occur a several time in a document without adding any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be identified as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
+		many words can occur a several time in a document without adding any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be identified as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
 		
-		There are some types to remove stop words, most of then based on evaluating the frequency of words in a text, for more information see \cite{vijayarani2015preprocessing}. But the classic and easier method is based on using a pre-compiled list of know words and removing then from the text.
+		The classic and easier method for eliminating stop words is based on using a pre-compiled list of know words and removing them from the text.
+		But there still are some other techniques to remove stop words, most based on evaluating the frequency of words in the corpus, as described by \cite{vijayarani2015preprocessing}. 
+
+		A good way to perform it is by the Luhn's cut. From Zipf's law, the medium frequency words add more information, so we can cut off high and low frequency words, as shown in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}.
+		
+%		There are some types to remove stop words, most of then based on evaluating the frequency of words in a text, for more information see \cite{vijayarani2015preprocessing}. 
+%		But the classic and easier method is based on using a pre-compiled list of know words and removing then from the text.
+		
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=0.5\linewidth]{01.Chapters/02.Background/Zipfs-law-and-Luhns-proposed-cut-off-points}
+			\caption{Zipf’s law and Luhn’s proposed cut-off points, Figure from \cite{cummins2006evolving}.}
+			\label{fig:zipfs-law-and-luhns-proposed-cut-off-points}
+		\end{figure}
 		
 		\item Everything else:
-		Different from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert then to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
+		different from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert them to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
 	\end{enumerate}
 	
 	\subsubsection{Tokenization}
-	Once the data is normalized, we need to know how to represent it. The tokenization process consists in splitting longer strings into meaningful small pieces called tokens. The most common way to tokenize a text is chunking it the into words, i.e., given a piece of text the tokenization process will return a list of words. 
+	Once the data is normalized, we need to know how to represent it. The tokenization process consists of splitting longer strings into meaningful small pieces called tokens. The most common way to tokenize a text is chunking it into words, i.e., given a piece of text, the tokenization process will return a list of words. 
 	
 	\subsubsection{Bag of Words}
 	The machine learning algorithms take numerical features as input, hence, it will be necessary to represent the text in numerical form. With the Bag of Words model, we can represent in matrix form a set of documents.
@@ -54,7 +67,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsubsection{TF-IDF}
 	
-	Term Frequency Inverse Document Frequency, TF-IDF for short, it is applied to a BoW to determine the relative frequency for words in a specific document when compared to the inverse proportion of that word over all documents in the collection. So, it can be determined how important are the words in a specific document. 
+	Term Frequency Inverse Document Frequency, TF-IDF for short, it is applied to a BoW to determine the relative frequency for words in a specific document when compared to the inverse proportion of that word over all documents in the collection. So, we can determine how important are the words in a specific document. 
 	
 	From BoW, for the $i^{\text{th}}$ vocabulary's word in the $j^{\text{th}}$ document, its TF-IDF weight is:
 	
@@ -80,7 +93,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.7\linewidth]{01.Chapters/02.Background/word2vec_architectures}
+		\includegraphics[width=0.8\linewidth]{01.Chapters/02.Background/word2vec_architectures}
 		\caption{Word2Vec architectures, Figure from  \cite{mikolov2013efficient}.}
 		\label{fig:word2vecarchitectures}
 	\end{figure}
@@ -88,8 +101,6 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	The first suggested approach is the continuous bag of words or CBOW, the left side of Figure \ref{fig:word2vecarchitectures} shows its architecture. Here the neural networks are designed to predict, given the context, which word is most likely to appear. So, words with the same probability to appear can assume a shared dimension in the words vector space. 
 
 	The second approach is known by Skip-Gram, architecture at right in Figure \ref{fig:word2vecarchitectures}. Very similar to CBOW, but instead of predicting the current word the Skip-Gram uses the current word as an input to a neural network to predict its context.
-	
-	% INCREMENTO: Explicar processo de treinamento, input/output e hidden layers
 	
 	After the network training process, we can use the hidden layer weight matrix as a lookup table to build the word embedding representation. The dimension for the vector space is managed by the number of neurons in the hidden layer. 		
 	
@@ -109,16 +120,16 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 	Both Skip-Gram and GloVe provide a good vector representation for words, but there still is an unsolved problem, What to do with unknown words? To solve this question was proposed a new embedding technique which uses subword units to build a vector space, \cite{bojanowski2017enriching}.
 	
-	Similar to Skip-Gram, this new method, the FastText, train its embedding by using a target to predict the context. However, instead of using the full words FastText goes a level deeper, breaking the words in $n$-grams, i.e., the word becomes its own context. The Figure \ref{fig:apple-tri-gram} shows how the word ``apple'' can be broken into $n$-grams. 
+	Similar to Skip-Gram, this new method, the FastText, train its embedding by using a target to predict the context. However, instead of using the full words, FastText goes a level deeper, breaking the words in $n$-grams, i.e., the word becomes its own context. The Figure \ref{fig:apple-tri-gram} shows how the word ``apple'' can be broken into $n$-grams. 
 		
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.3\linewidth]{01.Chapters/02.Background/apple-tri-gram}
+		\includegraphics[width=0.4\linewidth]{01.Chapters/02.Background/apple-tri-gram}
 		\caption{Tri-gram representation for ``apple'' word.}
 		\label{fig:apple-tri-gram}
 	\end{figure}
 	
-	There are a couple great advantages by using this method. It is now possible to generalize new words, or unseen in training data, since they have the same characters as known ones. Although it is possible to use available pre-trained models, the FastText requires less text to be trained, it can extract much more information from small pieces of text.	
+	There are a couple of great advantages to using this method. It is now possible to generalize new words or unseen in training data since they have the same characters as known ones. Although it is possible to use available pre-trained models, FastText requires less text to be trained, it can extract much more information from small pieces of text.	
 	
 	\subsection{Topic Modeling}
 	
@@ -130,14 +141,14 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 	Without going too deep into the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
 	
+	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports topic, ``pizza'' and ``pasta'' for the Food topic end, finally ``computer'' and ``phone'' for the Technology  topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words, and the documents a combination of topics.
+	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.85\linewidth]{01.Chapters/02.Background/topic_modeling}
+		\includegraphics[width=\linewidth]{01.Chapters/02.Background/topic_modeling}
 		\caption{Document collection modeled by topics.}
 		\label{fig:topicmodeling}
 	\end{figure}
-	
-	Take the Figure \ref{fig:topicmodeling} as an example. It shows a little fictitious document set compounded for six words ``ball'' and ``match'' which can represent the Sports topic, ``pizza'' and ``pasta'' for the Food topic end, finally ``computer'' and ``phone'' for the Technology  topic. In this case, each word belongs to one topic, but that is not a rule, each topic is formed by a mix of words, and the documents a combination of topics.
 		
 	A final remark for the topic modeling algorithms is that the topic is not discovered by names, the machine only discovers the distribution of the words by topics but not which one is. It's human work to label the topic once they are found.
 	
@@ -152,6 +163,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:lda-generative-process}
 	\end{figure}
 	
+	\newpage
 	To generate a single document we choose its words as follows. Randomly choose a topic assignment from the topic distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for a given $\alpha$ and $\beta$ parameters.
 	
 	\begin{figure}[h!]
@@ -268,7 +280,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.4\linewidth]{01.Chapters/02.Background/holdout-evaluate}
+		\includegraphics[width=0.5\linewidth]{01.Chapters/02.Background/holdout-evaluate}
 		\caption{Train test split for holdout method.}
 		\label{fig:holdout-evaluate}
 	\end{figure}
@@ -277,7 +289,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 
 	\begin{figure}[h!]
 		\centering
-		\includegraphics[width=0.55\linewidth]{01.Chapters/02.Background/cross-validate}
+		\includegraphics[width=0.6\linewidth]{01.Chapters/02.Background/cross-validate}
 		\caption{Cross-validation process.}
 		\label{fig:cross-validate}
 	\end{figure}

@@ -53,7 +53,7 @@ After processing the data, we need to index them over time and, then, split the 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\linewidth]{01.Chapters/04.Materials/database}
+	\includegraphics[width=0.7\linewidth]{01.Chapters/04.Materials/database}
 	\caption{Database time split representation.}
 	\label{fig:database}
 \end{figure}
@@ -61,12 +61,12 @@ After processing the data, we need to index them over time and, then, split the 
 Before proceeding, let us give a name to the subsets. The initial subset will be called \textit{Past} from now on, the middle and final ones will be respectively designated by \textit{Present} and \textit{Future}. To segment these three subsets, let us first analyze the yearly distribution of documents. Figure \ref{fig:yearly-histogram} shows how the documents are spread over the years, and Figure \ref{fig:yearly-cumulative} shows the cumulative distribution of documents with the percentiles marks of 30\% and 80\%.
 
 \begin{figure}[h!]
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/04.Materials/yearly-histogram}
 		\caption{Histogram for year distribution.} \label{fig:yearly-histogram}
 	\end{subfigure}%
 	\hfill
-	\begin{subfigure}{0.49\textwidth}
+	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/04.Materials/yearly-cumulative}
 		\caption{Cumulative histogram.} \label{fig:yearly-cumulative}
 	\end{subfigure}%
@@ -100,15 +100,17 @@ With the \textit{Past} set, techniques of topic modeling will be applied to iden
 	\label{fig:topic-identification}
 \end{figure}
 
-To perform this, in the first place, we need to make a few adjustments to our data by choosing the proper vocabulary. We already cut off some well-known stop words, like articles, adverbs, and conjunctions. However, there are still some words outside the conventional stop word lists that can disturb the performance of the NLP algorithms. Thus, from Zipf's law, we will apply a Luhn's cut, like proposed in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}, to eliminate both the most frequent and the least frequent words.
+To perform this, in the first place, we need to make a few adjustments to our data by choosing the proper vocabulary. We already cut off some well-known stop words, like articles, adverbs, and conjunctions. However, there are still some words outside the conventional stop word lists that can disturb the performance of the NLP algorithms. Thus, from Zipf's law, we will apply a Luhn's cut
+%, like proposed in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}, 
+to eliminate both the most frequent and the least frequent words.
 
-\begin{figure}[h!]
-	\centering
-	% TODO: acho que vale a pena gerar sua figura aqui
-	\includegraphics[width=0.55\linewidth]{01.Chapters/04.Materials/Zipfs-law-and-Luhns-proposed-cut-off-points}
-	\caption{Zipf’s law and Luhn’s proposed cut-off points, Figure from \cite{cummins2006evolving}.}
-	\label{fig:zipfs-law-and-luhns-proposed-cut-off-points}
-\end{figure}
+%\begin{figure}[h!]
+%	\centering
+%	% TODO: acho que vale a pena gerar sua figura aqui
+%	\includegraphics[width=0.55\linewidth]{01.Chapters/04.Materials/Zipfs-law-and-Luhns-proposed-cut-off-points}
+%	\caption{Zipf’s law and Luhn’s proposed cut-off points, Figure from \cite{cummins2006evolving}.}
+%	\label{fig:zipfs-law-and-luhns-proposed-cut-off-points}
+%\end{figure}
 
 After cutting off these words, we can finally advance to the topic modeling step. The LDA algorithm needs three parameters to execute, the Dirichlet distribution parameters $\alpha$ and $\beta$, and the numbers of topics $K$. To choose the best set we must run a hyperparameter optimization, on the \textit{Past} set, guided by the $C_{v}$ topic coherence metric.
 
