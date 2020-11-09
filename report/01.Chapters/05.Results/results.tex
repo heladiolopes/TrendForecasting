@@ -85,8 +85,7 @@ Figure \ref{fig:past-wordcloud} shows some word clouds for \textit{Past} topics 
 	\label{fig:past-wordcloud}
 \end{figure}
 
-Besides getting the topics we also have the distribution of the documents of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / (2 K)$, i.e., for a document covers a given topic his probability has to be at least $0.04$.
-% TODO: esse valor de probabilidade me parece muito baixo, por que esta escolha?
+Besides getting the topics we also have the distribution of the documents of topics. Using these distributions we had labeled the documents as positive or negative for the topics with a threshold of $1 / K$, i.e., for a document covers a given topic his probability has to be at least $0.08$. This probability guarantees, by the pigeonhole principle, that the documents have at least one topic.
 
 Figure \ref{fig:past-topic-dist} shows the distribution of topics over the documents. In Figure \ref{fig:past-percentage-bar} we have the percentage of documents that is about the 25 past topics, Figure \ref{fig:past-percentage-hist} shows the histogram for these percentages, each bin with $2.5\%$. According to the figures, none of the topics are in more than $50\%$ of the documents, some of them are present in less than $2.5\%$, but mostly they are distributed between $10\%$ and $35\%$.
 

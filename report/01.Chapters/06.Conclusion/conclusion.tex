@@ -40,8 +40,11 @@ From now, we propose other research lines some improvements directly by the resu
 
 	\item \textit{Feature extraction improvement:}
 	
-	In section \ref{sec:text-processing} we saw many techniques for normalization and vectorizing, but it doesn't stop there. Several unexplored techniques can improve our topic models and classification such as n-grams, hashing vectorizer and polynomial features, the word embedding itself presented a bad result due to the lack of a pre-trained model based on scientific publication context.
+	In section \ref{sec:text-processing} we saw many techniques for normalization and vectorizing, but it doesn't stop there. Several unexplored techniques can improve our topic models and classification such as n-grams, hashing vectorizer, and polynomial features.
 	It is even possible to explore other metrics to better combine the past and present with topics such as cosine similarity.
+
+	The word embedding itself presented a bad result, there are two possibilities to explain this. The first one consists of the algorithm used to train the classification Naive Bayes and SVM do not perform as well with embeddings so, a deep learning technique would be more appropriate. The second explanation could be due to the lack of a pre-trained model based on scientific publication context so, using a more appropriate embedding model could present a better result.
+	
 	This research line aims to use more sophisticated techniques for improving the topic and classification models.
 	
 	
