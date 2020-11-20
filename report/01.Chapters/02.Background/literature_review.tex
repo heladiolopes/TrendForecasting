@@ -3,7 +3,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 
 \section{Natural Language Processing}
 
-	In artificial intelligence, NLP appears as the field responsible for study the interactions between computers and natural human language. Thus, it is capable of the program a computer to extract significant information from the text corpus, called documents, and use this information to apply a machine learning model and use it in several applications. 
+	In artificial intelligence, NLP appears as the field responsible to study the interactions between computers and natural human language. Thus, it is capable of the program a computer to extract significant information from the text corpus, called documents, and use this information to apply a machine learning model and use it in several applications. 
 
 	\subsection{Text Processing Techniques}\label{sec:text-processing}
 	
@@ -19,19 +19,19 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 		\begin{figure}[h!]
 			\centering
-			\includegraphics[width=0.5\linewidth]{01.Chapters/02.Background/stemming}
+			\includegraphics[width=0.45\linewidth]{01.Chapters/02.Background/stemming}
 			\caption{Stemming process for ``connect'' variations, Figure from  \cite{vijayarani2015preprocessing}.}
 			\label{fig:stemming}
 		\end{figure}
 		
 		% stemming algorithms
 		
-		\item Lemmatization: similar to stemming, this step also reduces words to some primitive form, but with a little improvement. Lemmatization can return the words to his dictionary form, based on its part of speech context. Hence, it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
+		\item Lemmatization: similar to stemming, this step also reduces words to some primitive form, but with a little improvement. Lemmatization can return the words to its dictionary form, based on its part of speech context. Hence, it is possible to discriminate words with the same spelling but different meanings depending on the context. 	
 				
 		\item Remove stop words:
 		many words can occur a several time in a document without adding any meaningful information, such as \textit{the}, \textit{is}, \textit{at}, \textit{which}, and \textit{on}. Their high frequency can be identified as an obstacle to perform good results on NLP models, \cite{kannan2014preprocessing}. 
 		
-		The classic and easier method for eliminating stop words is based on using a pre-compiled list of know words and removing them from the text.
+		The classic and easier method for eliminating stop words is based on using a pre-compiled list of well-known words and removing them from the text.
 		But there still are some other techniques to remove stop words, most based on evaluating the frequency of words in the corpus, as described by \cite{vijayarani2015preprocessing}. 
 
 		A good way to perform it is by the Luhn's cut. From Zipf's law, the medium frequency words add more information, so we can cut off high and low frequency words, as shown in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}.
@@ -47,7 +47,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\end{figure}
 		
 		\item Everything else:
-		different from the previous steps, the last one doesn't need any grammar rules or even a frequency analysis, it's purely text manipulation. It involves set all character to lowercase; remove numbers or convert them to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.		 	
+		different from the previous steps, the last one does not need any grammar rules or even a frequency analysis, it is purely text manipulation. It involves set all characters to lowercase; remove numbers or convert them to word form; remove punctuation; expand contractions; convert special characters to ASCII form; and any other conversion needed.
 	\end{enumerate}
 	
 	\subsubsection{Tokenization}
@@ -67,7 +67,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsubsection{TF-IDF}
 	
-	Term Frequency Inverse Document Frequency, TF-IDF for short, it is applied to a BoW to determine the relative frequency for words in a specific document when compared to the inverse proportion of that word over all documents in the collection. So, we can determine how important are the words in a specific document. 
+	Term Frequency Inverse Document Frequency, TF-IDF for short, is applied to a BoW to determine the relative frequency for words in a specific document when compared to the inverse proportion of that word over all documents in the collection. So, we can determine how important are the words in a specific document. 
 	
 	From BoW, for the $i^{\text{th}}$ vocabulary's word in the $j^{\text{th}}$ document, its TF-IDF weight is:
 	
@@ -76,7 +76,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	w_{i, j} = \text{tf}_{i, j} \times \log\left(\dfrac{N}{\text{df}_{i}}\right) \text{.}
 	\end{equation}
 	
-	Where, the term frequency, $\text{tf}_{i, j}$, is how many time $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document. The document frequency, $\text{df}_{i}$, is the number of documents in which th $i_{\text{th}}$ vocabulary words is present. And, finally, $N$ is the size of the document collection, with a large number of documents this term can explode, so the logarithmic function is applied to dampen this effect.
+	Where, the term frequency, $\text{tf}_{i, j}$, is how many times the $i^{\text{th}}$ word appears in the $j^{\text{th}}$ document. The document frequency, $\text{df}_{i}$, is the number of documents in which the $i_{\text{th}}$ vocabulary words is present. And, finally, $N$ is the size of the document collection, with a large number of documents this term can explode, so the logarithmic function is applied to dampen this effect.
 	
 	\subsection{Word Embedding}
 	
@@ -133,11 +133,11 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsection{Topic Modeling}
 	
-	In text-mining, we often have document collections that we want to split into similar groups or even classify them related to each other. In this way, topic modeling is an unsupervised classification tool frequently used in text-mining to identifying the hidden patterns, called ``topics'', in this document collection which carries consistent semantic meaning.
+	In text-mining, we often have document collections that we want to split into similar groups or even classify them related to each other. In this way, topic modeling is an unsupervised classification tool frequently used in text-mining to identify the hidden patterns, called ``topics'', in this document collection which carries consistent semantic meaning.
 	
 	Clustering methods, like hierarchical clustering, can be used to group the document collection into similar clusters. However, with a large amount of data a simple document clustering is not enough, because the semantic level of topics is not taken into account. To accomplish the topic modeling task a more sophisticated method is required, so methods like Latent Dirichlet allocation.
 	
-	Latent Dirichlet allocation, or LDA for short, is a probabilistic model that uses a Dirichlet distribution to model both the topics and the words. In LDA, each item in the collection is modeled as a mixture over an underlying set of topics. And the topics, in this way, is modeled as a mixture of words over the vocabulary, \cite{blei2003latent}.
+	Latent Dirichlet allocation, or LDA for short, is a probabilistic model that uses a Dirichlet distribution to model both the topics and the words. In LDA, each item in the collection is modeled as a mixture over an underlying set of topics. And the topics, in this way, are modeled as a mixture of words over the vocabulary, \cite{blei2003latent}.
 		
 	Without going too deep into the math behind the model, we can easily understand the two most basic principles that guide LDA. The first one said the documents are a mixture of topics which means that in a topic space each document could be interpreted as a linear combination of these topics, however, each one of the documents must be the most homogeneous as possible. The second principle said the topics are formed as a combination of words, i.e., documents about the same topics must share similar words, and also words distribution must be the most homogeneous as possible.
 	
@@ -163,8 +163,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:lda-generative-process}
 	\end{figure}
 	
-	\newpage
-	To generate a single document we choose its words as follows. Randomly choose a topic assignment from the topic distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for a given $\alpha$ and $\beta$ parameters.
+	To generate a single document we choose its words as follows. Randomly choose a topic assignment from the topic distribution, then we choose the word from the corresponding topic. As shown by Figure \ref{fig:generative-probs} we can describe the generative process for the a given dirichlet parameters $\alpha$ and $\beta$.
 	
 	\begin{figure}[h!]
 		\centering
@@ -185,9 +184,9 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	
 	\subsubsection{Model Inference}
 	
-	The inference process for LDA consists of finding the best fit of the distribution $\phi$, for words over topics, the distribution $theta$, for topics over documents, and the assignment $z$ for each document in the collection given the words vectors representation, usually a bag of words model, and the hyperparameters $\alpha$ and $\beta$, who are the Dirichlet parameters for respective $\theta$ and $\phi$ distributions.
+	The inference process for LDA consists of finding the best fit of the distribution $\phi$, for words over topics, the distribution $\theta$, for topics over documents, and the assignment $z$ for each document in the collection given the words vectors representation, in a bag of words format, and the hyperparameters $\alpha$ and $\beta$, who are the Dirichlet parameters for respective $\theta$ and $\phi$ distributions.
 	
-	Given the expensive computational cost, we can use some techniques to infer the LDA, the most common one is the Gibbs Sampling. This method is an algorithm for obtaining a sequence of observation which are approximated from a specified multivariate probability distribution. In easy words, showed by \citeonline{faleiros2016modelos}, the Gibbs sampler will iterate over the documents and its words to compute the relations:
+	Given the expensive computational cost, we can use some techniques to infer the LDA, the most common one is the Gibbs Sampling. This method is an algorithm for obtaining a sequence of observations which are approximated from a specified multivariate probability distribution. In easy words, showed by \citeonline{faleiros2016modelos}, the Gibbs sampler will iterate over the documents and its words to compute the relations:
 
 	\begin{equation}
 		\label{eq:theta-dist}
@@ -199,7 +198,14 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\phi_{d} = \frac{C_{d,k}^{NZM} + \alpha_{k}} {\sum_{k'}^{K} \left(C_{d,k^{'}}^{NZM} + \alpha_{k^{'}} \right)} \text{.}
 	\end{equation}
 
-	Where $C_{w,k}^{NWZ}$ is the counter of times a word $w$ is assigned to topic $k$; and $C_{d,k}^{NZM}$ is the counter of times a topic $k$ is assigned to a word in a document $d$. The Algorithm \ref{algo:gibbs-sampling} shows in a simple way how the Gibbs sampling works to infer the LDA distributions.
+	Where $C_{w,k}^{\text{NWZ}}$ is the counter of times a word $w$ is assigned to topic $k$; and $C_{d,k}^{\text{NZM}}$ is the counter of times a topic $k$ is assigned to a word in a document $d$. Then, combining the relations from Equations \ref{eq:theta-dist} and \ref{eq:phi-dist} we have for the Gibbs sampler the relation: 
+	
+	\begin{equation}
+		\label{eq:gibbs-sampler}
+		p(z_{i}=k|z_{-i}, \alpha, \beta, w_{i}) = \frac{C_{w,k}^{NWZ} + \beta_{w}} {\sum_{w_{-i}} \left(C_{w_{-i},k}^{NWZ} + \beta_{w^{'}} \right)} \cdot \frac{C_{d,k}^{NZM} + \alpha_{k}} {\sum_{k'}^{K} \left(C_{d,k^{'}}^{NZM} + \alpha_{k^{'}} \right)}
+	\end{equation}
+	
+	The Algorithm \ref{algo:gibbs-sampling} shows in a simple way how the Gibbs sampling works to infer the LDA distributions.
 	
 	\begin{algorithm}[h!]
 		\caption{Gibbs sampler} 
@@ -207,22 +213,22 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\begin{algorithmic}[1]
 			\State \textbf{input:} number of topics $K$, document collection, $\alpha$ and $\beta$
 			\Begin
-			\State Initialize the counters randomly;
+			\State Initialize the counters $(\text{NWZ}, \text{NZM})$ randomly;
 			\While{Did not converge}
 			\For{document $m \in [1, D]$}
 			\For{word $n \in [1, N_{m}]$ in document $m$}
-			\State $nwz[w_{m,n}, z_{m,n}]--$; $nz[z_{m,n}]--$; $nzm[z_{m,n},m]--$;
-			\State Sample a topic $z_{m,n}$ according to the previous equation
-			\State $nwz[w_{m,n}, z_{m,n}]++$; $nz[z_{m,n}]++$; $nzm[z_{m,n},m]++$;
+			\State $\text{NWZ}[w_{m,n}, z_{m,n}]--$; $\text{NZM}[z_{m,n},m]--$;
+			\State Sample a topic $z_{m,n}$ according to the Equation \ref{eq:gibbs-sampler}
+			\State $\text{NWZ}[w_{m,n}, z_{m,n}]++$; $\text{NZM}[z_{m,n},m]++$;
 			\EndFor
 			\EndFor
-			\If{converged $L$ since the last sampling}
-			\State calculate the distributions $\theta_{k}$ and $\phi_{d}$;
+			\If{converged since the last sampling}
+			\State calculate the distributions $\theta_{k}$ and $\phi_{d}$ by Equations \ref{eq:theta-dist} and \ref{eq:phi-dist};
 			\EndIf
 			\EndWhile
 			\End
 		\end{algorithmic} 
-	\end{algorithm}
+	\end{algorithm}	
 	
 	\subsubsection{Evaluating Topic Models}
 	
@@ -266,7 +272,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		
 	\subsection{Classification}
 	
-	As a usual ML problem, a classification task consists of building a model to fit some training data set. In a classification model, we make predictions for the class of given data points, when we have only two classes, let's call then by the positive and negative, we are facing a binary classification problem.
+	As a usual ML problem, a classification task consists of building a model to fit some training data set. In a classification model, we make predictions for the class of given data points, when we have only two classes, let's call then by the positive and negative, we are facing a binary classification problem, \cite{pmlr-v81-menon18a}.
 	
 	There are several algorithms that we can use to build a classifier from the simple k-nearest neighbor until the more sophisticated ones like decision trees, naive bayes, support vectors machines, and artificial neural networks. Although each of these methods has its particularities in their formulation, they are capable of fitting the training data to make new predictions based on them.
 	
@@ -285,7 +291,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{fig:holdout-evaluate}
 	\end{figure}
 
-	Another way to evaluate the model is through the $k$-fold cross-validation method, shown in Figure \ref{fig:cross-validate}. Dividing the data set into $k$ folds with the same size, we can train the model with $k-1$ folds and use the remaining one to test. Then we repeat this process to each fold and average the metric to evaluate the model.
+	Another way to evaluate the model is through the $k$-fold cross-validation method, shown in Figure \ref{fig:cross-validate}. Dividing the data set into $k$ folds with the same size, we can train the model with $k-1$ folds and use the remaining one to test. Then we repeat this process to each fold and average the metric to evaluate the model, \cite{schaffer1993selecting}.
 
 	\begin{figure}[h!]
 		\centering
@@ -297,7 +303,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 	\subsubsection{Metrics}
 	\label{sub-sub:metrics}
 
-	Given the evaluation techniques, we still need a metric to properly evaluate the model. To present the main metrics, let's first take a brief look at the confusion matrix. Table \ref{tab:conf-matrix} exemplifies the confusion matrix for binary classification, each row represents the entries in a predicted class and the columns represent the actual class for the entry points.
+	Given the evaluation techniques, we still need a metric to properly evaluate the model, let us breifly review some metrics as shown by \citeonline{hossin2015review}. To present the main metrics, let's first take a brief look at the confusion matrix. Table \ref{tab:conf-matrix} exemplifies the confusion matrix for binary classification, each row represents the entries in a predicted class and the columns represent the actual class for the entry points.
 	
 	\begin{table}[h!]
 		\centering

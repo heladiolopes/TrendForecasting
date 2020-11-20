@@ -53,12 +53,14 @@ After processing the data, we need to index them over time and, then, split the 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.7\linewidth]{01.Chapters/04.Materials/database}
+	\includegraphics[width=0.65\linewidth]{01.Chapters/04.Materials/database}
 	\caption{Database time split representation.}
 	\label{fig:database}
 \end{figure}
 
-Before proceeding, let us give a name to the subsets. The initial subset will be called \textit{Past} from now on, the middle and final ones will be respectively designated by \textit{Present} and \textit{Future}. To segment these three subsets, let us first analyze the yearly distribution of documents. Figure \ref{fig:yearly-histogram} shows how the documents are spread over the years, and Figure \ref{fig:yearly-cumulative} shows the cumulative distribution of documents with the percentiles marks of 30\% and 80\%.
+Before proceeding, let us give a name to the subsets. The initial subset will be called \textit{Past} from now on, the middle and final ones will be respectively designated by \textit{Present} and \textit{Future}. In the next steps we will use the both \textit{Past} and \textit{Present} for topic modeling and classification, but \textit{Present} will be used to validate the models with \textit{Past}. The \textit{Future} set are used only for demonstration porpuses, once we are not covering the forecast process in this work.
+
+To segment these three subsets, let us first analyze the yearly distribution of documents. Figure \ref{fig:yearly-histogram} shows how the documents are spread over the years, and Figure \ref{fig:yearly-cumulative} shows the cumulative distribution of documents with the percentiles marks of 30\% and 80\%.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.5\textwidth}
@@ -74,7 +76,7 @@ Before proceeding, let us give a name to the subsets. The initial subset will be
 	\label{fig:yearly-distribution}
 \end{figure}
 
-After this division, shown in Figure \ref{fig:yearly-distribution}, we approach the limits to 2002 and 2015. Then, the temporal division for the subsets was done as indicated in Table \ref{tab:database-description}.
+After this division, shown in Figure \ref{fig:yearly-distribution}, we approach the cut limits to 2002 and 2015. Then, the temporal division for the subsets was done as indicated in Table \ref{tab:database-description}.
 
 \begin{table}[h!]
 	\centering
@@ -102,7 +104,7 @@ With the \textit{Past} set, techniques of topic modeling will be applied to iden
 
 To perform this, in the first place, we need to make a few adjustments to our data by choosing the proper vocabulary. We already cut off some well-known stop words, like articles, adverbs, and conjunctions. However, there are still some words outside the conventional stop word lists that can disturb the performance of the NLP algorithms. Thus, from Zipf's law, we will apply a Luhn's cut
 %, like proposed in Figure \ref{fig:zipfs-law-and-luhns-proposed-cut-off-points}, 
-to eliminate both the most frequent and the least frequent words.
+to eliminate both the most frequent and the least frequent words. Thus, only words that appear in at least 5 documents and less than 60\% will continue in the vocabulary.
 
 %\begin{figure}[h!]
 %	\centering
@@ -120,7 +122,7 @@ Found the best parameters, we re-run the LDA on \textit{Past} set to fit the wor
 
 In order to evaluate the ability for a model with the \textit{Past} make good predictions about the \textit{Present}, we must find some correspondence between the topics from both sets. We repeat the topic modeling on \textit{Present} set with their own vocabulary, after the Lunh's cut, by performing LDA with the same hyperparameters found by the optimization. Finally, we assign the found topics to the documents.
 
-To associate the discovered topics from both data sets we will combine two techniques. The first one consists of comparing the intersection between the $N$ most likely words as described by:
+To associate the discovered topics from both data sets we will propose two metrics and combine both techniques. The first one consists of comparing the intersection between the $N$ most likely words as described by:
 
 \begin{equation}
 	\label{eq:top-n-match}
@@ -140,7 +142,7 @@ Where $V$ is the intersection vocabulary length and $w_{v}^{\text{Past}_{i}}$ re
 
 \section{Document Classification}
 
-For each topic in our set of discovered topics, we must be able to identify which topics are covered by a new document. Thus, we will build a classifier to perform this verification. Knowing that a document can be about several topics, so we must have a multi-class classifier. We can see this as an individual binary classifier for each topic that tells us whether the document has it. Using the \textit{labeled Past} set it is possible to build this classifier. Figure \ref{fig:document-classification} illustrates it in detail.
+For each topic in our set of discovered topics, we must be able to identify which topics are covered by a new document. Thus, we will build a classifier to perform this verification. Knowing that a document can be about several topics, so we must have a multi-label classifier. We can see this as an individual binary classifier for each topic that tells us whether the document has it. Using the \textit{labeled Past} set it is possible to build this classifier. Figure \ref{fig:document-classification} illustrates it in detail.
 
 \begin{figure}[h!]
 	\centering
@@ -149,9 +151,9 @@ For each topic in our set of discovered topics, we must be able to identify whic
 	\label{fig:document-classification}
 \end{figure}
 
-Let us forget the multi-class problem for a while, let us focus in build a single classifier that predicts if a document talks about a certain topic. In this way, at the end of this process, we just repeat the training methods for all topics. With the \textit{Labeled Past} data set we will try different classification models with some vectorization techniques, like BoW, TF-IDF, and embedding methods. To evaluate the good fit for our models, we will perform cross-validation to evaluate the main metrics presented in section \ref{sub-sub:metrics}.
+Let us forget the multi-label problem for a while, let us focus in build a single classifier that predicts if a document talks about a certain topic. In this way, at the end of this process, we just repeat the training methods for all topics. With the \textit{Labeled Past} data set we will try different classification models with some vectorization techniques, like BoW, TF-IDF, and embedding methods. To evaluate the good fit for our models, we will perform cross-validation to evaluate the main metrics presented in section \ref{sub-sub:metrics}.
 
-Chosen the best model for our data, we must study how these models, build from the past, behave in presence of present data. For this, we encode the \textit{Present} documents with the past vocabulary to guarantee that only the words already known by the model are used to decide the topics. Thus, we use these predictions in combination with the main topic correspondence to proceed with the analysis.
+Chosen the best model for our data, we must study how these models, built from the past, behave in presence of present data. For this, we encode the \textit{Present} documents with the past vocabulary to guarantee that only the words already known by the model are used to decide the topics. Thus, we use these predictions in combination with the main topic correspondence to proceed with the analysis.
 
 \section{Tools}
 

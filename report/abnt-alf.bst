@@ -286,7 +286,7 @@ FUNCTION {bbl.edition} { "ed." }
 FUNCTION {bbl.empty} {""}
 FUNCTION {bbl.etal}{abnt.etal.text "" = {""} {" " abnt.etal.text *} if$}
 FUNCTION {bbl.doi.url} {"http://dx.doi.org/"}
-FUNCTION {bbl.in}{ "In" iso.abbreviation 'skip$ { bbl.colon *} if$}
+FUNCTION {bbl.in}{ "\textit{In}" iso.abbreviation 'skip$ { bbl.colon *} if$}
 FUNCTION {bbl.ldots} %#0 use nothing, #1 use \ldots, #2 use $\ldots$, 3# use {...}
 {abnt.ldots.type
   {abnt.ldots.type #1 = {"\ldots"}   'skip$ if$
@@ -301,15 +301,16 @@ FUNCTION {bbl.missing.year}
   {""}       %#0
  if$}
 FUNCTION {bbl.monography} { "Monografia" }
-FUNCTION {bbl.mthesis} { "Disserta��o" }
-FUNCTION {bbl.no.address} {"[S.l.]"}
-FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"}
-FUNCTION {bbl.no.publisher} {"[s.n.]"}
+FUNCTION {bbl.proceedings} {"\textbf{Proceedings}~[...]"}
+FUNCTION {bbl.mthesis} { "Dissertation" }
+FUNCTION {bbl.no.address} {"[\textit{S.l.}]"} 
+FUNCTION {bbl.no.address.no.publisher} {"[\textit{S.l.: s.n.}]"}
+FUNCTION {bbl.no.publisher} {"[\textit{s.n.}]"}
 FUNCTION {bbl.number} { iso.abbreviation {"no."} {"n."} if$ }
 FUNCTION {bbl.nr} { "n." }
 FUNCTION {bbl.of} { "de" }
 FUNCTION {bbl.phd} { "Doutorado" }
-FUNCTION {bbl.phdthesis} { "Tese" }
+FUNCTION {bbl.phdthesis} { "Thesis" }
 FUNCTION {bbl.pages}
   {pagename empty$
     { "p." }
@@ -322,9 +323,9 @@ FUNCTION {bbl.semicolon} { "; "}
 FUNCTION {bbl.same.field} {"\underline{\ \ \ \ \ \ \ \ }"}
 FUNCTION {bbl.techrep} { "Rel. Tec." }
 FUNCTION {bbl.url.accessdate}
-  {iso.abbreviation { "Cited "} {"Acesso em: "} if$}
+  {iso.abbreviation { "Cited "} {"Accessed on: "} if$}
 FUNCTION {bbl.url.available}
-{ iso.abbreviation {"Available from Internet: "} {"Dispon{\'\i}vel em: "} if$}
+{ iso.abbreviation {"Available from Internet: "} {"Available at: "} if$}
 FUNCTION {bbl.void} {""}
 FUNCTION {bbl.volume} { iso.abbreviation {"vol."} {"v."} if$ }
 
@@ -991,29 +992,29 @@ FUNCTION {filter.url.html}
 t
 }
 
-FUNCTION {compose.url}
+FUNCTION {compose.url}%modified by Saulo, 11 julho 2020
 {'s :=
  get.url.type
  bbl.url.available
  abnt.url.package #0 =
-   { "$<$"   *
+   { "$ $"   *
    abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-   * "$>$" *} 'skip$ if$
+   * "$ $" *} 'skip$ if$
  abnt.url.package #1 =
    { "\url{" * s * "}" *} 'skip$ if$
  abnt.url.package #2 =
    {url.type http.url =
-     {"\htmladdnormallink{$<$" * filter.url.tex * "$>$}{" * filter.url.html * "}" *}
+     {"\htmladdnormallink{$ $" * filter.url.tex * "$ $}{" * filter.url.html * "}" *}
      'skip$ if$
     url.type doi.url = url.type ftp.url = or url.type mailto.url = or
-     {"\htmladdnormallink{$<$" *
+     {"\htmladdnormallink{$ $" *
       abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-      * "$>$}{" *
+      * "$ $}{" *
       abnt.doi abnt.doi.leave.as.is = {s} 'expand.doi if$
       * "}" * }
      'skip$ if$
     url.type unknown.url =
-     {"$<$" * filter.url.tex * "$>$" *}
+     {"$ $" * filter.url.tex * "$ $" *}
      'skip$ if$} 'skip$ if$
 }
 FUNCTION {format.url}
@@ -1108,7 +1109,7 @@ FUNCTION {empty.misc.check}
   month empty$ year empty$ note empty$
   and and and and and
   key empty$ not and
-    { "todos os campos relevantes est�o vazios ou faltando em " cite$ * warning$ }
+    { "todos os campos relevantes estao vazios ou faltando em " cite$ * warning$ }
     'skip$
   if$
 }
@@ -1138,7 +1139,7 @@ if$
 
 FUNCTION {format.field.address}
 { 't :=
-  address empty$ organization empty$ and url empty$ and t empty$ and
+  address empty$ address empty$ and publisher empty$ and t empty$ and % modified by Saulo 12 july 2020
     {bbl.no.address.no.publisher}
     {address empty$
       %if an url is present we don't give a missing address "[s.l.]" notice
@@ -1159,6 +1160,14 @@ FUNCTION {format.address}
   { address}
  if$
 }
+
+FUNCTION {format.proceedings}
+{address empty$
+  { bbl.proceedings}
+  { bbl.proceedings}
+ if$
+}
+
 
 FUNCTION {format.publisher.address}
 { publisher "publisher" bibinfo.check format.field.address}
@@ -1671,9 +1680,9 @@ FUNCTION {article}
   format.volume output
   format.number output
   format.pages output
+  format.note output
   non.iso.date
   format.issn output new.block
-  format.note output new.block
   format.url
   fin.entry
 }
@@ -1732,8 +1741,9 @@ FUNCTION {inbook}
   format.publisher.address output
   format.year output new.sentence
   format.bvolume.if.no.series output
+  format.pages output new.sentence % modified by Saulo 12 july 2020
   format.volume.number.series output
-  format.chapter.pages output new.sentence
+ %format.chapter.pages output new.sentence
   format.isbn output new.block
   format.note output new.block
   format.url
@@ -1763,6 +1773,7 @@ FUNCTION {inproceedings}
   iso.year.label
   format.title "title" output.check  new.sentence
   format.in.ed.booktitle
+  format.proceedings output new.sentence %modified by Saulo:  "new.sentence" to put "." instead "," after Precedings[...] :) 12 July 2020
   format.publisher.address output
   format.year output new.sentence
   format.bvolume.if.no.series output

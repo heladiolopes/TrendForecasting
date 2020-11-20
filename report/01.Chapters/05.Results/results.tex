@@ -164,12 +164,12 @@ Figures \ref{fig:pres-topic-dist} and \ref{fig:pres-topic-per-doc} have the same
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[width=0.6\linewidth]{01.Chapters/05.Results/pres-topic-per-doc}
+	\includegraphics[width=0.55\linewidth]{01.Chapters/05.Results/pres-topic-per-doc}
 	\caption{Histogram for the number of topics per document.}
 	\label{fig:pres-topic-per-doc}
 \end{figure}
 
-\subsection{Past-Present Combination}
+\subsection{Past-Present Correspondence}
 
 With the \textit{past} and \textit{present} topics defined, the similarity metrics described in section \ref{sec:material-combination} were applied to obtain the topic correspondence. For $\text{Sim}_{1}$, we use the top 50 words, i.e., $N=50$. As $\text{Sim}_{1}$ and $\text{Sim}_{2}$ are negatively correlated, to aggregate then, we divide $\text{Sim}_{1}$ for $\text{Sim}_{2}$ to capture the best from both metrics. Table \ref{tab:correspondence-score} illustrates the main correspondences between \textit{past} and \textit{present} topics.
 
@@ -180,24 +180,24 @@ With the \textit{past} and \textit{present} topics defined, the similarity metri
 	\begin{tabular}{cc|ccc}
 		\toprule
 		\textbf{Past} & \textbf{Present} & \textbf{$\text{Sim}_{1}$} & \textbf{$\text{Sim}_{2}$} & \textbf{$\text{Sim}_{1} / \text{Sim}_{2}$} \\ \midrule
-		 11  &  06  & 58\% & 0.026 & 1119.71 \\
-		 10  &  05  & 56\% & 0.031 & 911.39  \\
-		 14  &  16  & 44\% & 0.040 & 555.48  \\
-		 20  &  09  & 38\% & 0.036 & 528.22  \\
-		 18  &  11  & 40\% & 0.043 & 467.59  \\
-		 07  &  12  & 34\% & 0.038 & 445.64  \\
-		 04  &  02  & 54\% & 0.061 & 440.94  \\
-		 00  &  08  & 46\% & 0.055 & 417.94  \\
-		 05  &  03  & 32\% & 0.047 & 341.65  \\
-		 22  &  07  & 36\% & 0.057 & 313.72  \\ \bottomrule
+		 11 &   06 &   58\% &   0.026 &   22.39 \\
+		 10 &   05 &   56\% &   0.031 &   18.23 \\
+		 14 &   16 &   44\% &   0.040 &   11.11 \\
+		 20 &   09 &   38\% &   0.036 &   10.56 \\
+		 18 &   11 &   40\% &   0.043 &    9.35 \\
+		 07 &   12 &   34\% &   0.038 &    8.91 \\
+		 04 &   02 &   54\% &   0.061 &    8.82 \\
+		 00 &   08 &   46\% &   0.055 &    8.36 \\
+		 05 &   03 &   32\% &   0.047 &    6.83 \\
+		 22 &   07 &   36\% &   0.057 &    6.27 \\ \bottomrule
 	\end{tabular}
 \end{table}
 
-By aggregating the two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the combinations 18-11 and 07-12, the second one is the closest in terms of word distribution, but the first has the top 50 more similar making this combination stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic combinations.
+By aggregating the two metrics, we are choosing topics whose common word distribution is similar while giving priority to topics with the most similar top words. For example, take the correspondence 18-11 and 07-12, the second one is the closest in terms of word distribution, but the first has the top 50 more similar making this correspondence stronger. Table \ref{tab:correspondence-words} shows the intersection for those top 10 topic correspondences.
 
 \begin{table}[h!]
 	\centering
-	\caption{Words intersection for the main combinations.}
+	\caption{Words intersection for the main correspondence.}
 	\label{tab:correspondence-words}
 	\begin{tabular}{cc|lllll}
 		\toprule
@@ -215,7 +215,7 @@ By aggregating the two metrics, we are choosing topics whose common word distrib
 	\end{tabular}
 \end{table}
 
-Through the intersections we see that the topics of the \textit{past} continued in the \textit{present}. For example, the combination 10-05 talks about reinforcement learning, and 22-07 is about deep learning. From that, we evaluate how the models of the \textit{past} behave with the \textit{present}.
+Through the intersections we see that some \textit{past} topics continued in the \textit{present}. For example, the correspondence 10-05 talks about reinforcement learning, and 22-07 is about deep learning. From that, we evaluate how the models of the \textit{past} behave with the \textit{present}.
 
 \section{Document Classification}
 
@@ -229,7 +229,9 @@ We now have the \textit{Labeled Past} dataset. From that, we can train a classif
 
 %To evaluate which model is the best, we will compare the average of the model scores for all topics. Table \ref{tab:classification-report} shows the comparison between the precision, recall and f1 score for the models. As marked in the table, the best model is the XXXX with XXXX.
 
-To evaluate which model is the best, we will compare the average of the model scores for all topics. Table \ref{tab:classification-report} shows the comparison between the precision, recall, and f1 for the models.
+To evaluate which model is the best, we will compare the average of the model scores for all topics. 
+So for each combination of vectorization + model, we apply an arithmetic average for all individual classifiers metrics to compare and choose the best combination.
+Table \ref{tab:classification-report} shows the comparison between the precision, recall, and f1 for the models.
 As marked in the table, the best model is the TF-IDF with SVM.
 
 \begin{table}[h!]
@@ -254,7 +256,7 @@ Following these results, we identified that we have a bias for higher precision 
 
 \subsection{Evaluating Present Predictions}
 
-With the built classifiers from the \textit{Labeled Past} set, we apply it in the \textit{present} set and compare the output with its labels. Using just the top-10 combinations in Table \ref{tab:correspondence-score} we have obtained the average results for this predictions shown in Table \ref{tab:avg-combination-score} below.
+With the built classifiers from the \textit{Labeled Past} set, we apply it in the \textit{present} set and compare the output with its labels. Using just the top-10 correspondences in Table \ref{tab:correspondence-score} we have obtained the average results for this predictions shown in Table \ref{tab:avg-combination-score} below.
 
 \begin{table}[h!]
 	\centering
@@ -277,54 +279,54 @@ With the built classifiers from the \textit{Labeled Past} set, we apply it in th
 	\end{tabular}
 \end{table}
 
-In addition to this comparison, we want to evaluate the behavior of the models over the years. For this, we will evaluate the f1 score for each year isolated. In Figure \ref{fig:f1-combination} is presented the charts for them over the years, Figure \ref{fig:top1-5} shows the first to fifth, and Figure \ref{fig:top6-10} shows the remaining combinations.
+In addition to this comparison, we want to evaluate the behavior of the models over the years. For this, we will evaluate the f1 score for each year isolated. In Figure \ref{fig:f1-combination} is presented the charts for them over the years, Figure \ref{fig:top1-5} shows the first to fifth, and Figure \ref{fig:top6-10} shows the remaining correspondences.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/f1-combination-1-5}
-		\caption{Combinations 1 to 5.}
+		\caption{Correspondences 1 to 5.}
 		\label{fig:top1-5}
 	\end{subfigure}%
 	\hfill
 	\begin{subfigure}{0.49\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/f1-combination-6-10}
-		\caption{Combinations 6 to 10.}
+		\caption{Correspondences 6 to 10.}
 		\label{fig:top6-10}
 	\end{subfigure}%
-	\caption{F1 Score for the main combinations.}
+	\caption{F1 Score for the main correspondences.}
 	\label{fig:f1-combination}
 \end{figure}
 
 
 % Comentar resultados das tabelas e dos gráficos
-From Table \ref{tab:avg-combination-score}, we see a high negative correlation between the position of combinations and their f1 scores, $-0.775$ for the record. This result said to us that is a decreasing relationship between the predictions of these combinations. Figure \ref{fig:combination-corr} shows a scatter plot for this relationship with an ordinary least squares (OLS) trend line.
+From Table \ref{tab:avg-combination-score}, we see a high negative correlation between the position of correspondences and their f1 scores, $-0.775$ for the record. This result said to us that is a decreasing relationship between the predictions of these correspondences. Figure \ref{fig:combination-corr} shows a scatter plot for this relationship with an ordinary least squares (OLS) trend line.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.6\linewidth]{01.Chapters/05.Results/combination-corr}
-	\caption{F1 Score correlation with the combination position.}
+	\caption{F1 Score correlation with the correspondence position.}
 	\label{fig:combination-corr}
 \end{figure}
 
-This decreasing trend reflects directly in score curves in Figure \ref{fig:f1-combination}. Despite slight fluctuations, the decreasing trend in combinations scores could indicate that even in the best combinations the predictions are not so accurate. The terms evolution over the years to develop the topics maybe have changed and the models can not learn these new terms.
+This decreasing trend reflects directly in score curves in Figure \ref{fig:f1-combination}. Despite slight fluctuations, the decreasing trend in correspondences scores could indicate that even in the best correspondences the predictions are not so accurate. The terms evolution over the years to develop the topics maybe have changed and the models can not learn these new terms.
 
-Let us observe a little deeper at the relationship between the score and the time evolution. In Figure \ref{fig:isolated-topics} we have a scatter plot with the local regression trendline of LOWESS type for the two best combinations. Notice that despite a small increase, there is a natural tendency of constancy followed by a decrease in the models' efficiency over the years. Again, this inclination suggests that the rising of new terms for new techniques affects the classification.
+Let us observe a little deeper at the relationship between the score and the time evolution. In Figure \ref{fig:isolated-topics} we have a scatter plot with the local regression trendline of LOWESS type for the two best correspondences. Notice that despite a small increase, there is a natural tendency of constancy followed by a decrease in the models' efficiency over the years. Again, this inclination suggests that the rising of new terms for new techniques affects the classification.
 
 \begin{figure}[h!]
 	\begin{subfigure}{0.5\textwidth}
 	\includegraphics[width=\linewidth]{01.Chapters/05.Results/lowess-1}
-		\caption{Topics combination \textit{Past 11} - \textit{Present 06}.}
+		\caption{Topics correspondence \textit{Past 11} - \textit{Present 06}.}
 	\end{subfigure}%
 	\hfill
 	\begin{subfigure}{0.5\textwidth}
 		\includegraphics[width=\linewidth]{01.Chapters/05.Results/lowess-2}
-		\caption{Topics combination \textit{Past 10} - \textit{Present 05}.}
+		\caption{Topics correspondence \textit{Past 10} - \textit{Present 05}.}
 	\end{subfigure}%
-	\caption{F1 Score for the main combinations.}
+	\caption{F1 Score for the main correspondences.}
 	\label{fig:isolated-topics}
 \end{figure}
 
 \newpage
-Realize that combinations under the top 5 may have some growth trend. However, in general, these combinations already have low efficiency in relation to the best ones, decreasing the result's reliability.
+Realize that correspondences under the top 5 may have some growth trend. However, in general, these correspondences already have low efficiency in relation to the best ones, decreasing the result's reliability.
 
 
