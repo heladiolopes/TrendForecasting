@@ -176,7 +176,7 @@ In this chapter, we will introduce the general concepts and techniques behind Na
 		\label{eq:generative-lda}
 		p(w|\alpha, \beta) = \prod_{k=1}^{K} p(\phi_{k}|\beta) \prod_{j=1}^{M} p(\theta_{j}|\alpha) \left( \prod_{i=1}^{V}p(z_{j,i}|\theta_{j}) p(w_{i,j}|z_{i,j},\phi_{z_{j,i}})  \right) \text{,}
 	\end{equation}
-	where $\phi$ is the distribution of $V$ words over the $K$ topics and $\theta$ is the topic distribution over the $M$ documents. The term inside the parentheses represent the choice of a word $w$ for a document given the assignment of topics $z$ for the specific document.
+	where $\phi$ is the distribution of $V$ words over the $K$ topics, $\theta$ is the topic distribution over the $M$ documents, $\alpha$ is the dirichlet parameter for $\theta$ distribution, and $\beta$ is the dirichlet parameter for $\phi$ distribution. The term inside the parentheses represent the choice of a word $w$ for a document given the assignment of topics $z$ for the specific document.
   % TODO: what is α and β?
 
 	\subsubsection{Model Inference}

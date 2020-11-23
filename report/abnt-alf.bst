@@ -1,61 +1,28 @@
-%% $Id: abnt-alf.bst,v 1.45.2.1 2004/11/02 15:17:44 gweber Exp $
-%% Copyright 2001-2003 by the abnTeX group at http://abntex.codigolivre.org.br
+%% abntex2-alf.bst, v-1.9.7 laurocesar
+%% Copyright 2012-2018 by abnTeX2 group at http://www.abntex.net.br/ 
 %%
-%% Mantainer: Gerald Weber <gweber@codigolivre.org.br>
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either version 1.3
+%% of this license or (at your option) any later version.
+%% The latest version of this license is in
+%%   http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
 %%
-%% This file is distributed under the LaTeXProject Public License (LPPL) http://www.latex-project.org/lppl.html
-%% You are free to modify this file under the LPPL.
+%% This work has the LPPL maintenance status `maintained'.
+%% 
+%% The Current Maintainer of this work is the abnTeX2 team, led
+%% by Lauro César Araujo. Further information are available on 
+%% http://www.abntex.net.br/
+%%
+%% Creator and original mantainer: Gerald Weber <gweber@codigolivre.org.br>
+%% Copyright 2001-2002 by the abnTeX group at http://abntex.codigolivre.org.br
 %%
 %% This file is an *extensive* modification from a file generated with the docstrip utility.
 %% The original source files were:
 %% merlin.mbs  (with options: `babel,nm-revf,aunm-semi,nmlm,x3,m3,dt-end,yr-com,xmth,vnum-x,volp-com,jwdpg,jwdvol,num-xser,btit-rm,bt-rm,pg-bk,add-pub,pub-date,pub-xpar,pre-pub,isbn,issn,pp,ed,abr,ednx,nfss')
 %% These sourefiles are copyrighted by Patrick W Daly
-%%
-%% Nota sobre os Logs: Se aparecer abnt-num � por que as aletar��es foram feitas
-%% neste arquivo e depois copiadas para abnt.alf e vice-versa.
-%%
-%% $Log: abnt-alf.bst,v $
-%% Revision 1.45.2.1  2004/11/02 15:17:44  gweber
-%% correcao do bug 239
-%%
-%% Revision 1.45  2003/07/23 12:06:01  gweber
-%% O comando apply.title.command agora atua sobre todas as ocorr�ncias de title, mas
-%% n�o sobre campos title que est�o vazios.
-%%
-%% Revision 1.44  2003/07/22 16:26:01  gweber
-%% Adicionada a op��o abnt-title-command. Com esta op��o pode-se definir o comando
-%% \bibtextitlecommand que permite formata��es especiais no titulo.
-%%
-%% Revision 1.43  2003/06/05 14:34:05  gweber
-%% Introduzido filtro.url.tex e filtro.url.html, a fun��o do primeiro � alterar uma url de tal maneira
-%% que que o TeX possa process�-la sem problemas. A do segundo � fazer a mesma coisa
-%% para a url que � passada para html ou hyperref.
-%%
-%% Revision 1.42  2003/06/04 13:18:07  gweber
-%% Introduzidas as op��es hyperref para abnt.url.package com isso os campos url s�o formatados agora como hyperlinks ativos.
-%% Tamb�m foram acrescentadas a op��o abnt.doi que permite selecionar o tratamento que recebe uma url come�ada com doi:
-%%
-%% Revision 1.41  2003/04/08 00:39:39  gweber
-%% Implementada a entrada @hidden que gera um \hiddenbibitem (s� alf),
-%% ou seja uma entrada que n�o aparece na lista de refer�ncias e que pode ser
-%% usada com o comando \apud e \apudonline.
-%%
-%% Revision 1.40  2003/04/01 19:34:47  gweber
-%% consertado bug de ordena��o alfab�tica, agora a ordena��o em sort.format.names � igual a de format.names
-%%
-%% Revision 1.39  2003/03/25 14:06:19  gweber
-%% Inicio da adapta��o para ISO 690:1987.
-%% Acrescentada a op��o iso-author-punctuation cuja op��o
-%% void gera iniciais juntas e sem ponto.
-%%
-%% Revision 1.38  2003/03/22 22:59:13  gweber
-%% abnt-nbr10520 foi substitu�do por abnt-cite-style.
-%% A fun��o recompose.name recomp�e um nome complicado, mas a fun��o
-%% ainda � experimental e n�o est� sendo usada no momento. Mesmo
-%% porque h� nomes que o pr�prio bibtex tem problemas para tratar.
-%% A fun��o presort for modificada de modo a poder manter o SORT em
-%% abnt-num sem realmente ordenar alfabeticamente.
-%%
+
 ENTRY
   { address author
     booktitle booksubtitle
@@ -286,7 +253,7 @@ FUNCTION {bbl.edition} { "ed." }
 FUNCTION {bbl.empty} {""}
 FUNCTION {bbl.etal}{abnt.etal.text "" = {""} {" " abnt.etal.text *} if$}
 FUNCTION {bbl.doi.url} {"http://dx.doi.org/"}
-FUNCTION {bbl.in}{ "\textit{In}" iso.abbreviation 'skip$ { bbl.colon *} if$}
+FUNCTION {bbl.in}{ "In" iso.abbreviation 'skip$ { bbl.colon *} if$}
 FUNCTION {bbl.ldots} %#0 use nothing, #1 use \ldots, #2 use $\ldots$, 3# use {...}
 {abnt.ldots.type
   {abnt.ldots.type #1 = {"\ldots"}   'skip$ if$
@@ -301,16 +268,15 @@ FUNCTION {bbl.missing.year}
   {""}       %#0
  if$}
 FUNCTION {bbl.monography} { "Monografia" }
-FUNCTION {bbl.proceedings} {"\textbf{Proceedings}~[...]"}
-FUNCTION {bbl.mthesis} { "Dissertation" }
-FUNCTION {bbl.no.address} {"[\textit{S.l.}]"} 
-FUNCTION {bbl.no.address.no.publisher} {"[\textit{S.l.: s.n.}]"}
-FUNCTION {bbl.no.publisher} {"[\textit{s.n.}]"}
+FUNCTION {bbl.mthesis} { "Disserta\c{c}\~{a}o" }
+FUNCTION {bbl.no.address} {"[S.l.]"}
+FUNCTION {bbl.no.address.no.publisher} {"[S.l.: s.n.]"}
+FUNCTION {bbl.no.publisher} {"[s.n.]"}
 FUNCTION {bbl.number} { iso.abbreviation {"no."} {"n."} if$ }
 FUNCTION {bbl.nr} { "n." }
 FUNCTION {bbl.of} { "de" }
 FUNCTION {bbl.phd} { "Doutorado" }
-FUNCTION {bbl.phdthesis} { "Thesis" }
+FUNCTION {bbl.phdthesis} { "Tese" }
 FUNCTION {bbl.pages}
   {pagename empty$
     { "p." }
@@ -323,9 +289,9 @@ FUNCTION {bbl.semicolon} { "; "}
 FUNCTION {bbl.same.field} {"\underline{\ \ \ \ \ \ \ \ }"}
 FUNCTION {bbl.techrep} { "Rel. Tec." }
 FUNCTION {bbl.url.accessdate}
-  {iso.abbreviation { "Cited "} {"Accessed on: "} if$}
+  {iso.abbreviation { "Cited "} {"Acesso em: "} if$}
 FUNCTION {bbl.url.available}
-{ iso.abbreviation {"Available from Internet: "} {"Available at: "} if$}
+{ iso.abbreviation {"Available from Internet: "} {"Dispon{\'\i}vel em: "} if$}
 FUNCTION {bbl.void} {""}
 FUNCTION {bbl.volume} { iso.abbreviation {"vol."} {"v."} if$ }
 
@@ -688,8 +654,8 @@ FUNCTION {format.howpublished}
 %typical author fields are absent. In this case the first
 %word is uppercase. Our main problem is to establish what
 %the first word actually is since portuguese uses accents.
-%For example: Fun{\c c}\�o (Fun��o) is a whole word but contains a
-%space, but if we write Fun\c{c}\�o \c is converted to uppercase...
+%For example: Fun{\c c}\ão (Função) is a whole word but contains a
+%space, but if we write Fun\c{c}\ão \c is converted to uppercase...
 %You get the problem, don't you?
 FUNCTION {format.title.as.author}
 { 's := %holds the title
@@ -789,7 +755,7 @@ FUNCTION {format.date}
 { year empty$
     { month empty$
 	{ bbl.missing.year }
-	{ "existe o campo month (m�s) mas n�o o campo year (ano) em " cite$ * warning$ month}
+	{ "existe o campo month (mês) mas não o campo year (ano) em " cite$ * warning$ month}
       if$}
     { month empty$
 	{ year n.dashify}
@@ -810,7 +776,7 @@ compare.title
 FUNCTION {either.or.check}
 { empty$
     'pop$
-    { "n�o posso usar ambos " swap$ * " os campos em " * cite$ * warning$ }
+    { "não posso usar ambos " swap$ * " os campos em " * cite$ * warning$ }
   if$
 }
 
@@ -943,14 +909,16 @@ FUNCTION {format.journal.pages}
 
 FUNCTION {get.url.type}
 {s #1 #5 substring$ "http:" = {http.url}
+ {s #1 #6 substring$ "https:" = {http.url}
   {s #1 #5 substring$ "file:" = {file.url}
-     {s #1 #4 substring$ "ftp:"  = {ftp.url}
-       {s #1 #4 substring$ "doi:"  = {doi.url}
-         {s #1 #7 substring$ "mailto:" = {mailto.url} {unknown.url} if$}
-       if$}
+   {s #1 #4 substring$ "ftp:"  = {ftp.url}
+    {s #1 #4 substring$ "doi:"  = {doi.url}
+     {s #1 #7 substring$ "mailto:" = {mailto.url} {unknown.url} if$}
+      if$}
      if$}
+    if$}
    if$}
- if$
+  if$
  'url.type :=
 }
 
@@ -969,10 +937,13 @@ FUNCTION {filter.url.tex}
     {s url.pos #1 substring$
     duplicate$ "_" = {pop$ "\underline{\ }" } 'skip$ if$
     duplicate$ "%" = {pop$ "\%" } 'skip$ if$
+    duplicate$ "&" = {pop$ "\&" } 'skip$ if$
     duplicate$ "~" = {pop$ "\~{}" } 'skip$ if$
     duplicate$ "/" = {pop$ "\-/" } 'skip$ if$
     duplicate$ "." = {pop$ "\-." } 'skip$ if$
     duplicate$ "\" = {pop$ "{\textbackslash}" } 'skip$ if$
+    duplicate$ "#" = {pop$ "\#" } 'skip$ if$
+    duplicate$ "_" = {pop$ "\_" } 'skip$ if$
     t swap$ * 't :=
     url.pos #1 + 'url.pos :=
     }
@@ -985,6 +956,8 @@ FUNCTION {filter.url.html}
   {url.pos url.length <}
     {s url.pos #1 substring$
     duplicate$ "%" = {pop$ "\%" } 'skip$ if$
+    duplicate$ "#" = {pop$ "\#" } 'skip$ if$
+    duplicate$ "_" = {pop$ "\_" } 'skip$ if$
     t swap$ * 't :=
     url.pos #1 + 'url.pos :=
     }
@@ -992,29 +965,29 @@ FUNCTION {filter.url.html}
 t
 }
 
-FUNCTION {compose.url}%modified by Saulo, 11 julho 2020
+FUNCTION {compose.url}
 {'s :=
  get.url.type
  bbl.url.available
  abnt.url.package #0 =
-   { "$ $"   *
+   { "$<$"   *
    abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-   * "$ $" *} 'skip$ if$
+   * "$>$" *} 'skip$ if$
  abnt.url.package #1 =
-   { "\url{" * s * "}" *} 'skip$ if$
+   { "\url{" * filter.url.html * "}" *} 'skip$ if$
  abnt.url.package #2 =
    {url.type http.url =
-     {"\htmladdnormallink{$ $" * filter.url.tex * "$ $}{" * filter.url.html * "}" *}
+     {"\htmladdnormallink{$<$" * filter.url.tex * "$>$}{" * filter.url.html * "}" *}
      'skip$ if$
     url.type doi.url = url.type ftp.url = or url.type mailto.url = or
-     {"\htmladdnormallink{$ $" *
+     {"\htmladdnormallink{$<$" *
       abnt.doi abnt.doi.expand.to.url = 'expand.doi {s} if$
-      * "$ $}{" *
+      * "$>$}{" *
       abnt.doi abnt.doi.leave.as.is = {s} 'expand.doi if$
       * "}" * }
      'skip$ if$
     url.type unknown.url =
-     {"$ $" * filter.url.tex * "$ $" *}
+     {"$<$" * filter.url.tex * "$>$" *}
      'skip$ if$} 'skip$ if$
 }
 FUNCTION {format.url}
@@ -1109,7 +1082,7 @@ FUNCTION {empty.misc.check}
   month empty$ year empty$ note empty$
   and and and and and
   key empty$ not and
-    { "todos os campos relevantes estao vazios ou faltando em " cite$ * warning$ }
+    { "todos os campos relevantes estão vazios ou faltando em " cite$ * warning$ }
     'skip$
   if$
 }
@@ -1139,7 +1112,7 @@ if$
 
 FUNCTION {format.field.address}
 { 't :=
-  address empty$ address empty$ and publisher empty$ and t empty$ and % modified by Saulo 12 july 2020
+  address empty$ organization empty$ and url empty$ and t empty$ and
     {bbl.no.address.no.publisher}
     {address empty$
       %if an url is present we don't give a missing address "[s.l.]" notice
@@ -1160,14 +1133,6 @@ FUNCTION {format.address}
   { address}
  if$
 }
-
-FUNCTION {format.proceedings}
-{address empty$
-  { bbl.proceedings}
-  { bbl.proceedings}
- if$
-}
-
 
 FUNCTION {format.publisher.address}
 { publisher "publisher" bibinfo.check format.field.address}
@@ -1441,7 +1406,7 @@ FUNCTION {fin.entry}
 FUNCTION { abnt.display.options}
 { 's := 't :=
   abnt.show.options #1 = % "warn"
-  {"op��o " t * " passou para " * s * warning$ } 'skip$ if$
+  {"opção " t * " passou para " * s * warning$ } 'skip$ if$
 
   abnt.show.options #2 = % "list"
   {"Op\c c\~ao selecionada {\tt " t * "=}\verb+" * s * "+" * output new.sentence } 'skip$ if$
@@ -1472,7 +1437,7 @@ FUNCTION { abnt-options1 }
         {#0 'abnt.cite.style :=}
 	{abnt-cite-style "(Author, YEAR)" =
 	  {#1 'abnt.cite.style :=}
-	  {"op��o " abnt-cite-style * " desconhecida" * warning$}
+	  {"opção " abnt-cite-style * " desconhecida" * warning$}
 	 if$}
         if$
        "abnt-cite-style" abnt-cite-style abnt.display.options}if$
@@ -1486,8 +1451,8 @@ FUNCTION { abnt-options1 }
     "abnt-emphasize" abnt.emphasize abnt.display.options
     abnt-emphasize "\bf" = abnt-emphasize "\it" = or abnt-emphasize "\em" = or
     abnt-emphasize "\bfseries" = or
-      {"n�o use " abnt-emphasize * " para abnt-emphasize em " * cite$ *
-      ", isto alterar� TODO o texto. Use \textbf ou \emph. Veja a documenta��o abnt-bibtex-doc para mais detalhes." * warning$}
+      {"não use " abnt-emphasize * " para abnt-emphasize em " * cite$ *
+      ", isto alterará TODO o texto. Use \textbf ou \emph. Veja a documentação abnt-bibtex-doc para mais detalhes." * warning$}
     'skip$ if$
     } if$
 
@@ -1499,7 +1464,7 @@ FUNCTION { abnt-options1 }
 	  {abnt.doi.link 'abnt.doi :=}
 	  {abnt-doi "doi" =
 	    {abnt.doi.leave.as.is 'abnt.doi :=}
-	    {"op��o " abnt-doi * " desconhecida" * warning$}
+	    {"opção " abnt-doi * " desconhecida" * warning$}
 	   if$}
 	 if$}
         if$
@@ -1567,7 +1532,7 @@ FUNCTION { abnt-options3 }
 
     abnt-dont-use-etal empty$
     'skip$ {abnt-dont-use-etal "yes" = {#0 'abnt.etal.list :=} 'skip$ if$
-    "Uso da op��o abnt-dont-use-etal se tornou obsoleto, usamos abnt-etal-list." warning$
+    "Uso da opção abnt-dont-use-etal se tornou obsoleto, usamos abnt-etal-list." warning$
     "abnt-etal-list" abnt.etal.list int.to.str$ abnt.display.options} if$
 
     abnt-etal-cite empty$
@@ -1584,7 +1549,7 @@ FUNCTION { abnt-options3 }
 
     abnt-no-etal-label empty$
     'skip$ {abnt-no-etal-label "yes" = {#0 'abnt.etal.cite :=} 'skip$ if$
-    "Uso da op��o abnt-no-etal-label se tornou obsoleto, usamos abnt-etal-cite." warning$
+    "Uso da opção abnt-no-etal-label se tornou obsoleto, usamos abnt-etal-cite." warning$
     "abnt-etal-cite" abnt.etal.cite int.to.str$ abnt.display.options} if$
 
     abnt-repeated-author-omit empty$
@@ -1673,16 +1638,19 @@ FUNCTION {article}
   iso.year.label
   format.title "title" output.check new.block
   format.journal output
-  iso.date.place {format.date output} 'skip$ if$
+  iso.date.place {format.year output} 'skip$ if$
+  %iso.date.place {format.date output} 'skip$ if$
+  %iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+  %               {format.year output new.sentence} if$
   section "section" bibinfo.check output.dash
   publisher "publisher" bibinfo.check output
   address "address" bibinfo.check output
   format.volume output
   format.number output
   format.pages output
-  format.note output
   non.iso.date
   format.issn output new.block
+  format.note output new.block
   format.url
   fin.entry
 }
@@ -1697,13 +1665,14 @@ FUNCTION {book}
   format.publisher.address output
   iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
                  {format.year output new.sentence} if$
+  format.volume output new.sentence
   format.book.pages output
   format.illustrated
   format.dimensions  new.sentence
   format.howpublished output  new.sentence
   format.volume.number.series output new.sentence
   format.note output
-  format.issn output %pode parecer curioso, mas revistas inteiras s�o tratadas como livro
+  format.issn output %pode parecer curioso, mas revistas inteiras são tratadas como livro
   format.isbn output new.sentence
   format.url
   fin.entry
@@ -1717,7 +1686,9 @@ FUNCTION {booklet}
   format.edition output new.sentence
   address "address" bibinfo.check output
   format.bvolume output
-  format.date output  new.sentence
+  %format.date output  new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.book.pages output new.sentence
   format.volume.number.series output new.sentence
   format.note output
@@ -1739,11 +1710,12 @@ FUNCTION {inbook}
   format.furtherresp new.sentence
   format.edition output new.sentence
   format.publisher.address output
-  format.year output new.sentence
+  %format.year output new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.bvolume.if.no.series output
-  format.pages output new.sentence % modified by Saulo 12 july 2020
   format.volume.number.series output
- %format.chapter.pages output new.sentence
+  format.chapter.pages output new.sentence
   format.isbn output new.block
   format.note output new.block
   format.url
@@ -1758,7 +1730,9 @@ FUNCTION {incollection}
   format.in.ed.booktitle
   format.edition output new.sentence
   format.publisher.address output
-  format.year output
+  %format.year output
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output} if$
   format.volume.number.series output new.sentence
   format.bvolume.if.no.series output
   format.chapter.pages output new.sentence
@@ -1773,9 +1747,10 @@ FUNCTION {inproceedings}
   iso.year.label
   format.title "title" output.check  new.sentence
   format.in.ed.booktitle
-  format.proceedings output new.sentence %modified by Saulo:  "new.sentence" to put "." instead "," after Precedings[...] :) 12 July 2020
   format.publisher.address output
-  format.year output new.sentence
+  %format.year output new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.bvolume.if.no.series output
   format.volume.number.series output
   format.pages output
@@ -1796,12 +1771,14 @@ FUNCTION {journalpart}
   format.publisher.address output
   format.volume output
   format.number output
-  format.date output new.sentence
+  %format.date output new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.date output new.sentence} if$
   format.book.pages output
   format.illustrated
   format.dimensions  new.sentence
   format.note output
-  format.issn output %pode parecer curioso, mas revistas inteiras s�o tratadas como livro
+  format.issn output %pode parecer curioso, mas revistas inteiras são tratadas como livro
   format.isbn output new.sentence
   format.url
   fin.entry
@@ -1815,7 +1792,9 @@ FUNCTION {manual}
   format.furtherresp new.sentence
   format.edition output new.sentence
   format.address output
-  format.date output new.sentence
+  %format.date output new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.bvolume.if.no.series output
   format.book.pages output new.sentence
   format.volume.number.series output new.sentence
@@ -1832,7 +1811,9 @@ FUNCTION {misc}
   format.btitle output new.sentence
   format.furtherresp new.sentence
   format.publisher.address.relax output
-  format.date output  new.block
+  %format.date output  new.block
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.book.pages output new.sentence
   format.illustrated
   format.dimensions  new.sentence
@@ -1851,7 +1832,9 @@ FUNCTION {patent}
   format.authors.plain  output new.sentence
   format.btitle output new.sentence
   format.furtherresp new.sentence
-  format.date output  new.block
+  %format.date output  new.block
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.patent.number output
   format.howpublished output  new.block
   format.note output  new.block
@@ -1947,7 +1930,9 @@ FUNCTION {unpublished}
   iso.year.label
   format.title "title" output.check  new.sentence
   format.note "note" output.check  new.sentence
-  format.date output new.sentence
+  %format.date output new.sentence
+  iso.date.place {abnt.alf 'skip$ {format.year output new.sentence} if$}
+                 {format.year output new.sentence} if$
   format.url
   fin.entry
 }
@@ -2046,7 +2031,7 @@ FUNCTION {set.default.abnt.variables}
   "$RCSfile: abnt-alf.bst,v $ " extract.cvs.key
   %
   "abnt-alf.bst,v " = 'abnt.alf := % #1 para abnt-alf #0 para abnt-num
-  "$Revision: 1.45.2.1 $" extract.cvs.key 'abnt.bst.revision :=
+  "$Revision: v-1.9.7 $" extract.cvs.key 'abnt.bst.revision :=
   #0 'abnt.and.type     :=     % #0 "e"; #1 "&"
   "\emph" 'abnt.emphasize :=
   #0 'abnt.cite.style :=       %default norm version for NBR10520
@@ -2150,7 +2135,7 @@ FUNCTION {begin.bib}
     {"\providecommand{\bibtextitlecommand}[2]{#2}" write$ newline$}
     'skip$ if$
   "\abntbstabout{" abnt.bst.revision * "}" * write$ newline$
-  %Se voc� n�o usa abntcite e precisa que a margem direita n�o
+  %Se você não usa abntcite e precisa que a margem direita não
   %seja justificada, descomente a linha seguinte
   %alternativamente coloque \bibliography{abnt-nrj,...
 %  "\setlength{\rightskip}{0pt plus 2cm}" write$ newline$
@@ -2165,11 +2150,11 @@ FUNCTION {end.bib}
 EXECUTE {end.bib}
 FUNCTION {apresentacao}
 { "+---------------------------------------------------------+"
-  "| http://abntex.codigolivre.org.br                        |"
-  "| Em caso de d�vidas ou problemas com este estilo procure |"
+  "| http://www.abntex.net.br/                               |"
+  "| Em caso de dúvidas ou problemas com este estilo procure |"
   abnt.alf
- {"| Estilo bibliogr�fico abnt-alf.bst vers�o " abnt.bst.revision * "          |" *}
- {"| Estilo bibliogr�fico abnt-num.bst vers�o " abnt.bst.revision * "          |" *}
+ {"| Estilo bibliográfico abntex2-alf.bst versão " abnt.bst.revision * "          |" *}
+ {"| Estilo bibliográfico abntex2-num.bst versão " abnt.bst.revision * "          |" *}
  if$
   "+---------------------------------------------------------+"
   stack$
